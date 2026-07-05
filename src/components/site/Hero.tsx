@@ -4,9 +4,17 @@ import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
-import { IraqMap } from "./IraqMap";
+import { MarketSignalPanel } from "./MarketSignalPanel";
 
-export function Hero() {
+export function Hero({
+  activeOpportunities,
+  sectorsCount,
+  servicesCount,
+}: {
+  activeOpportunities: number;
+  sectorsCount: number;
+  servicesCount: number;
+}) {
   const t = useTranslations("home.hero");
 
   return (
@@ -65,14 +73,18 @@ export function Hero() {
           </motion.div>
         </div>
 
-        <div className="relative flex items-center justify-center lg:col-span-5">
+        <div className="relative flex min-w-0 items-center justify-center lg:col-span-5">
           <motion.div
             initial={{ opacity: 0, scale: 0.94 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 0.3 }}
             className="w-full"
           >
-            <IraqMap />
+            <MarketSignalPanel
+              activeOpportunities={activeOpportunities}
+              sectorsCount={sectorsCount}
+              servicesCount={servicesCount}
+            />
           </motion.div>
         </div>
       </div>

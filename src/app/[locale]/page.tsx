@@ -11,7 +11,35 @@ import { TendersPreview } from "@/components/site/TendersPreview";
 import { ConfidentialityNotice } from "@/components/site/ConfidentialityNotice";
 import { CTASection } from "@/components/site/CTASection";
 import { FadeIn } from "@/components/ui/FadeIn";
+import { createClient } from "@/lib/supabase/server";
 import en from "@/messages/en.json";
+
+async function getHeroCounts() {
+  try {
+    const supabase = await createClient();
+    const [opportunities, sectors, services] = await Promise.all([
+      supabase
+        .from("opportunities")
+        .select("id", { count: "exact", head: true })
+        .eq("status", "open")
+        .eq("content_status", "published"),
+      supabase.from("sectors").select("id", { count: "exact", head: true }).eq("status", "published"),
+      supabase.from("services").select("id", { count: "exact", head: true }).eq("status", "published"),
+    ]);
+
+    return {
+      activeOpportunities: opportunities.count ?? 0,
+      sectorsCount: sectors.count ?? en.sectors.items.length,
+      servicesCount: services.count ?? en.services.items.length,
+    };
+  } catch {
+    return {
+      activeOpportunities: 0,
+      sectorsCount: en.sectors.items.length,
+      servicesCount: en.services.items.length,
+    };
+  }
+}
 
 export default async function HomePage({
   params,
@@ -20,16 +48,21 @@ export default async function HomePage({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  return <HomeContent />;
+  const heroCounts = await getHeroCounts();
+  return <HomeContent heroCounts={heroCounts} />;
 }
 
-function HomeContent() {
+function HomeContent({
+  heroCounts,
+}: {
+  heroCounts: { activeOpportunities: number; sectorsCount: number; servicesCount: number };
+}) {
   const t = useTranslations("home");
   const tBrand = useTranslations("brand");
 
   return (
     <>
-      <Hero />
+      <Hero {...heroCounts} />
       <TrustStrip />
 
       {/* What STRATIQ Access Does */}
