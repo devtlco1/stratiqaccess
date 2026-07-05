@@ -1,53 +1,75 @@
+import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { Container } from "@/components/ui/Container";
 
-const company = [
+type NavKey =
+  | "about"
+  | "services"
+  | "sectors"
+  | "iraqMarketAccess"
+  | "tenderIntelligence"
+  | "partnerships"
+  | "insights"
+  | "contact"
+  | "cta";
+
+const company: { href: string; key: NavKey }[] = [
   { href: "/about", key: "about" },
   { href: "/services", key: "services" },
   { href: "/sectors", key: "sectors" },
   { href: "/partnerships", key: "partnerships" },
-] as const;
-
-type NavKey = "about" | "services" | "sectors" | "iraqMarketAccess" | "tenderIntelligence" | "partnerships" | "insights" | "contact" | "cta";
+];
 
 const resources: { href: string; key?: NavKey; label?: string }[] = [
   { href: "/tender-intelligence", key: "tenderIntelligence" },
+  { href: "/iraq-market-access", key: "iraqMarketAccess" },
   { href: "/tenders", label: "Iraq Tenders" },
   { href: "/insights", key: "insights" },
+];
+
+const legal = [
   { href: "/legal/confidentiality", label: "Confidentiality & Protection" },
+  { href: "/legal/terms", label: "Terms of Use" },
+  { href: "/legal/privacy", label: "Privacy Policy" },
 ];
 
 export function Footer() {
   const t = useTranslations("nav");
   const tFooter = useTranslations("footer");
   const tBrand = useTranslations("brand");
+  const tContact = useTranslations("contact");
   const year = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-white/5 bg-navy-900/60">
-      <Container className="py-16">
-        <div className="grid gap-12 lg:grid-cols-4">
-          <div className="lg:col-span-2">
-            <p className="font-display text-lg text-silver-100">
-              STRATIQ <span className="text-gold-400">Access</span>
-            </p>
-            <p className="mt-4 max-w-sm text-sm leading-relaxed text-silver-300">
+    <footer className="border-t border-ivory-100/8 bg-navy-950">
+      <Container className="py-20">
+        <div className="grid gap-14 lg:grid-cols-12">
+          <div className="lg:col-span-4">
+            <Image
+              src="/brand/stratiq-wordmark.png"
+              alt="STRATIQ Access"
+              width={165}
+              height={46}
+              className="h-9 w-auto"
+            />
+            <p className="mt-6 max-w-sm text-base leading-relaxed text-muted-500">
               {tBrand("tagline")} {tBrand("subline")}
             </p>
+            <div className="mt-6 space-y-1.5 text-sm text-muted-500">
+              <p>{tContact("email")}</p>
+              <p>stratiqaccess.com</p>
+            </div>
           </div>
 
-          <div>
-            <p className="text-xs uppercase tracking-[0.2em] text-gold-400">
+          <div className="lg:col-span-3 lg:col-start-6">
+            <p className="text-sm font-medium uppercase tracking-[0.1em] text-gold-400">
               {tFooter("company")}
             </p>
-            <ul className="mt-4 space-y-3">
+            <ul className="mt-5 space-y-3.5">
               {company.map((link) => (
                 <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-silver-300 hover:text-gold-400"
-                  >
+                  <Link href={link.href} className="text-[15px] text-muted-500 hover:text-ivory-100">
                     {t(link.key)}
                   </Link>
                 </li>
@@ -55,18 +77,28 @@ export function Footer() {
             </ul>
           </div>
 
-          <div>
-            <p className="text-xs uppercase tracking-[0.2em] text-gold-400">
+          <div className="lg:col-span-3">
+            <p className="text-sm font-medium uppercase tracking-[0.1em] text-gold-400">
               {tFooter("resources")}
             </p>
-            <ul className="mt-4 space-y-3">
+            <ul className="mt-5 space-y-3.5">
               {resources.map((link) => (
                 <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-silver-300 hover:text-gold-400"
-                  >
+                  <Link href={link.href} className="text-[15px] text-muted-500 hover:text-ivory-100">
                     {link.key ? t(link.key) : link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="lg:col-span-2">
+            <p className="text-sm font-medium uppercase tracking-[0.1em] text-gold-400">Legal</p>
+            <ul className="mt-5 space-y-3.5">
+              {legal.map((link) => (
+                <li key={link.href}>
+                  <Link href={link.href} className="text-[15px] text-muted-500 hover:text-ivory-100">
+                    {link.label}
                   </Link>
                 </li>
               ))}
@@ -74,9 +106,9 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-14 flex flex-col gap-6 border-t border-white/5 pt-8 text-xs text-silver-400 lg:flex-row lg:items-center lg:justify-between">
+        <div className="mt-16 flex flex-col gap-6 border-t border-ivory-100/8 pt-8 text-sm text-muted-600 lg:flex-row lg:items-center lg:justify-between">
           <p className="max-w-3xl leading-relaxed">{tBrand("legalFooter")}</p>
-          <p>
+          <p className="shrink-0">
             © {year} STRATIQ Access. {tFooter("rights")}
           </p>
         </div>

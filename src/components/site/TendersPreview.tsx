@@ -1,0 +1,91 @@
+import { Lock } from "lucide-react";
+import { Link } from "@/i18n/navigation";
+import { Button } from "@/components/ui/Button";
+import { FadeIn } from "@/components/ui/FadeIn";
+import { ConfidentialityNotice } from "@/components/site/ConfidentialityNotice";
+import { createClient } from "@/lib/supabase/server";
+import en from "@/messages/en.json";
+
+const statusStyle: Record<string, string> = {
+  open: "text-teal-400 border-teal-400/30 bg-teal-500/10",
+  under_review: "text-gold-400 border-gold-400/30 bg-gold-500/10",
+  awarded: "text-muted-500 border-ivory-100/15 bg-ivory-100/5",
+  closed: "text-muted-600 border-ivory-100/10 bg-ivory-100/5",
+};
+
+async function getPreviewTenders() {
+  try {
+    const supabase = await createClient();
+    const { data, error } = await supabase
+      .from("opportunities")
+      .select("id, title, buyer, deadline, status, requires_nda, kind")
+      .eq("content_status", "published")
+      .order("featured", { ascending: false })
+      .order("created_at", { ascending: false })
+      .limit(3);
+    if (error) throw error;
+    return data ?? [];
+  } catch {
+    return [];
+  }
+}
+
+export async function TendersPreview() {
+  const tenders = await getPreviewTenders();
+
+  return (
+    <div>
+      {tenders.length === 0 ? (
+        <div className="rounded-md border border-dashed border-ivory-100/15 p-10 text-center text-[15px] text-muted-500">
+          New opportunities are added regularly. Contact us for a sector-specific tender briefing.
+        </div>
+      ) : (
+      <div className="grid gap-4 sm:grid-cols-3">
+        {tenders.map((tender, i) => (
+          <FadeIn key={tender.id} delay={i * 0.06}>
+            <Link
+              href={`/tenders/${tender.id}`}
+              className="block h-full rounded-md border border-ivory-100/10 bg-navy-800/50 p-6 transition-colors duration-300 hover:border-gold-500/35"
+            >
+              <div className="flex items-center justify-between">
+                <span
+                  className={`rounded-sm border px-2.5 py-1 text-xs font-medium capitalize ${statusStyle[tender.status] ?? ""}`}
+                >
+                  {tender.status.replace("_", " ")}
+                </span>
+                {tender.requires_nda && (
+                  <span className="flex items-center gap-1.5 text-xs text-muted-600">
+                    <Lock size={13} /> NDA
+                  </span>
+                )}
+              </div>
+              <h3 className="mt-4 text-[17px] font-medium leading-snug text-ivory-100">
+                {tender.title}
+              </h3>
+              <dl className="mt-5 space-y-1.5 text-sm text-muted-500">
+                <div className="flex justify-between gap-3">
+                  <dt>Buyer</dt>
+                  <dd className="truncate text-right text-muted-600">{tender.buyer ?? "Confidential"}</dd>
+                </div>
+                <div className="flex justify-between gap-3">
+                  <dt>Deadline</dt>
+                  <dd className="text-muted-600">{tender.deadline ?? "—"}</dd>
+                </div>
+              </dl>
+            </Link>
+          </FadeIn>
+        ))}
+      </div>
+      )}
+
+      <div className="mt-8 flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+        <div className="sm:max-w-lg">
+          <ConfidentialityNotice text={en.brand.disclosureNotice} />
+        </div>
+        <Button href="/tenders" variant="outline" className="shrink-0">
+          View Tender Intelligence
+        </Button>
+      </div>
+    </div>
+  );
+}

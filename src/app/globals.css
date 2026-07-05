@@ -1,28 +1,50 @@
 @import "tailwindcss";
 
 :root {
-  --color-navy-950: #04060b;
-  --color-navy-900: #070a13;
-  --color-navy-800: #0c1120;
-  --color-navy-700: #131a2e;
-  --color-navy-600: #1b2440;
+  /* Institutional navy scale */
+  --color-navy-950: #05070d;
+  --color-navy-900: #07111f;
+  --color-navy-800: #0b1b2b;
+  --color-navy-700: #142334;
+  --color-navy-600: #1c2e42;
+  --color-navy-500: #28405a;
 
-  --color-graphite-700: #1a1e29;
-  --color-graphite-600: #262b3a;
-  --color-graphite-500: #383f52;
+  /* Warm ivory text scale */
+  --color-ivory-100: #f4efe6;
+  --color-ivory-200: #e8e1d3;
 
-  --color-silver-400: #7d8496;
-  --color-silver-300: #a7adba;
-  --color-silver-200: #ccd0da;
-  --color-silver-100: #eef0f4;
+  /* Muted slate text */
+  --color-muted-500: #9ea7b3;
+  --color-muted-600: #7c8794;
 
-  --color-gold-600: #9c7a2e;
-  --color-gold-500: #c9a24b;
-  --color-gold-400: #ddbf72;
-  --color-gold-300: #ead9a8;
+  /* Strategic gold accent — used sparingly */
+  --color-gold-300: #e4c98a;
+  --color-gold-400: #d8b876;
+  --color-gold-500: #c9a24d;
+  --color-gold-600: #a9823a;
 
-  --background: var(--color-navy-950);
-  --foreground: var(--color-silver-100);
+  /* Intelligence / data teal accent */
+  --color-teal-400: #35a29b;
+  --color-teal-500: #1e8c86;
+  --color-teal-600: #16706b;
+
+  --background: var(--color-navy-900);
+  --foreground: var(--color-ivory-100);
+
+  /* --- Legacy v1 aliases ---
+     The admin dashboard (out of scope for the v2 redesign) still
+     references these class names. Keep them mapped onto the new
+     palette so admin screens stay visually consistent without needing
+     a separate pass. New public-site components should use the
+     navy/ivory/muted/gold/teal tokens above directly. */
+  --color-silver-100: var(--color-ivory-100);
+  --color-silver-200: var(--color-ivory-200);
+  --color-silver-300: var(--color-muted-500);
+  --color-silver-400: var(--color-muted-600);
+  --color-silver-500: #647080;
+  --color-graphite-700: var(--color-navy-800);
+  --color-graphite-600: var(--color-navy-700);
+  --color-graphite-500: var(--color-navy-600);
 }
 
 @theme inline {
@@ -34,23 +56,34 @@
   --color-navy-800: var(--color-navy-800);
   --color-navy-700: var(--color-navy-700);
   --color-navy-600: var(--color-navy-600);
+  --color-navy-500: var(--color-navy-500);
 
+  --color-ivory-100: var(--color-ivory-100);
+  --color-ivory-200: var(--color-ivory-200);
+
+  --color-muted-500: var(--color-muted-500);
+  --color-muted-600: var(--color-muted-600);
+
+  --color-gold-300: var(--color-gold-300);
+  --color-gold-400: var(--color-gold-400);
+  --color-gold-500: var(--color-gold-500);
+  --color-gold-600: var(--color-gold-600);
+
+  --color-teal-400: var(--color-teal-400);
+  --color-teal-500: var(--color-teal-500);
+  --color-teal-600: var(--color-teal-600);
+
+  --color-silver-100: var(--color-silver-100);
+  --color-silver-200: var(--color-silver-200);
+  --color-silver-300: var(--color-silver-300);
+  --color-silver-400: var(--color-silver-400);
+  --color-silver-500: var(--color-silver-500);
   --color-graphite-700: var(--color-graphite-700);
   --color-graphite-600: var(--color-graphite-600);
   --color-graphite-500: var(--color-graphite-500);
 
-  --color-silver-400: var(--color-silver-400);
-  --color-silver-300: var(--color-silver-300);
-  --color-silver-200: var(--color-silver-200);
-  --color-silver-100: var(--color-silver-100);
-
-  --color-gold-600: var(--color-gold-600);
-  --color-gold-500: var(--color-gold-500);
-  --color-gold-400: var(--color-gold-400);
-  --color-gold-300: var(--color-gold-300);
-
   --font-display: var(--font-fraunces);
-  --font-sans: var(--font-inter);
+  --font-sans: var(--font-geist);
 }
 
 html {
@@ -61,6 +94,8 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
 }
 
 ::selection {
@@ -72,16 +107,16 @@ body {
   font-family: var(--font-display), ui-serif, Georgia, serif;
 }
 
-/* Grain + grid texture used behind hero / section backgrounds */
+/* Fine institutional grid — much subtler than a generic "network dots" bg */
 .bg-grid {
   background-image:
-    linear-gradient(to right, rgba(201, 162, 75, 0.06) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(201, 162, 75, 0.06) 1px, transparent 1px);
-  background-size: 64px 64px;
+    linear-gradient(to right, rgba(244, 239, 230, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(244, 239, 230, 0.05) 1px, transparent 1px);
+  background-size: 80px 80px;
 }
 
 .text-gradient-gold {
-  background: linear-gradient(90deg, var(--color-gold-300), var(--color-gold-500) 50%, var(--color-gold-300));
+  background: linear-gradient(90deg, var(--color-gold-300), var(--color-gold-500) 55%, var(--color-gold-400));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -90,6 +125,11 @@ body {
 .divider-gold {
   height: 1px;
   background: linear-gradient(90deg, transparent, var(--color-gold-500), transparent);
+}
+
+.divider-line {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(244, 239, 230, 0.14), transparent);
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -42,7 +42,7 @@ export default async function ContactPage({
               <p className="text-xs uppercase tracking-[0.2em] text-gold-400">Direct Contact</p>
               <p className="mt-4 text-lg text-silver-100">{en.contact.email}</p>
               <div className="mt-8 divider-gold" />
-              <p className="mt-8 text-sm leading-relaxed text-silver-300">
+              <p className="mt-8 text-[15px] leading-relaxed text-muted-500">
                 {en.brand.legalFooterExtended}
               </p>
             </div>

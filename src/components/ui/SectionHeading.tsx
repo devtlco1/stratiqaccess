@@ -23,11 +23,11 @@ export function SectionHeading({
       )}
     >
       {eyebrow && <Badge className={align === "center" ? "justify-center" : ""}>{eyebrow}</Badge>}
-      <h2 className="mt-5 font-display text-3xl leading-tight text-silver-100 sm:text-4xl">
+      <h2 className="mt-5 text-3xl font-semibold leading-[1.15] tracking-[-0.01em] text-ivory-100 sm:text-4xl">
         {title}
       </h2>
       {description && (
-        <p className="mt-5 text-base leading-relaxed text-silver-300">
+        <p className="mt-5 text-lg leading-relaxed text-muted-500">
           {description}
         </p>
       )}

@@ -18,7 +18,7 @@ export default async function TermsPage({
     <>
       <PageHero eyebrow="Legal" title="Terms of Use" />
       <Section>
-        <div className="mx-auto max-w-3xl space-y-6 text-sm leading-relaxed text-silver-300">
+        <div className="mx-auto max-w-3xl space-y-6 text-[15px] leading-relaxed text-muted-500">
           <p>{en.brand.legalFooterExtended}</p>
           <p>
             Use of this website does not, by itself, create a representation, advisory, or partnership

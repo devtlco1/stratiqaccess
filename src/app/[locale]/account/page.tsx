@@ -58,7 +58,7 @@ export default async function AccountPage({
 
         <div className="grid gap-10 lg:grid-cols-2">
           <div>
-            <h2 className="font-display text-xl text-silver-100">Purchased Reports</h2>
+            <h2 className="text-xl font-semibold text-ivory-100">Purchased Reports</h2>
             {!purchases || purchases.length === 0 ? (
               <p className="mt-4 text-sm text-silver-400">No purchases yet.</p>
             ) : (
@@ -82,7 +82,7 @@ export default async function AccountPage({
           </div>
 
           <div>
-            <h2 className="font-display text-xl text-silver-100">Saved Opportunities</h2>
+            <h2 className="text-xl font-semibold text-ivory-100">Saved Opportunities</h2>
             {!saved || saved.length === 0 ? (
               <p className="mt-4 text-sm text-silver-400">No saved opportunities yet.</p>
             ) : (

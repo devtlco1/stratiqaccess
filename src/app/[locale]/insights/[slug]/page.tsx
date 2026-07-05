@@ -35,7 +35,7 @@ export default async function ArticlePage({
     <>
       <PageHero eyebrow="Insights" title={article.title} description={article.excerpt ?? undefined} />
       <Section>
-        <div className="mx-auto max-w-3xl whitespace-pre-line text-sm leading-relaxed text-silver-300">
+        <div className="mx-auto max-w-3xl whitespace-pre-line text-[15px] leading-relaxed text-muted-500">
           {article.body}
         </div>
       </Section>

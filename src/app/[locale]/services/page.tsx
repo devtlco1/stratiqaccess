@@ -42,12 +42,12 @@ export default async function ServicesPage({
                   </span>
                 </div>
                 <div className="lg:col-span-4">
-                  <h2 className="font-display text-2xl text-silver-100">
+                  <h2 className="text-2xl font-semibold text-ivory-100">
                     {service.title}
                   </h2>
                 </div>
                 <div className="lg:col-span-6">
-                  <p className="text-sm leading-relaxed text-silver-300">
+                  <p className="text-[15px] leading-relaxed text-muted-500">
                     {service.summary}
                   </p>
                 </div>

@@ -10,11 +10,11 @@ export function Badge({
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-gold-400",
+        "inline-flex items-center gap-2.5 text-sm font-medium uppercase tracking-[0.12em] text-gold-400",
         className,
       )}
     >
-      <span className="h-px w-6 bg-gold-500/70" />
+      <span className="h-px w-7 bg-gold-500/70" />
       {children}
     </span>
   );

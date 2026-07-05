@@ -26,7 +26,7 @@
       "subline": "Market Entry. Tender Intelligence. Local Representation.",
       "description": "STRATIQ Access helps international companies enter, understand, and compete in Iraq's high-value energy, infrastructure, ICT, telecom, smart metering, solar, data center, EPC, and industrial markets.",
       "ctaPrimary": "Request Market Access Support",
-      "ctaSecondary": "Explore Our Services"
+      "ctaSecondary": "View Iraq Tenders"
     },
     "whoWeAre": {
       "eyebrow": "Who We Are",
@@ -59,10 +59,10 @@
     }
   },
   "engagementSteps": [
-    { "step": "01", "title": "Initial Review", "body": "We understand your company, sector, products, and Iraq objectives." },
-    { "step": "02", "title": "Opportunity Mapping", "body": "We identify relevant market segments, buyers, tenders, projects, and potential partners." },
-    { "step": "03", "title": "Engagement Structure", "body": "We define the correct model: advisory, tender intelligence, local representation, procurement support, or partnership development." },
-    { "step": "04", "title": "Execution Support", "body": "We support communication, documentation, meetings, tender follow-up, and local coordination." }
+    { "step": "01", "title": "Market Review", "body": "We assess your company, sector, products, and objectives against Iraq's current market and regulatory landscape." },
+    { "step": "02", "title": "Opportunity Mapping", "body": "We identify relevant market segments, buyers, tenders, projects, and potential partners suited to your capability." },
+    { "step": "03", "title": "Protection Framework", "body": "We put NDA, non-circumvention, and engagement terms in place before any sensitive detail is shared." },
+    { "step": "04", "title": "Local Execution", "body": "We support representation, procurement, documentation, meetings, and tender follow-up on the ground in Iraq." }
   ],
   "services": {
     "hero": {

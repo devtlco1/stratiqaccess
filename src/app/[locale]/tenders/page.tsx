@@ -78,8 +78,8 @@ export default async function TendersPage({
                       {op.status.replace("_", " ")}
                     </span>
                   </div>
-                  <h2 className="mt-4 font-display text-xl text-silver-100">{op.title}</h2>
-                  <p className="mt-3 text-sm leading-relaxed text-silver-300">{op.summary}</p>
+                  <h2 className="mt-4 text-xl font-semibold text-ivory-100">{op.title}</h2>
+                  <p className="mt-3 text-[15px] leading-relaxed text-muted-500">{op.summary}</p>
                   <div className="mt-6 flex flex-wrap gap-x-8 gap-y-2 text-xs text-silver-400">
                     {op.location && <span>{en.tenders.labels.location}: {op.location}</span>}
                     {op.country && <span>{en.tenders.labels.country}: {op.country}</span>}

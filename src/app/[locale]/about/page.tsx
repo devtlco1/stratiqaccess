@@ -42,13 +42,13 @@ export default async function AboutPage({
               eyebrow="Company Overview"
               title="An institutional interface between international companies and the Iraqi market."
             />
-            <p className="mt-5 text-sm leading-relaxed text-silver-300">
+            <p className="mt-5 text-[15px] leading-relaxed text-muted-500">
               STRATIQ Access was built to answer a specific gap: international companies entering Iraq need more
               than a local contact — they need a structured platform that can qualify opportunities, coordinate
               representation, support procurement, and protect their commercial interests throughout the
               engagement.
             </p>
-            <p className="mt-5 text-sm leading-relaxed text-silver-300">
+            <p className="mt-5 text-[15px] leading-relaxed text-muted-500">
               We operate as a dedicated commercial division with a registered legal and contracting base in Iraq,
               giving international partners a credible institutional counterpart rather than an informal
               intermediary.
@@ -59,12 +59,12 @@ export default async function AboutPage({
               eyebrow="Our Iraq Access Model"
               title="Local insight, delivered through an international-standard process."
             />
-            <p className="mt-5 text-sm leading-relaxed text-silver-300">
+            <p className="mt-5 text-[15px] leading-relaxed text-muted-500">
               Every engagement follows a structured model: initial review, opportunity mapping, formal engagement
               structure, and execution support. Nothing moves forward without a clear mandate and agreement in
               place.
             </p>
-            <p className="mt-5 text-sm leading-relaxed text-silver-300">
+            <p className="mt-5 text-[15px] leading-relaxed text-muted-500">
               This discipline is what allows STRATIQ Access to work across sensitive sectors — energy, ICT,
               government procurement — without compromising the confidentiality of any party involved.
             </p>
@@ -82,8 +82,8 @@ export default async function AboutPage({
         <div className="grid gap-px overflow-hidden border border-white/10 bg-white/10 sm:grid-cols-2 lg:grid-cols-4">
           {values.map((v, i) => (
             <FadeIn key={v.title} delay={i * 0.05} className="bg-navy-950 p-8">
-              <h3 className="font-display text-lg text-gold-400">{v.title}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-silver-300">{v.body}</p>
+              <h3 className="text-lg font-semibold text-gold-400">{v.title}</h3>
+              <p className="mt-3 text-[15px] leading-relaxed text-muted-500">{v.body}</p>
             </FadeIn>
           ))}
         </div>
@@ -92,7 +92,7 @@ export default async function AboutPage({
       <Section>
         <FadeIn className="mx-auto max-w-3xl border border-white/10 bg-navy-900/50 p-10 text-center">
           <p className="text-xs uppercase tracking-[0.2em] text-gold-400">Legal Operating Structure</p>
-          <p className="mt-5 text-sm leading-relaxed text-silver-300">
+          <p className="mt-5 text-[15px] leading-relaxed text-muted-500">
             STRATIQ Access is a commercial division operated by Abraj Al-Anwar for General Trading, General
             Contracting &amp; Commercial Agencies LLC, Iraq. All engagements, representation mandates, advisory
             services, tender intelligence support, and commercial coordination activities are subject to written

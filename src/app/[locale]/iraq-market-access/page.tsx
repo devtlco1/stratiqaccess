@@ -33,8 +33,8 @@ export default async function IraqMarketAccessPage({
           {en.iraqMarketAccess.sections.map((s, i) => (
             <FadeIn key={s.title} delay={i * 0.05}>
               <div className="h-full border border-white/10 bg-navy-900/50 p-8">
-                <h2 className="font-display text-xl text-silver-100">{s.title}</h2>
-                <p className="mt-4 text-sm leading-relaxed text-silver-300">{s.body}</p>
+                <h2 className="text-xl font-semibold text-ivory-100">{s.title}</h2>
+                <p className="mt-4 text-[15px] leading-relaxed text-muted-500">{s.body}</p>
               </div>
             </FadeIn>
           ))}

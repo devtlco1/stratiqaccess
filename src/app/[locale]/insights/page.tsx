@@ -55,9 +55,9 @@ export default async function InsightsPage({
                   href={`/insights/${article.slug}`}
                   className="block h-full bg-navy-950 p-8 transition-colors hover:bg-navy-900"
                 >
-                  <h2 className="font-display text-lg text-silver-100">{article.title}</h2>
+                  <h2 className="text-lg font-semibold text-ivory-100">{article.title}</h2>
                   {article.excerpt && (
-                    <p className="mt-3 text-sm leading-relaxed text-silver-300">
+                    <p className="mt-3 text-[15px] leading-relaxed text-muted-500">
                       {article.excerpt}
                     </p>
                   )}

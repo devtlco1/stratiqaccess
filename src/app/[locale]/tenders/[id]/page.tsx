@@ -99,8 +99,8 @@ export default async function TenderDetailPage({
               ) : (
                 op.confidential_details && (
                   <div className="border border-white/10 bg-navy-900/50 p-8">
-                    <h2 className="font-display text-lg text-silver-100">Opportunity Details</h2>
-                    <p className="mt-4 whitespace-pre-line text-sm leading-relaxed text-silver-300">
+                    <h2 className="text-lg font-semibold text-ivory-100">Opportunity Details</h2>
+                    <p className="mt-4 whitespace-pre-line text-[15px] leading-relaxed text-muted-500">
                       {op.confidential_details}
                     </p>
                   </div>
@@ -112,7 +112,7 @@ export default async function TenderDetailPage({
           <div className="lg:col-span-4">
             <div className="border border-white/10 bg-navy-900/50 p-8">
               <p className="text-xs uppercase tracking-[0.2em] text-gold-400">{en.tenders.requestAccess}</p>
-              <p className="mt-4 text-sm leading-relaxed text-silver-300">
+              <p className="mt-4 text-[15px] leading-relaxed text-muted-500">
                 {en.brand.disclosureNotice}
               </p>
               <div className="mt-6">
