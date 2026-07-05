@@ -16,11 +16,15 @@ export function Hero({
   servicesCount: number;
 }) {
   const t = useTranslations("home.hero");
+  const pillars = t("subline")
+    .split(". ")
+    .map((s) => s.replace(/\.$/, ""))
+    .filter(Boolean);
 
   return (
     <section className="relative overflow-hidden bg-navy-900">
       <div className="bg-grid absolute inset-0 opacity-70" />
-      <div className="absolute -top-48 left-1/2 h-[620px] w-[620px] -translate-x-1/2 rounded-full bg-gold-500/8 blur-[160px]" />
+      <div className="absolute -top-48 left-1/2 h-[620px] w-[620px] -translate-x-1/2 rounded-full bg-gold-500/10 blur-[160px]" />
 
       <div className="relative mx-auto grid max-w-[1400px] gap-16 px-6 pb-24 pt-20 lg:grid-cols-12 lg:gap-8 lg:px-12 lg:pb-32 lg:pt-28">
         <div className="lg:col-span-7">
@@ -36,26 +40,43 @@ export function Hero({
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="mt-7 text-4xl font-semibold leading-[1.12] tracking-[-0.015em] text-ivory-100 sm:text-5xl lg:text-[3.4rem]"
+            className="mt-7 text-5xl font-semibold leading-[1.08] tracking-[-0.02em] text-ivory-100 sm:text-6xl lg:text-[3.75rem]"
           >
             Your Strategic Access to{" "}
-            <span className="font-display italic font-normal text-gradient-gold">Iraq.</span>
+            <span className="relative inline-block">
+              <span className="font-display italic font-normal text-gradient-gold">Iraq.</span>
+              <motion.span
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: 1 }}
+                transition={{ duration: 0.9, delay: 0.9, ease: [0.16, 1, 0.3, 1] }}
+                style={{ transformOrigin: "left" }}
+                className="absolute -bottom-1 left-0 h-[3px] w-full rounded-full bg-gradient-to-r from-gold-500 via-gold-300 to-transparent"
+              />
+            </span>
           </motion.h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
+          <motion.div
+            initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="mt-7 text-lg font-medium text-muted-500"
+            transition={{ duration: 0.8, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+            className="mt-8 flex flex-wrap gap-3"
           >
-            {t("subline")}
-          </motion.p>
+            {pillars.map((p) => (
+              <span
+                key={p}
+                className="flex items-center gap-2 rounded-full border border-gold-500/25 bg-gold-500/[0.06] px-4 py-2 text-sm font-medium text-ivory-100"
+              >
+                <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-gold-500" />
+                {p}
+              </span>
+            ))}
+          </motion.div>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="mt-6 max-w-xl text-lg leading-relaxed text-muted-500"
+            transition={{ duration: 0.8, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
+            className="mt-8 max-w-xl text-lg leading-relaxed text-muted-500"
           >
             {t("description")}
           </motion.p>
@@ -63,10 +84,15 @@ export function Hero({
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.8, delay: 0.45, ease: [0.16, 1, 0.3, 1] }}
             className="mt-10 flex flex-wrap gap-4"
           >
-            <Button href="/contact">{t("ctaPrimary")}</Button>
+            <Button href="/contact">
+              {t("ctaPrimary")}
+              <span aria-hidden className="ml-1">
+                &rarr;
+              </span>
+            </Button>
             <Button href="/tenders" variant="outline">
               {t("ctaSecondary")}
             </Button>
