@@ -2,9 +2,12 @@
 
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
+import { Compass, Radar, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { MarketSignalPanel } from "./MarketSignalPanel";
+
+const PILLAR_ICONS = [Compass, Radar, ShieldCheck];
 
 export function Hero({
   activeOpportunities,
@@ -59,17 +62,19 @@ export function Hero({
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
-            className="mt-8 flex flex-wrap gap-3"
+            className="mt-9 flex flex-wrap items-center gap-x-8 gap-y-5"
           >
-            {pillars.map((p) => (
-              <span
-                key={p}
-                className="flex items-center gap-2 rounded-full border border-gold-500/25 bg-gold-500/[0.06] px-4 py-2 text-sm font-medium text-ivory-100"
-              >
-                <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-gold-500" />
-                {p}
-              </span>
-            ))}
+            {pillars.map((p, i) => {
+              const Icon = PILLAR_ICONS[i] ?? Compass;
+              return (
+                <div key={p} className="flex items-center gap-3">
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-gold-500/25 bg-gold-500/[0.07] text-gold-400">
+                    <Icon size={16} strokeWidth={1.75} />
+                  </span>
+                  <span className="text-[15px] font-medium text-ivory-100">{p}</span>
+                </div>
+              );
+            })}
           </motion.div>
 
           <motion.p

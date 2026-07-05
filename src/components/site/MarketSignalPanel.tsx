@@ -5,11 +5,11 @@ import { animate, motion } from "framer-motion";
 
 const SIGNALS = [
   "ENERGY & POWER — TENDER WINDOW ACTIVE",
-  "SMART METERING / AMI / HES / MDM — MARKET ENTRY OPEN",
-  "SOLAR & RENEWABLES — INVESTMENT PIPELINE MONITORED",
-  "ICT & DIGITAL TRANSFORMATION — COVERAGE ACTIVE",
-  "GOVERNMENT & ENTERPRISE TENDERS — INTELLIGENCE LIVE",
-  "DATA CENTERS — SECTOR SIGNAL TRACKED",
+  "CLEAN & RENEWABLE ENERGY — INVESTMENT PIPELINE MONITORED",
+  "PROCUREMENT & SUPPLY — SOURCING REQUESTS TRACKED",
+  "TENDERS & CONTRACTS — INTELLIGENCE LIVE",
+  "ICT & DIGITAL INFRASTRUCTURE — COVERAGE ACTIVE",
+  "GOVERNMENT & ENTERPRISE — ENGAGEMENT CHANNELS OPEN",
 ];
 
 function useCountUp(target: number, duration = 1.4, delay = 0) {
@@ -51,7 +51,7 @@ function StatRow({
       className="flex items-center justify-between border-b border-ivory-100/8 py-4 last:border-b-0"
     >
       <span className="text-[13px] uppercase tracking-[0.1em] text-muted-600">{label}</span>
-      <span className="font-mono text-2xl tabular-nums text-ivory-100">
+      <span className="text-2xl font-semibold tabular-nums text-ivory-100">
         {String(count).padStart(2, "0")}
         {suffix}
       </span>
@@ -76,9 +76,9 @@ export function MarketSignalPanel({
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-teal-400 opacity-75" />
             <span className="relative inline-flex h-2 w-2 rounded-full bg-teal-400" />
           </span>
-          <span className="font-mono text-xs uppercase tracking-[0.15em] text-teal-400">Live</span>
+          <span className="text-xs font-medium uppercase tracking-[0.15em] text-teal-400">Live</span>
         </div>
-        <span className="font-mono text-xs uppercase tracking-[0.1em] text-muted-600">
+        <span className="text-xs font-medium uppercase tracking-[0.1em] text-muted-600">
           Stratiq Intelligence
         </span>
       </div>
@@ -93,13 +93,10 @@ export function MarketSignalPanel({
         <motion.div
           className="flex whitespace-nowrap"
           animate={{ x: ["0%", "-50%"] }}
-          transition={{ duration: 26, repeat: Infinity, ease: "linear" }}
+          transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
         >
           {[...SIGNALS, ...SIGNALS].map((s, i) => (
-            <span
-              key={i}
-              className="mx-4 font-mono text-[11px] tracking-[0.06em] text-muted-600"
-            >
+            <span key={i} className="mx-4 text-[11px] font-medium tracking-[0.04em] text-muted-600">
               <span className="mr-4 text-gold-500">◆</span>
               {s}
             </span>
