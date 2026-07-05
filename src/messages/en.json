@@ -1,0 +1,242 @@
+{
+  "brand": {
+    "name": "STRATIQ Access",
+    "tagline": "Your Strategic Access to Iraq.",
+    "subline": "Market Entry. Tender Intelligence. Local Representation.",
+    "legalFooter": "STRATIQ Access is a commercial division operated by Abraj Al-Anwar for General Trading, General Contracting & Commercial Agencies LLC, Iraq.",
+    "legalFooterExtended": "STRATIQ Access is a commercial division operated by Abraj Al-Anwar for General Trading, General Contracting & Commercial Agencies LLC, Iraq. All engagements, representation mandates, advisory services, tender intelligence support, and commercial coordination activities are subject to written agreement, applicable Iraqi laws, and appropriate confidentiality and non-circumvention protections.",
+    "disclosureNotice": "Detailed opportunity disclosure is subject to NDA, non-circumvention, and engagement approval."
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "sectors": "Sectors",
+    "iraqMarketAccess": "Iraq Market Access",
+    "tenderIntelligence": "Tender Intelligence",
+    "partnerships": "Partnerships",
+    "insights": "Insights",
+    "contact": "Contact",
+    "cta": "Request Access"
+  },
+  "home": {
+    "hero": {
+      "eyebrow": "STRATIQ Access",
+      "title": "Your Strategic Access to Iraq.",
+      "subline": "Market Entry. Tender Intelligence. Local Representation.",
+      "description": "STRATIQ Access helps international companies enter, understand, and compete in Iraq's high-value energy, infrastructure, ICT, telecom, smart metering, solar, data center, EPC, and industrial markets.",
+      "ctaPrimary": "Request Market Access Support",
+      "ctaSecondary": "Explore Our Services"
+    },
+    "whoWeAre": {
+      "eyebrow": "Who We Are",
+      "title": "A premium Iraq access platform for international companies.",
+      "body": "STRATIQ Access is built for companies that require more than introductions. We support foreign manufacturers, technology providers, EPC companies, investors, and solution providers with the local insight, commercial structure, and institutional interface required to operate in Iraq.\n\nOur work combines market understanding, tender visibility, local representation, procurement support, and partnership development — delivered through a confidential and professional engagement model."
+    },
+    "whatWeDo": {
+      "eyebrow": "What We Do",
+      "title": "We help companies move from interest to market position.",
+      "body": "Iraq offers significant opportunities across infrastructure, power, digital transformation, smart metering, telecom, solar, industrial development, and government procurement. But entering the market requires local intelligence, qualified partners, regulatory awareness, and trusted execution channels.\n\nSTRATIQ Access helps international companies identify the right opportunities, understand the decision landscape, structure local engagement, and compete with a clear market-entry strategy."
+    },
+    "servicesEyebrow": "Core Services",
+    "sectorsEyebrow": "Sectors We Cover",
+    "sectorsTitle": "Where international capability meets Iraqi demand.",
+    "why": {
+      "eyebrow": "Why STRATIQ Access",
+      "title": "Local intelligence. International standards. Structured access.",
+      "body": "We understand that international companies need more than a name or a contact. They need a reliable local platform that can assess opportunities, protect commercial interests, support negotiations, and create a structured route into the Iraqi market.\n\nSTRATIQ Access is designed around discretion, qualification, and execution."
+    },
+    "engagementEyebrow": "Engagement Model",
+    "confidentiality": {
+      "eyebrow": "Confidentiality & Protection",
+      "title": "A confidential and structured engagement model.",
+      "body": "Sensitive opportunities, client contacts, buyer information, pricing intelligence, and partner details are shared only after the appropriate protection framework is in place. This may include NDA, Non-Circumvention Agreement, Service Agreement, Success Fee Agreement, or Representation Mandate."
+    },
+    "finalCta": {
+      "title": "Ready to explore Iraq with structure and confidence?",
+      "body": "Contact STRATIQ Access to request a confidential market-access discussion.",
+      "button": "Request a Confidential Discussion"
+    }
+  },
+  "engagementSteps": [
+    { "step": "01", "title": "Initial Review", "body": "We understand your company, sector, products, and Iraq objectives." },
+    { "step": "02", "title": "Opportunity Mapping", "body": "We identify relevant market segments, buyers, tenders, projects, and potential partners." },
+    { "step": "03", "title": "Engagement Structure", "body": "We define the correct model: advisory, tender intelligence, local representation, procurement support, or partnership development." },
+    { "step": "04", "title": "Execution Support", "body": "We support communication, documentation, meetings, tender follow-up, and local coordination." }
+  ],
+  "services": {
+    "hero": {
+      "eyebrow": "Services",
+      "title": "Six disciplines. One structured route into Iraq.",
+      "description": "Every engagement is scoped, agreed, and governed under a formal mandate — not an informal introduction."
+    },
+    "items": [
+      {
+        "slug": "market-entry-advisory",
+        "title": "Market Entry Advisory",
+        "summary": "We help international companies assess Iraq's market potential, identify entry pathways, understand local requirements, and structure a practical market-entry plan."
+      },
+      {
+        "slug": "tender-intelligence",
+        "title": "Tender Intelligence",
+        "summary": "We monitor, qualify, and brief clients on relevant public and enterprise tender opportunities across strategic Iraqi sectors."
+      },
+      {
+        "slug": "local-representation",
+        "title": "Local Representation",
+        "summary": "We support selected international companies as their Iraq-facing commercial and coordination representative, subject to formal mandate and agreement."
+      },
+      {
+        "slug": "procurement-sourcing-support",
+        "title": "Procurement & Sourcing Support",
+        "summary": "We assist with local sourcing, supplier coordination, price intelligence, documentation support, and procurement follow-up."
+      },
+      {
+        "slug": "partnership-jv-development",
+        "title": "Partnership & JV Development",
+        "summary": "We identify and support structured partnerships, joint ventures, agency models, and local execution relationships."
+      },
+      {
+        "slug": "delegation-meeting-support",
+        "title": "Delegation & Meeting Support",
+        "summary": "We coordinate business visits, meeting agendas, local introductions, translation support, and delegation logistics."
+      }
+    ]
+  },
+  "sectors": {
+    "hero": {
+      "eyebrow": "Sectors",
+      "title": "Strategic sectors where Iraq is actively investing.",
+      "description": "STRATIQ Access focuses on sectors where international companies can provide high-value solutions to Iraqi public and private buyers."
+    },
+    "items": [
+      { "slug": "energy-power", "title": "Energy & Power Infrastructure" },
+      { "slug": "smart-metering", "title": "Smart Metering, AMI, HES & MDM Systems" },
+      { "slug": "solar-renewables", "title": "Solar & Renewable Energy" },
+      { "slug": "ict-digital", "title": "ICT & Digital Transformation" },
+      { "slug": "telecom", "title": "Telecom & Connectivity" },
+      { "slug": "data-centers", "title": "Data Centers & Enterprise Infrastructure" },
+      { "slug": "epc-infrastructure", "title": "EPC & Infrastructure" },
+      { "slug": "industrial-equipment", "title": "Industrial Equipment & Technical Supply" },
+      { "slug": "government-tenders", "title": "Government & Enterprise Tenders" }
+    ]
+  },
+  "iraqMarketAccess": {
+    "hero": {
+      "eyebrow": "Iraq Market Access",
+      "title": "How international companies enter the Iraqi market.",
+      "description": "A structured route from first contact to qualified local presence."
+    },
+    "sections": [
+      { "title": "Local Partner Models", "body": "Iraq's public and enterprise procurement environment favors companies with a credible, structured local presence. We help you evaluate representation, agency, and joint-venture models against your sector and risk profile." },
+      { "title": "Tender Registration Support", "body": "We support the documentation, vendor registration, and qualification steps required to participate in Iraqi public and enterprise tenders." },
+      { "title": "Public / Private Opportunity Mapping", "body": "We map relevant buyers, projects, and procurement cycles across government, state-owned enterprises, and private sector demand." },
+      { "title": "Representation Safeguards", "body": "Every representation engagement is governed by a formal mandate that defines scope, exclusivity, duration, and commercial terms." },
+      { "title": "NDA & Non-Circumvention Policy", "body": "Buyer identities, tender documents, and pricing intelligence are protected under NDA and Non-Circumvention Agreements before detailed disclosure." }
+    ]
+  },
+  "tenderIntelligence": {
+    "hero": {
+      "eyebrow": "Tender Intelligence",
+      "title": "Qualified visibility into Iraq's tender landscape.",
+      "description": "We monitor, qualify, and brief clients on opportunities that match their sector and capability — not a raw, unfiltered feed."
+    },
+    "sections": [
+      { "title": "Tender Monitoring", "body": "Continuous tracking of public and enterprise tender announcements across strategic sectors." },
+      { "title": "Opportunity Qualification", "body": "Each opportunity is screened against buyer credibility, scope, timeline, and fit before it reaches a client." },
+      { "title": "Buyer & Sector Mapping", "body": "Structured intelligence on procuring entities, decision processes, and sector-specific demand patterns." },
+      { "title": "Competitor & Pricing Intelligence", "body": "Market-level context to help clients position technically and commercially." },
+      { "title": "Bid Support Coordination", "body": "Coordination support through the bid lifecycle, from qualification to submission follow-up." },
+      { "title": "Confidential Opportunity Briefings", "body": "Detailed briefings delivered to qualified, engaged clients under the appropriate protection framework." }
+    ]
+  },
+  "partnerships": {
+    "hero": {
+      "eyebrow": "Partnerships",
+      "title": "For companies seeking a structured Iraqi partner.",
+      "description": "Whether you need a local representative, a JV partner, or execution support, we structure the relationship formally from the outset."
+    },
+    "items": [
+      "Local representative",
+      "Iraqi JV partner",
+      "Tender partner",
+      "Distributor / agent",
+      "EPC or execution support",
+      "Government-facing commercial support"
+    ]
+  },
+  "insights": {
+    "hero": {
+      "eyebrow": "Insights",
+      "title": "Iraq market intelligence, sector by sector.",
+      "description": "Tender updates, energy market briefs, and infrastructure notes for companies tracking the Iraqi market."
+    },
+    "empty": "New briefings are published regularly. Check back soon, or contact us to be added to our briefing distribution list."
+  },
+  "tenders": {
+    "hero": {
+      "eyebrow": "Iraq Tenders",
+      "title": "Qualified opportunities across Iraq's strategic sectors.",
+      "description": "A premium preview of monitored opportunities. Full details, buyer identity, and documents are released under NDA and engagement approval."
+    },
+    "empty": "No public opportunities are listed at this time. Contact us to discuss sector-specific tender intelligence.",
+    "gatedNotice": "Detailed opportunity disclosure is subject to NDA, non-circumvention, and engagement approval.",
+    "requestAccess": "Request Access",
+    "labels": {
+      "sector": "Sector",
+      "buyer": "Buyer / Authority",
+      "location": "Location",
+      "country": "Country",
+      "deadline": "Deadline",
+      "status": "Status",
+      "type": "Tender Type"
+    }
+  },
+  "contact": {
+    "hero": {
+      "eyebrow": "Contact",
+      "title": "Request a confidential market-access discussion.",
+      "description": "Tell us about your company and objectives in Iraq. All inquiries are reviewed and treated confidentially."
+    },
+    "interests": [
+      "Market Entry Advisory",
+      "Tender Intelligence",
+      "Local Representation",
+      "Procurement & Sourcing Support",
+      "Partnership & JV Development",
+      "Delegation & Meeting Support"
+    ],
+    "form": {
+      "companyName": "Company name",
+      "contactPerson": "Contact person",
+      "email": "Email",
+      "country": "Country",
+      "sector": "Sector",
+      "interest": "Service interest",
+      "message": "Message",
+      "submit": "Submit Inquiry",
+      "success": "Thank you. Your inquiry has been received and will be reviewed confidentially by our team.",
+      "error": "Something went wrong while submitting your inquiry. Please try again."
+    },
+    "email": "partners@stratiqaccess.com"
+  },
+  "legal": {
+    "privacy": { "title": "Privacy Policy" },
+    "terms": { "title": "Terms of Use" },
+    "confidentiality": {
+      "title": "Confidentiality & Protection",
+      "intro": "STRATIQ Access operates with a confidential and structured engagement model.",
+      "items": [
+        { "title": "NDA Requirement", "body": "Sensitive opportunities, buyer identities, and pricing intelligence require a signed Non-Disclosure Agreement before detailed disclosure." },
+        { "title": "Non-Circumvention Protection", "body": "Clients and partners engaged through STRATIQ Access agree not to bypass STRATIQ Access in dealings introduced through the platform." },
+        { "title": "Representation Mandate", "body": "Local representation is governed by a formal, time-bound mandate defining scope, exclusivity, and commercial terms." }
+      ]
+    }
+  },
+  "footer": {
+    "company": "Company",
+    "resources": "Resources",
+    "getInTouch": "Get in Touch",
+    "rights": "All rights reserved."
+  }
+}

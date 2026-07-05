@@ -1,0 +1,99 @@
+@import "tailwindcss";
+
+:root {
+  --color-navy-950: #04060b;
+  --color-navy-900: #070a13;
+  --color-navy-800: #0c1120;
+  --color-navy-700: #131a2e;
+  --color-navy-600: #1b2440;
+
+  --color-graphite-700: #1a1e29;
+  --color-graphite-600: #262b3a;
+  --color-graphite-500: #383f52;
+
+  --color-silver-400: #7d8496;
+  --color-silver-300: #a7adba;
+  --color-silver-200: #ccd0da;
+  --color-silver-100: #eef0f4;
+
+  --color-gold-600: #9c7a2e;
+  --color-gold-500: #c9a24b;
+  --color-gold-400: #ddbf72;
+  --color-gold-300: #ead9a8;
+
+  --background: var(--color-navy-950);
+  --foreground: var(--color-silver-100);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-navy-950: var(--color-navy-950);
+  --color-navy-900: var(--color-navy-900);
+  --color-navy-800: var(--color-navy-800);
+  --color-navy-700: var(--color-navy-700);
+  --color-navy-600: var(--color-navy-600);
+
+  --color-graphite-700: var(--color-graphite-700);
+  --color-graphite-600: var(--color-graphite-600);
+  --color-graphite-500: var(--color-graphite-500);
+
+  --color-silver-400: var(--color-silver-400);
+  --color-silver-300: var(--color-silver-300);
+  --color-silver-200: var(--color-silver-200);
+  --color-silver-100: var(--color-silver-100);
+
+  --color-gold-600: var(--color-gold-600);
+  --color-gold-500: var(--color-gold-500);
+  --color-gold-400: var(--color-gold-400);
+  --color-gold-300: var(--color-gold-300);
+
+  --font-display: var(--font-fraunces);
+  --font-sans: var(--font-inter);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+::selection {
+  background: var(--color-gold-500);
+  color: var(--color-navy-950);
+}
+
+.font-display {
+  font-family: var(--font-display), ui-serif, Georgia, serif;
+}
+
+/* Grain + grid texture used behind hero / section backgrounds */
+.bg-grid {
+  background-image:
+    linear-gradient(to right, rgba(201, 162, 75, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(201, 162, 75, 0.06) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+.text-gradient-gold {
+  background: linear-gradient(90deg, var(--color-gold-300), var(--color-gold-500) 50%, var(--color-gold-300));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.divider-gold {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-gold-500), transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}

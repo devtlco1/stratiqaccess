@@ -1,0 +1,29 @@
+"use client";
+
+import { useActionState } from "react";
+import { purchaseReport, type PurchaseState } from "@/app/actions/purchase";
+import { Button } from "@/components/ui/Button";
+
+const initialState: PurchaseState = { status: "idle" };
+
+export function PurchaseButton({ reportId, label }: { reportId: string; label: string }) {
+  const [state, formAction, pending] = useActionState(purchaseReport, initialState);
+
+  if (state.status === "manual") {
+    return (
+      <div className="border border-gold-500/30 bg-gold-500/5 p-6 text-sm leading-relaxed text-silver-200">
+        {state.message}
+      </div>
+    );
+  }
+
+  return (
+    <form action={formAction}>
+      <input type="hidden" name="report_id" value={reportId} />
+      {state.status === "error" && <p className="mb-3 text-sm text-red-400">{state.message}</p>}
+      <Button type="submit" disabled={pending}>
+        {pending ? "Processing…" : label}
+      </Button>
+    </form>
+  );
+}
