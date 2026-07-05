@@ -4,19 +4,24 @@ import { useRef, useState } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 
 /**
- * Stylized, faceted Iraq silhouette — a decorative brand mark, not a
- * geographically precise boundary. Markers sit at approximate relative
- * positions for the capital and major regional centers.
+ * Iraq's actual national boundary, projected from real coordinates
+ * (Natural Earth country boundary data, equirectangular projection at
+ * Iraq's latitude) into a 400x345 viewBox. Not a stylistic guess —
+ * traced from the real outline. Marker positions are similarly
+ * projected from each city's real lat/lon.
  */
+const VIEWBOX_W = 400;
+const VIEWBOX_H = 345.2;
+
 const OUTLINE =
-  "M132 34 L246 26 L272 58 L296 76 L318 128 L300 176 L328 214 L302 262 L322 300 L278 372 L256 432 L236 462 L222 476 L206 452 L196 400 L146 384 L96 338 L58 282 L48 200 L70 116 L100 60 Z";
+  "M 264.1 71.8 L 288.2 82.9 L 291.0 104.4 L 272.5 117.1 L 264.0 145.9 L 289.5 180.9 L 334.6 201.0 L 353.5 229.0 L 347.5 255.7 L 359.3 255.7 L 359.6 275.3 L 380.0 294.7 L 358.1 292.9 L 333.4 289.8 L 306.4 325.2 L 237.9 322.2 L 134.1 248.1 L 79.2 222.4 L 34.8 212.4 L 20.0 167.5 L 101.5 129.2 L 115.4 84.7 L 112.0 57.8 L 132.1 48.7 L 151.0 25.7 L 166.8 20.0 L 209.7 24.8 L 222.6 34.1 L 240.2 27.9 L 264.1 71.8 Z";
 
 const MARKERS = [
-  { name: "Baghdad", sub: "Headquarters", x: 182, y: 258, size: 7 },
-  { name: "Erbil", sub: "Kurdistan Region", x: 268, y: 92, size: 5 },
-  { name: "Basra", sub: "Gulf Access", x: 232, y: 428, size: 5 },
-  { name: "Mosul", sub: "Northern Iraq", x: 218, y: 112, size: 5 },
-  { name: "Najaf", sub: "Central Iraq", x: 142, y: 302, size: 5 },
+  { name: "Baghdad", sub: "Headquarters", x: 225.3, y: 169.9, size: 7 },
+  { name: "Erbil", sub: "Kurdistan Region", x: 212.1, y: 64.0, size: 5 },
+  { name: "Mosul", sub: "Northern Iraq", x: 179.3, y: 58.2, size: 5 },
+  { name: "Najaf", sub: "Central Iraq", x: 224.0, y: 218.4, size: 5 },
+  { name: "Basra", sub: "Gulf Access", x: 351.0, y: 273.2, size: 5 },
 ];
 
 export function IraqMap() {
@@ -50,7 +55,7 @@ export function IraqMap() {
       ref={ref}
       onMouseMove={handleMove}
       onMouseLeave={handleLeave}
-      className="relative aspect-[4/5] w-full max-w-md [perspective:1200px]"
+      className="relative aspect-[400/345] w-full max-w-lg [perspective:1200px]"
     >
       <motion.div
         style={{ rotateX, rotateY }}
@@ -67,7 +72,7 @@ export function IraqMap() {
           }}
         />
 
-        <svg viewBox="0 0 400 500" className="h-full w-full" fill="none" aria-hidden>
+        <svg viewBox={`0 0 ${VIEWBOX_W} ${VIEWBOX_H}`} className="h-full w-full" fill="none" aria-hidden>
           <defs>
             <linearGradient id="iraq-fill" x1="0" y1="0" x2="1" y2="1">
               <stop offset="0%" stopColor="#c9a24d" stopOpacity="0.08" />
@@ -100,10 +105,10 @@ export function IraqMap() {
             animate={{ opacity: 1 }}
             transition={{ delay: 1, duration: 0.8 }}
           >
-            <line x1="182" y1="258" x2="268" y2="92" />
-            <line x1="182" y1="258" x2="232" y2="428" />
-            <line x1="182" y1="258" x2="218" y2="112" />
-            <line x1="182" y1="258" x2="142" y2="302" />
+            <line x1="225.3" y1="169.9" x2="212.1" y2="64.0" />
+            <line x1="225.3" y1="169.9" x2="179.3" y2="58.2" />
+            <line x1="225.3" y1="169.9" x2="224.0" y2="218.4" />
+            <line x1="225.3" y1="169.9" x2="351.0" y2="273.2" />
           </motion.g>
 
           {MARKERS.map((m, i) => (
@@ -141,7 +146,10 @@ export function IraqMap() {
           <motion.div
             key={m.name}
             className="pointer-events-none absolute -translate-x-1/2 -translate-y-full whitespace-nowrap rounded-sm border border-ivory-100/15 bg-navy-900/95 px-3 py-1.5"
-            style={{ left: `${(m.x / 400) * 100}%`, top: `calc(${(m.y / 500) * 100}% - 12px)` }}
+            style={{
+              left: `${(m.x / VIEWBOX_W) * 100}%`,
+              top: `calc(${(m.y / VIEWBOX_H) * 100}% - 12px)`,
+            }}
             initial={{ opacity: 0, y: 4 }}
             animate={{ opacity: hovered === m.name ? 1 : 0, y: hovered === m.name ? -8 : 4 }}
             transition={{ duration: 0.2 }}
