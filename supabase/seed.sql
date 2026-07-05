@@ -65,7 +65,7 @@ on conflict (slug) do nothing;
 
 -- Sample opportunities (published, free-preview) so the /tenders page has
 -- real content to render before any admin data entry happens.
-insert into opportunities (kind, title, sector_id, buyer, location, country, deadline, status, tender_type, summary, tags, is_free_preview, requires_nda, featured, content_status)
+insert into opportunities (kind, title, sector_id, buyer, location, country, deadline, status, tender_type, reference_no, ownership, procurement_type, published_at, summary, tags, is_free_preview, requires_nda, featured, content_status)
 select
   'tender',
   'Advanced Metering Infrastructure — Regional Rollout',
@@ -76,6 +76,10 @@ select
   current_date + interval '45 days',
   'open',
   'Public Tender',
+  'SN/13/2026',
+  'government',
+  'tender',
+  current_date,
   'Multi-phase AMI deployment covering residential and commercial metering points, including HES/MDM integration.',
   array['AMI', 'Smart Metering', 'Utilities'],
   true,
@@ -86,7 +90,7 @@ where not exists (
   select 1 from opportunities where title = 'Advanced Metering Infrastructure — Regional Rollout'
 );
 
-insert into opportunities (kind, title, sector_id, buyer, location, country, deadline, status, tender_type, summary, tags, is_free_preview, requires_nda, featured, content_status)
+insert into opportunities (kind, title, sector_id, buyer, location, country, deadline, status, tender_type, reference_no, ownership, procurement_type, published_at, summary, tags, is_free_preview, requires_nda, featured, content_status)
 select
   'tender',
   'Solar Power Plant — Independent Power Producer Opportunity',
@@ -97,6 +101,10 @@ select
   current_date + interval '60 days',
   'open',
   'IPP / EPC',
+  'SN/12/2026',
+  'government',
+  'tender',
+  current_date,
   'Utility-scale solar development opportunity under Iraq''s renewable energy investment framework.',
   array['Solar', 'IPP', 'Renewable Energy'],
   true,
@@ -107,7 +115,7 @@ where not exists (
   select 1 from opportunities where title = 'Solar Power Plant — Independent Power Producer Opportunity'
 );
 
-insert into opportunities (kind, title, sector_id, buyer, location, country, deadline, status, tender_type, summary, tags, is_free_preview, requires_nda, featured, content_status)
+insert into opportunities (kind, title, sector_id, buyer, location, country, deadline, status, tender_type, reference_no, ownership, procurement_type, published_at, summary, tags, is_free_preview, requires_nda, featured, content_status)
 select
   'investment',
   'Data Center Co-Location Investment — Baghdad',
@@ -118,6 +126,10 @@ select
   null,
   'under_review',
   'Investment Opportunity',
+  'PVT/02/2026',
+  'private',
+  'tender',
+  current_date,
   'Structured investment opportunity in enterprise-grade data center capacity to serve Iraq''s growing digital infrastructure demand.',
   array['Data Centers', 'Investment', 'Digital Infrastructure'],
   true,
@@ -127,3 +139,88 @@ select
 where not exists (
   select 1 from opportunities where title = 'Data Center Co-Location Investment — Baghdad'
 );
+
+insert into opportunities (kind, title, sector_id, buyer, location, country, deadline, status, tender_type, reference_no, ownership, procurement_type, published_at, summary, tags, is_free_preview, requires_nda, featured, content_status)
+select
+  'tender',
+  'ICT Network Infrastructure — Maintenance & Support Contract',
+  (select id from sectors where slug = 'ict-digital'),
+  'Confidential — Government Ministry',
+  'Baghdad',
+  'Iraq',
+  current_date + interval '30 days',
+  'open',
+  'Support Contract',
+  'CT/04/2026',
+  'government',
+  'contract',
+  current_date,
+  'Multi-year maintenance and support contract for government ICT network infrastructure.',
+  array['ICT', 'Contract', 'Maintenance'],
+  true,
+  true,
+  false,
+  'published'
+where not exists (
+  select 1 from opportunities where title = 'ICT Network Infrastructure — Maintenance & Support Contract'
+);
+
+insert into opportunities (kind, title, sector_id, buyer, location, country, deadline, status, tender_type, reference_no, ownership, procurement_type, published_at, summary, tags, is_free_preview, requires_nda, featured, content_status)
+select
+  'tender',
+  'Industrial Spare Parts — Procurement Request',
+  (select id from sectors where slug = 'industrial-equipment'),
+  'Confidential — State-Owned Enterprise',
+  'Basra',
+  'Iraq',
+  current_date + interval '20 days',
+  'open',
+  'Purchase Request',
+  'PR/09/2026',
+  'government',
+  'purchase_request',
+  current_date,
+  'Direct procurement request for industrial spare parts and technical supply items.',
+  array['Industrial Equipment', 'Procurement'],
+  true,
+  true,
+  false,
+  'published'
+where not exists (
+  select 1 from opportunities where title = 'Industrial Spare Parts — Procurement Request'
+);
+
+insert into opportunities (kind, title, sector_id, buyer, location, country, deadline, status, tender_type, reference_no, ownership, procurement_type, published_at, summary, tags, is_free_preview, requires_nda, featured, content_status)
+select
+  'tender',
+  'Telecom Tower Sharing — Private Sector Partnership',
+  (select id from sectors where slug = 'telecom'),
+  'Confidential — Private Telecom Operator',
+  'Erbil',
+  'Iraq',
+  current_date + interval '40 days',
+  'open',
+  'Public Tender',
+  'PVT/06/2026',
+  'private',
+  'tender',
+  current_date,
+  'Infrastructure-sharing tender for telecom tower assets across northern Iraq.',
+  array['Telecom', 'Infrastructure', 'Partnership'],
+  true,
+  true,
+  false,
+  'published'
+where not exists (
+  select 1 from opportunities where title = 'Telecom Tower Sharing — Private Sector Partnership'
+);
+
+-- Backfill reference numbers on rows that may have been inserted by an
+-- earlier version of this file (before reference_no/ownership/
+-- procurement_type existed) — safe to re-run.
+update opportunities set reference_no = 'SN/13/2026', ownership = 'government', procurement_type = 'tender'
+  where title = 'Advanced Metering Infrastructure — Regional Rollout' and reference_no is null;
+update opportunities set reference_no = 'SN/12/2026', ownership = 'government', procurement_type = 'tender'
+  where title = 'Solar Power Plant — Independent Power Producer Opportunity' and reference_no is null;
+update opportunities set reference_no = 'PVT/02/2026', ownership = 'private'
+  where title = 'Data Center Co-Location Investment — Baghdad' and reference_no is null;

@@ -48,6 +48,51 @@ export function OpportunityForm({
           <input className={fieldClasses} id="tender_type" name="tender_type" defaultValue={opportunity?.tender_type ?? ""} />
         </div>
         <div>
+          <label className={labelClasses} htmlFor="reference_no">Reference Number</label>
+          <input
+            className={fieldClasses}
+            id="reference_no"
+            name="reference_no"
+            placeholder="e.g. SN/13/2026"
+            defaultValue={opportunity?.reference_no ?? ""}
+          />
+        </div>
+        <div>
+          <label className={labelClasses} htmlFor="procurement_type">Procurement Type</label>
+          <select
+            className={fieldClasses}
+            id="procurement_type"
+            name="procurement_type"
+            defaultValue={opportunity?.procurement_type ?? "tender"}
+          >
+            <option value="tender">Tender</option>
+            <option value="contract">Contract</option>
+            <option value="purchase_request">Purchase Request</option>
+          </select>
+        </div>
+        <div>
+          <label className={labelClasses} htmlFor="ownership">Ownership</label>
+          <select
+            className={fieldClasses}
+            id="ownership"
+            name="ownership"
+            defaultValue={opportunity?.ownership ?? "government"}
+          >
+            <option value="government">Government</option>
+            <option value="private">Private</option>
+          </select>
+        </div>
+        <div>
+          <label className={labelClasses} htmlFor="published_at">Published Date</label>
+          <input
+            className={fieldClasses}
+            id="published_at"
+            name="published_at"
+            type="date"
+            defaultValue={opportunity?.published_at ?? ""}
+          />
+        </div>
+        <div>
           <label className={labelClasses} htmlFor="buyer">Buyer / Authority</label>
           <input className={fieldClasses} id="buyer" name="buyer" defaultValue={opportunity?.buyer ?? ""} />
         </div>

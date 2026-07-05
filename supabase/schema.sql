@@ -16,6 +16,8 @@ create type purchase_status as enum ('pending', 'approved', 'rejected');
 create type payment_method as enum ('stripe', 'bank_transfer', 'fastpay', 'zaincash', 'manual');
 create type lead_status as enum ('new', 'reviewed', 'archived');
 create type nda_status as enum ('pending', 'approved', 'rejected');
+create type ownership_type as enum ('government', 'private');
+create type procurement_type as enum ('tender', 'contract', 'purchase_request');
 
 -- ---------------------------------------------------------------------
 -- Profiles (extends auth.users)
@@ -147,6 +149,10 @@ create table opportunities (
   deadline date,
   status opportunity_status not null default 'open',
   tender_type text,
+  reference_no text,
+  ownership ownership_type not null default 'government',
+  procurement_type procurement_type not null default 'tender',
+  published_at date not null default current_date,
   summary text not null,
   confidential_details text,
   tags text[] not null default '{}',

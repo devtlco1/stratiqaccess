@@ -46,7 +46,7 @@ export default async function TenderDetailPage({
     <>
       <PageHero
         eyebrow={op.tender_type ?? (op.kind === "investment" ? "Investment Opportunity" : "Public Tender")}
-        title={op.title}
+        title={op.reference_no ? `${op.reference_no} — ${op.title}` : op.title}
         description={op.summary}
       />
 
@@ -54,6 +54,14 @@ export default async function TenderDetailPage({
         <div className="grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-8">
             <dl className="grid grid-cols-2 gap-6 border border-white/10 bg-navy-900/50 p-8 text-sm sm:grid-cols-3">
+              <div>
+                <dt className="text-xs uppercase tracking-wide text-silver-400">Reference</dt>
+                <dd className="mt-1 text-silver-200">{op.reference_no ?? "—"}</dd>
+              </div>
+              <div>
+                <dt className="text-xs uppercase tracking-wide text-silver-400">Ownership</dt>
+                <dd className="mt-1 capitalize text-silver-200">{op.ownership}</dd>
+              </div>
               <div>
                 <dt className="text-xs uppercase tracking-wide text-silver-400">{labels.buyer}</dt>
                 <dd className="mt-1 text-silver-200">{op.buyer ?? "Confidential"}</dd>

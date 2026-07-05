@@ -16,6 +16,8 @@ export type LeadFormType =
   | "representation"
   | "partnership"
   | "tender_intelligence";
+export type OwnershipType = "government" | "private";
+export type ProcurementType = "tender" | "contract" | "purchase_request";
 
 interface Table<Row, Insert, Update = Partial<Insert>> {
   Row: Row;
@@ -156,6 +158,10 @@ export interface Database {
           deadline: string | null;
           status: OpportunityStatus;
           tender_type: string | null;
+          reference_no: string | null;
+          ownership: OwnershipType;
+          procurement_type: ProcurementType;
+          published_at: string;
           summary: string;
           confidential_details: string | null;
           tags: string[];
@@ -177,6 +183,10 @@ export interface Database {
           deadline?: string | null;
           status?: OpportunityStatus;
           tender_type?: string | null;
+          reference_no?: string | null;
+          ownership?: OwnershipType;
+          procurement_type?: ProcurementType;
+          published_at?: string;
           summary: string;
           confidential_details?: string | null;
           tags?: string[];

@@ -17,6 +17,10 @@ const schema = z.object({
   deadline: z.string().optional().or(z.literal("")),
   status: z.enum(["open", "closed", "under_review", "awarded"]).default("open"),
   tender_type: z.string().trim().max(200).optional(),
+  reference_no: z.string().trim().max(100).optional(),
+  ownership: z.enum(["government", "private"]).default("government"),
+  procurement_type: z.enum(["tender", "contract", "purchase_request"]).default("tender"),
+  published_at: z.string().optional().or(z.literal("")),
   summary: z.string().trim().min(1).max(2000),
   confidential_details: z.string().trim().max(20000).optional(),
   tags: z.string().optional(),
@@ -42,6 +46,10 @@ export async function saveOpportunity(_prev: ActionState, formData: FormData): P
     deadline: formData.get("deadline") || "",
     status: formData.get("status") ?? "open",
     tender_type: formData.get("tender_type") || undefined,
+    reference_no: formData.get("reference_no") || undefined,
+    ownership: formData.get("ownership") ?? "government",
+    procurement_type: formData.get("procurement_type") ?? "tender",
+    published_at: formData.get("published_at") || "",
     summary: formData.get("summary"),
     confidential_details: formData.get("confidential_details") || undefined,
     tags: formData.get("tags") || undefined,
@@ -56,11 +64,12 @@ export async function saveOpportunity(_prev: ActionState, formData: FormData): P
     return { status: "error", message: parsed.error.issues[0]?.message ?? "Invalid input." };
   }
 
-  const { id, tags, sector_id, deadline, ...rest } = parsed.data;
+  const { id, tags, sector_id, deadline, published_at, ...rest } = parsed.data;
   const values = {
     ...rest,
     sector_id: sector_id || null,
     deadline: deadline || null,
+    ...(published_at ? { published_at } : {}),
     tags: tags ? tags.split(",").map((t) => t.trim()).filter(Boolean) : [],
   };
 

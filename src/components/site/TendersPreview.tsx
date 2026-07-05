@@ -18,7 +18,7 @@ async function getPreviewTenders() {
     const supabase = await createClient();
     const { data, error } = await supabase
       .from("opportunities")
-      .select("id, title, buyer, deadline, status, requires_nda, kind")
+      .select("id, title, buyer, deadline, status, requires_nda, kind, reference_no")
       .eq("content_status", "published")
       .order("featured", { ascending: false })
       .order("created_at", { ascending: false })
@@ -59,7 +59,10 @@ export async function TendersPreview() {
                   </span>
                 )}
               </div>
-              <h3 className="mt-4 text-[17px] font-medium leading-snug text-ivory-100">
+              {tender.reference_no && (
+                <p className="mt-4 text-xs font-medium text-muted-600">{tender.reference_no}</p>
+              )}
+              <h3 className="mt-1.5 text-[17px] font-medium leading-snug text-ivory-100">
                 {tender.title}
               </h3>
               <dl className="mt-5 space-y-1.5 text-sm text-muted-500">
