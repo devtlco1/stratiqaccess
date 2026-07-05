@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
-import { IntelligencePanel } from "./IntelligencePanel";
+import { IraqMap } from "./IraqMap";
 
 export function Hero() {
   const t = useTranslations("home.hero");
@@ -72,7 +72,7 @@ export function Hero() {
             transition={{ duration: 1, delay: 0.3 }}
             className="w-full"
           >
-            <IntelligencePanel />
+            <IraqMap />
           </motion.div>
         </div>
       </div>
