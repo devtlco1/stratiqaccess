@@ -1,6 +1,7 @@
 "use client";
 
 import { useActionState } from "react";
+import { useTranslations } from "next-intl";
 import { submitLead, type SubmitLeadState } from "@/app/actions/leads";
 import { Button } from "@/components/ui/Button";
 
@@ -35,6 +36,7 @@ export function ContactForm({
   defaultInterest?: string;
   formType?: "general" | "market_entry" | "representation" | "partnership" | "tender_intelligence";
 }) {
+  const tCommon = useTranslations("common");
   const [state, formAction, pending] = useActionState(submitLead, initialState);
 
   if (state.status === "success") {
@@ -100,7 +102,7 @@ export function ContactForm({
       )}
 
       <Button type="submit" disabled={pending}>
-        {pending ? "Submitting…" : submitLabel}
+        {pending ? tCommon("submitting") : submitLabel}
       </Button>
     </form>
   );

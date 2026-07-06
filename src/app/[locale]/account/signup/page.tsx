@@ -1,4 +1,4 @@
-import { setRequestLocale } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { PageHero } from "@/components/site/PageHero";
 import { Section } from "@/components/site/Section";
@@ -13,17 +13,18 @@ export default async function AccountSignupPage({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
+  const t = await getTranslations("account");
 
   return (
     <>
-      <PageHero eyebrow="Client Access" title="Create your STRATIQ Access account" />
+      <PageHero eyebrow={t("hero.eyebrow")} title={t("signup.title")} />
       <Section>
         <div className="mx-auto max-w-sm">
           <AccountAuthForm mode="signup" />
           <p className="mt-6 text-center text-sm text-silver-400">
-            Already have an account?{" "}
+            {t("signup.hasAccountText")}{" "}
             <Link href="/account/login" className="text-gold-400 hover:text-gold-300">
-              Sign in
+              {t("signup.signInLink")}
             </Link>
           </p>
         </div>

@@ -1,12 +1,14 @@
 "use client";
 
 import { useActionState } from "react";
+import { useTranslations } from "next-intl";
 import { purchaseReport, type PurchaseState } from "@/app/actions/purchase";
 import { Button } from "@/components/ui/Button";
 
 const initialState: PurchaseState = { status: "idle" };
 
 export function PurchaseButton({ reportId, label }: { reportId: string; label: string }) {
+  const t = useTranslations("common");
   const [state, formAction, pending] = useActionState(purchaseReport, initialState);
 
   if (state.status === "manual") {
@@ -22,7 +24,7 @@ export function PurchaseButton({ reportId, label }: { reportId: string; label: s
       <input type="hidden" name="report_id" value={reportId} />
       {state.status === "error" && <p className="mb-3 text-sm text-red-400">{state.message}</p>}
       <Button type="submit" disabled={pending}>
-        {pending ? "Processing…" : label}
+        {pending ? t("processing") : label}
       </Button>
     </form>
   );

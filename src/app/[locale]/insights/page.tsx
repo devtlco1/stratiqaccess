@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
-import { setRequestLocale } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { PageHero } from "@/components/site/PageHero";
 import { Section } from "@/components/site/Section";
 import { Link } from "@/i18n/navigation";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { createClient } from "@/lib/supabase/server";
-import en from "@/messages/en.json";
 
 export const metadata: Metadata = {
   title: "Insights — STRATIQ Access",
@@ -34,19 +33,20 @@ export default async function InsightsPage({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
+  const t = await getTranslations("insights");
   const articles = await getArticles();
 
   return (
     <>
       <PageHero
-        eyebrow={en.insights.hero.eyebrow}
-        title={en.insights.hero.title}
-        description={en.insights.hero.description}
+        eyebrow={t("hero.eyebrow")}
+        title={t("hero.title")}
+        description={t("hero.description")}
       />
 
       <Section>
         {articles.length === 0 ? (
-          <p className="text-sm text-silver-300">{en.insights.empty}</p>
+          <p className="text-sm text-silver-300">{t("empty")}</p>
         ) : (
           <div className="grid gap-px overflow-hidden border border-white/10 bg-white/10 sm:grid-cols-2 lg:grid-cols-3">
             {articles.map((article, i) => (

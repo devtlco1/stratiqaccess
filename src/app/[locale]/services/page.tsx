@@ -1,16 +1,17 @@
 import type { Metadata } from "next";
-import { setRequestLocale } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { PageHero } from "@/components/site/PageHero";
 import { Section } from "@/components/site/Section";
 import { CTASection } from "@/components/site/CTASection";
 import { FadeIn } from "@/components/ui/FadeIn";
-import en from "@/messages/en.json";
 
 export const metadata: Metadata = {
   title: "Services — STRATIQ Access",
   description:
     "Market Entry Advisory, Tender Intelligence, Local Representation, Procurement & Sourcing Support, Partnership & JV Development, and Delegation & Meeting Support.",
 };
+
+type ServiceItem = { slug: string; title: string; summary: string };
 
 export default async function ServicesPage({
   params,
@@ -19,18 +20,20 @@ export default async function ServicesPage({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
+  const t = await getTranslations("services");
+  const items = t.raw("items") as ServiceItem[];
 
   return (
     <>
       <PageHero
-        eyebrow={en.services.hero.eyebrow}
-        title={en.services.hero.title}
-        description={en.services.hero.description}
+        eyebrow={t("hero.eyebrow")}
+        title={t("hero.title")}
+        description={t("hero.description")}
       />
 
       <Section>
         <div className="space-y-px overflow-hidden border border-white/10 bg-white/10">
-          {en.services.items.map((service, i) => (
+          {items.map((service, i) => (
             <FadeIn key={service.slug} delay={i * 0.04}>
               <div
                 id={service.slug}
@@ -58,9 +61,9 @@ export default async function ServicesPage({
       </Section>
 
       <CTASection
-        title="Not sure which service fits your objective?"
-        body="Tell us about your company and we will recommend the right engagement structure."
-        button="Request Market Access Support"
+        title={t("cta.title")}
+        body={t("cta.body")}
+        button={t("cta.button")}
       />
     </>
   );

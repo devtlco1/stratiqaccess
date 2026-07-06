@@ -1,4 +1,4 @@
-import { setRequestLocale } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { redirect } from "next/navigation";
 import { PageHero } from "@/components/site/PageHero";
 import { Section } from "@/components/site/Section";
@@ -23,6 +23,7 @@ export default async function AccountPage({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
+  const t = await getTranslations("account");
 
   const supabase = await createClient();
   const {
@@ -46,33 +47,35 @@ export default async function AccountPage({
 
   return (
     <>
-      <PageHero eyebrow="Client Access" title={`Welcome, ${user.email}`} />
+      <PageHero eyebrow={t("hero.eyebrow")} title={t("dashboard.welcome", { email: user.email ?? "" })} />
       <Section>
         <div className="mb-10 flex justify-end">
           <form action={accountSignOut}>
             <button className="border border-white/15 px-5 py-2.5 text-xs uppercase tracking-wide text-silver-300 hover:border-gold-500/40 hover:text-gold-400">
-              Sign Out
+              {t("dashboard.signOut")}
             </button>
           </form>
         </div>
 
         <div className="grid gap-10 lg:grid-cols-2">
           <div>
-            <h2 className="text-xl font-semibold text-ivory-100">Purchased Reports</h2>
+            <h2 className="text-xl font-semibold text-ivory-100">{t("dashboard.purchasedReports")}</h2>
             {!purchases || purchases.length === 0 ? (
-              <p className="mt-4 text-sm text-silver-400">No purchases yet.</p>
+              <p className="mt-4 text-sm text-silver-400">{t("dashboard.noPurchases")}</p>
             ) : (
               <ul className="mt-4 space-y-3">
                 {purchases.map((p) => (
                   <li key={p.id} className="border border-white/10 bg-navy-900/50 p-5">
                     <div className="flex items-center justify-between text-sm">
-                      <span className="text-silver-200 capitalize">{p.item_type} purchase</span>
+                      <span className="text-silver-200 capitalize">
+                        {t("dashboard.purchaseSuffix", { type: p.item_type })}
+                      </span>
                       <span className="text-xs uppercase tracking-wide text-gold-400">{p.status}</span>
                     </div>
                     {p.status === "approved" &&
                       p.downloads?.map((d) => (
                         <p key={d.file_path} className="mt-2 text-xs text-silver-400">
-                          File ready: {d.file_path}
+                          {t("dashboard.fileReadyPrefix")} {d.file_path}
                         </p>
                       ))}
                   </li>
@@ -82,9 +85,9 @@ export default async function AccountPage({
           </div>
 
           <div>
-            <h2 className="text-xl font-semibold text-ivory-100">Saved Opportunities</h2>
+            <h2 className="text-xl font-semibold text-ivory-100">{t("dashboard.savedOpportunities")}</h2>
             {!saved || saved.length === 0 ? (
-              <p className="mt-4 text-sm text-silver-400">No saved opportunities yet.</p>
+              <p className="mt-4 text-sm text-silver-400">{t("dashboard.noSaved")}</p>
             ) : (
               <ul className="mt-4 space-y-3">
                 {saved.map((s) => (

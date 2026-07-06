@@ -63,7 +63,7 @@ export function Header() {
         <div className="hidden items-center gap-5 pl-6 min-[1200px]:flex">
           <Link
             href="/account"
-            aria-label="Client Login"
+            aria-label={t("clientLogin")}
             className="flex items-center gap-1.5 text-[14.5px] text-muted-600 transition-colors hover:text-ivory-100"
           >
             <User size={16} />
@@ -74,7 +74,7 @@ export function Header() {
         </div>
 
         <button
-          aria-label="Toggle menu"
+          aria-label={t("toggleMenu")}
           className="flex flex-col items-end gap-1.5 min-[1200px]:hidden"
           onClick={() => setOpen((v) => !v)}
         >
@@ -102,14 +102,14 @@ export function Header() {
               onClick={() => setOpen(false)}
               className="border-b border-ivory-100/8 py-4 text-lg text-muted-500 hover:text-ivory-100"
             >
-              Reports
+              {t("reports")}
             </Link>
             <Link
               href="/account"
               onClick={() => setOpen(false)}
               className="border-b border-ivory-100/8 py-4 text-lg text-muted-500 hover:text-ivory-100"
             >
-              Client Login
+              {t("clientLogin")}
             </Link>
             <Button href="/contact" className="mt-6 w-full" onClick={() => setOpen(false)}>
               {t("cta")}

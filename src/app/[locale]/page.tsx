@@ -41,6 +41,10 @@ async function getHeroCounts() {
   }
 }
 
+type ServiceItem = { slug: string; title: string; summary: string };
+type SectorItem = { slug: string; title: string };
+type EngagementStep = { step: string; title: string; body: string };
+
 export default async function HomePage({
   params,
 }: {
@@ -59,6 +63,12 @@ function HomeContent({
 }) {
   const t = useTranslations("home");
   const tBrand = useTranslations("brand");
+  const tRoot = useTranslations();
+  const tServices = useTranslations("services");
+  const tSectors = useTranslations("sectors");
+  const serviceItems = tServices.raw("items") as ServiceItem[];
+  const sectorItems = tSectors.raw("items") as SectorItem[];
+  const engagementSteps = tRoot.raw("engagementSteps") as EngagementStep[];
 
   return (
     <>
@@ -101,18 +111,18 @@ function HomeContent({
       <Section className="border-t border-ivory-100/8 bg-navy-950">
         <SectionHeading
           eyebrow={t("servicesEyebrow")}
-          title="Six disciplines, one structured route into Iraq."
+          title={t("servicesTitle")}
           align="center"
           className="mx-auto mb-16"
         />
-        <ServiceGrid items={en.services.items} />
+        <ServiceGrid items={serviceItems} />
       </Section>
 
       {/* Iraq Tender Intelligence preview */}
       <Section className="border-t border-ivory-100/8">
         <SectionHeading
-          eyebrow="Iraq Tender Intelligence"
-          title="Qualified opportunities, monitored and briefed."
+          eyebrow={t("tendersEyebrow")}
+          title={t("tendersTitle")}
           align="center"
           className="mx-auto mb-16"
         />
@@ -127,17 +137,17 @@ function HomeContent({
           align="center"
           className="mx-auto mb-16"
         />
-        <SectorGrid items={en.sectors.items} />
+        <SectorGrid items={sectorItems} />
       </Section>
 
       {/* How We Work */}
       <Section className="border-t border-ivory-100/8">
         <SectionHeading
-          eyebrow="How We Work"
-          title="A structured, four-stage engagement model."
+          eyebrow={t("howWeWorkEyebrow")}
+          title={t("howWeWorkTitle")}
           className="mb-16"
         />
-        <HowWeWork steps={en.engagementSteps} />
+        <HowWeWork steps={engagementSteps} />
       </Section>
 
       {/* Confidentiality & Protection */}

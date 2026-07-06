@@ -21,17 +21,17 @@ const company: { href: string; key: NavKey }[] = [
   { href: "/partnerships", key: "partnerships" },
 ];
 
-const resources: { href: string; key?: NavKey; label?: string }[] = [
+const resources: { href: string; key?: NavKey | "tenders" }[] = [
   { href: "/tender-intelligence", key: "tenderIntelligence" },
   { href: "/iraq-market-access", key: "iraqMarketAccess" },
-  { href: "/tenders", label: "Iraq Tenders" },
+  { href: "/tenders", key: "tenders" },
   { href: "/insights", key: "insights" },
 ];
 
 const legal = [
-  { href: "/legal/confidentiality", label: "Confidentiality & Protection" },
-  { href: "/legal/terms", label: "Terms of Use" },
-  { href: "/legal/privacy", label: "Privacy Policy" },
+  { href: "/legal/confidentiality", key: "confidentiality" as const },
+  { href: "/legal/terms", key: "terms" as const },
+  { href: "/legal/privacy", key: "privacy" as const },
 ];
 
 export function Footer() {
@@ -39,6 +39,7 @@ export function Footer() {
   const tFooter = useTranslations("footer");
   const tBrand = useTranslations("brand");
   const tContact = useTranslations("contact");
+  const tLegal = useTranslations("legal");
   const year = new Date().getFullYear();
 
   return (
@@ -85,7 +86,7 @@ export function Footer() {
               {resources.map((link) => (
                 <li key={link.href}>
                   <Link href={link.href} className="text-[15px] text-muted-500 hover:text-ivory-100">
-                    {link.key ? t(link.key) : link.label}
+                    {t(link.key!)}
                   </Link>
                 </li>
               ))}
@@ -93,12 +94,12 @@ export function Footer() {
           </div>
 
           <div className="lg:col-span-2">
-            <p className="text-sm font-medium uppercase tracking-[0.1em] text-gold-400">Legal</p>
+            <p className="text-sm font-medium uppercase tracking-[0.1em] text-gold-400">{tFooter("legal")}</p>
             <ul className="mt-5 space-y-3.5">
               {legal.map((link) => (
                 <li key={link.href}>
                   <Link href={link.href} className="text-[15px] text-muted-500 hover:text-ivory-100">
-                    {link.label}
+                    {tLegal(`${link.key}.title`)}
                   </Link>
                 </li>
               ))}

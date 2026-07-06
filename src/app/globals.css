@@ -89,6 +89,7 @@
 
   --font-display: var(--font-fraunces);
   --font-sans: var(--font-geist);
+  --font-arabic: var(--font-cairo);
 }
 
 html {
@@ -101,6 +102,21 @@ body {
   font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
   font-size: 16px;
   line-height: 1.6;
+}
+
+/* Arabic (and any future RTL locale) uses Cairo instead of Geist —
+   overridden here rather than by re-theming --font-sans so the switch
+   is guaranteed regardless of how Tailwind inlines the token. */
+html[dir="rtl"] body {
+  font-family: var(--font-cairo), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Fraunces doesn't carry Arabic glyphs — fall back to Cairo for the
+   one decorative serif word so RTL pages never render tofu/serif-latin
+   mixed into Arabic text. */
+html[dir="rtl"] .font-display {
+  font-family: var(--font-cairo), ui-sans-serif, system-ui, sans-serif;
+  font-style: normal;
 }
 
 ::selection {

@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
-import { setRequestLocale } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { PageHero } from "@/components/site/PageHero";
 import { Section } from "@/components/site/Section";
 import { ConfidentialityNotice } from "@/components/site/ConfidentialityNotice";
 import { TendersTable } from "@/components/site/TendersTable";
 import { createClient } from "@/lib/supabase/server";
-import en from "@/messages/en.json";
 
 export const metadata: Metadata = {
   title: "Iraq Tenders — STRATIQ Access",
@@ -37,23 +36,24 @@ export default async function TendersPage({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
+  const t = await getTranslations("tenders");
   const opportunities = await getOpportunities();
 
   return (
     <>
       <PageHero
-        eyebrow={en.tenders.hero.eyebrow}
-        title={en.tenders.hero.title}
-        description={en.tenders.hero.description}
+        eyebrow={t("hero.eyebrow")}
+        title={t("hero.title")}
+        description={t("hero.description")}
       />
 
       <Section>
         <div className="mb-10">
-          <ConfidentialityNotice text={en.tenders.gatedNotice} />
+          <ConfidentialityNotice text={t("gatedNotice")} />
         </div>
 
         {opportunities.length === 0 ? (
-          <p className="text-[15px] text-muted-500">{en.tenders.empty}</p>
+          <p className="text-[15px] text-muted-500">{t("empty")}</p>
         ) : (
           <TendersTable items={opportunities} />
         )}

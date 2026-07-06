@@ -2,15 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { animate, motion } from "framer-motion";
-
-const SIGNALS = [
-  "ENERGY & POWER — TENDER WINDOW ACTIVE",
-  "CLEAN & RENEWABLE ENERGY — INVESTMENT PIPELINE MONITORED",
-  "PROCUREMENT & SUPPLY — SOURCING REQUESTS TRACKED",
-  "TENDERS & CONTRACTS — INTELLIGENCE LIVE",
-  "ICT & DIGITAL INFRASTRUCTURE — COVERAGE ACTIVE",
-  "GOVERNMENT & ENTERPRISE — ENGAGEMENT CHANNELS OPEN",
-];
+import { useLocale, useTranslations } from "next-intl";
+import { rtlLocales, type Locale } from "@/i18n/routing";
 
 function useCountUp(target: number, duration = 1.4, delay = 0) {
   const [value, setValue] = useState(0);
@@ -68,6 +61,11 @@ export function MarketSignalPanel({
   sectorsCount: number;
   servicesCount: number;
 }) {
+  const t = useTranslations("home.marketSignal");
+  const locale = useLocale();
+  const isRtl = rtlLocales.includes(locale as Locale);
+  const signals = t.raw("signals") as string[];
+
   return (
     <div className="w-full max-w-lg rounded-md border border-ivory-100/12 bg-navy-950/80 shadow-[0_30px_80px_rgba(0,0,0,0.45)]">
       <div className="flex items-center justify-between border-b border-ivory-100/10 px-6 py-4">
@@ -76,28 +74,28 @@ export function MarketSignalPanel({
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-teal-400 opacity-75" />
             <span className="relative inline-flex h-2 w-2 rounded-full bg-teal-400" />
           </span>
-          <span className="text-xs font-medium uppercase tracking-[0.15em] text-teal-400">Live</span>
+          <span className="text-xs font-medium uppercase tracking-[0.15em] text-teal-400">{t("live")}</span>
         </div>
         <span className="text-xs font-medium uppercase tracking-[0.1em] text-muted-600">
-          Stratiq Intelligence
+          {t("brandLabel")}
         </span>
       </div>
 
       <div className="px-6 py-2">
-        <StatRow label="Active Opportunities" value={activeOpportunities} delay={0.1} />
-        <StatRow label="Sectors Monitored" value={sectorsCount} delay={0.25} />
-        <StatRow label="Service Lines" value={servicesCount} delay={0.4} />
+        <StatRow label={t("activeOpportunities")} value={activeOpportunities} delay={0.1} />
+        <StatRow label={t("sectorsMonitored")} value={sectorsCount} delay={0.25} />
+        <StatRow label={t("serviceLines")} value={servicesCount} delay={0.4} />
       </div>
 
       <div className="overflow-hidden border-t border-ivory-100/10 py-3">
         <motion.div
           className="flex whitespace-nowrap"
-          animate={{ x: ["0%", "-50%"] }}
+          animate={{ x: isRtl ? ["0%", "50%"] : ["0%", "-50%"] }}
           transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
         >
-          {[...SIGNALS, ...SIGNALS].map((s, i) => (
+          {[...signals, ...signals].map((s, i) => (
             <span key={i} className="mx-4 text-[11px] font-medium tracking-[0.04em] text-muted-600">
-              <span className="mr-4 text-gold-500">◆</span>
+              <span className="me-4 text-gold-500">◆</span>
               {s}
             </span>
           ))}

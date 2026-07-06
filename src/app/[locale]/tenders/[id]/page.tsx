@@ -1,12 +1,11 @@
 import { notFound } from "next/navigation";
-import { setRequestLocale } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { PageHero } from "@/components/site/PageHero";
 import { Section } from "@/components/site/Section";
 import { ConfidentialityNotice } from "@/components/site/ConfidentialityNotice";
 import { NdaRequestForm } from "@/components/site/NdaRequestForm";
 import { createClient } from "@/lib/supabase/server";
 import type { Database } from "@/lib/supabase/types";
-import en from "@/messages/en.json";
 
 type OpportunityWithAttachments = Database["public"]["Tables"]["opportunities"]["Row"] & {
   opportunity_attachments: Database["public"]["Tables"]["opportunity_attachments"]["Row"][];
@@ -29,6 +28,13 @@ async function getOpportunity(id: string) {
   }
 }
 
+const statusKey: Record<string, string> = {
+  open: "open",
+  under_review: "underReview",
+  awarded: "awarded",
+  closed: "closed",
+};
+
 export default async function TenderDetailPage({
   params,
 }: {
@@ -36,16 +42,18 @@ export default async function TenderDetailPage({
 }) {
   const { locale, id } = await params;
   setRequestLocale(locale);
+  const t = await getTranslations("tenders");
+  const tBrand = await getTranslations("brand");
   const op = await getOpportunity(id);
 
   if (!op) notFound();
 
-  const labels = en.tenders.labels;
+  const labels = t.raw("labels") as Record<string, string>;
 
   return (
     <>
       <PageHero
-        eyebrow={op.tender_type ?? (op.kind === "investment" ? "Investment Opportunity" : "Public Tender")}
+        eyebrow={op.tender_type ?? t(`kindLabels.${op.kind === "investment" ? "investment" : "tender"}`)}
         title={op.reference_no ? `${op.reference_no} — ${op.title}` : op.title}
         description={op.summary}
       />
@@ -55,16 +63,16 @@ export default async function TenderDetailPage({
           <div className="lg:col-span-8">
             <dl className="grid grid-cols-2 gap-6 border border-white/10 bg-navy-900/50 p-8 text-sm sm:grid-cols-3">
               <div>
-                <dt className="text-xs uppercase tracking-wide text-silver-400">Reference</dt>
+                <dt className="text-xs uppercase tracking-wide text-silver-400">{labels.reference}</dt>
                 <dd className="mt-1 text-silver-200">{op.reference_no ?? "—"}</dd>
               </div>
               <div>
-                <dt className="text-xs uppercase tracking-wide text-silver-400">Ownership</dt>
-                <dd className="mt-1 capitalize text-silver-200">{op.ownership}</dd>
+                <dt className="text-xs uppercase tracking-wide text-silver-400">{labels.ownership}</dt>
+                <dd className="mt-1 text-silver-200">{t(`tabs.ownership.${op.ownership}`)}</dd>
               </div>
               <div>
                 <dt className="text-xs uppercase tracking-wide text-silver-400">{labels.buyer}</dt>
-                <dd className="mt-1 text-silver-200">{op.buyer ?? "Confidential"}</dd>
+                <dd className="mt-1 text-silver-200">{op.buyer ?? t("confidentialFallback")}</dd>
               </div>
               <div>
                 <dt className="text-xs uppercase tracking-wide text-silver-400">{labels.location}</dt>
@@ -80,7 +88,7 @@ export default async function TenderDetailPage({
               </div>
               <div>
                 <dt className="text-xs uppercase tracking-wide text-silver-400">{labels.status}</dt>
-                <dd className="mt-1 capitalize text-silver-200">{op.status.replace("_", " ")}</dd>
+                <dd className="mt-1 text-silver-200">{t(`tabs.status.${statusKey[op.status]}`)}</dd>
               </div>
               <div>
                 <dt className="text-xs uppercase tracking-wide text-silver-400">{labels.type}</dt>
@@ -103,11 +111,11 @@ export default async function TenderDetailPage({
 
             <div className="mt-10">
               {op.requires_nda ? (
-                <ConfidentialityNotice text={en.tenders.gatedNotice} />
+                <ConfidentialityNotice text={t("gatedNotice")} />
               ) : (
                 op.confidential_details && (
                   <div className="border border-white/10 bg-navy-900/50 p-8">
-                    <h2 className="text-lg font-semibold text-ivory-100">Opportunity Details</h2>
+                    <h2 className="text-lg font-semibold text-ivory-100">{t("opportunityDetailsTitle")}</h2>
                     <p className="mt-4 whitespace-pre-line text-[15px] leading-relaxed text-muted-500">
                       {op.confidential_details}
                     </p>
@@ -119,9 +127,9 @@ export default async function TenderDetailPage({
 
           <div className="lg:col-span-4">
             <div className="border border-white/10 bg-navy-900/50 p-8">
-              <p className="text-xs uppercase tracking-[0.2em] text-gold-400">{en.tenders.requestAccess}</p>
+              <p className="text-xs uppercase tracking-[0.2em] text-gold-400">{t("requestAccess")}</p>
               <p className="mt-4 text-[15px] leading-relaxed text-muted-500">
-                {en.brand.disclosureNotice}
+                {tBrand("disclosureNotice")}
               </p>
               <div className="mt-6">
                 <NdaRequestForm opportunityId={op.id} />

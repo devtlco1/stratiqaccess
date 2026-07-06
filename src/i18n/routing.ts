@@ -1,17 +1,19 @@
 import { defineRouting } from "next-intl/routing";
 
 /**
- * Only English ships today. Adding a locale later is a one-line change here
- * plus a new messages/<locale>.json + rtlLocales entry — no route restructuring.
+ * English and Arabic ship today. Adding another locale later is a
+ * one-line change here plus a new messages/<locale>.json entry (and an
+ * rtlLocales entry if it's RTL) — no route restructuring.
  */
-export const locales = ["en"] as const;
+export const locales = ["en", "ar"] as const;
 export type Locale = (typeof locales)[number];
 
 export const localeLabels: Record<Locale, string> = {
   en: "English",
+  ar: "العربية",
 };
 
-export const rtlLocales: Locale[] = [];
+export const rtlLocales: Locale[] = ["ar"];
 
 export const routing = defineRouting({
   locales,

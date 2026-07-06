@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { setRequestLocale } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { PageHero } from "@/components/site/PageHero";
 import { Section } from "@/components/site/Section";
 import { Link } from "@/i18n/navigation";
@@ -33,19 +33,20 @@ export default async function ReportsPage({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
+  const t = await getTranslations("reports");
   const reports = await getReports();
 
   return (
     <>
       <PageHero
-        eyebrow="Reports"
-        title="Paid tender intelligence and market-entry reports."
-        description="In-depth briefings available for purchase, released after payment or manual approval."
+        eyebrow={t("hero.eyebrow")}
+        title={t("hero.title")}
+        description={t("hero.description")}
       />
 
       <Section>
         {reports.length === 0 ? (
-          <p className="text-sm text-silver-300">No reports are published yet.</p>
+          <p className="text-sm text-silver-300">{t("empty")}</p>
         ) : (
           <div className="grid gap-px overflow-hidden border border-white/10 bg-white/10 sm:grid-cols-2 lg:grid-cols-3">
             {reports.map((report, i) => (

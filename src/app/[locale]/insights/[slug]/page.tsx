@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { setRequestLocale } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { PageHero } from "@/components/site/PageHero";
 import { Section } from "@/components/site/Section";
 import { createClient } from "@/lib/supabase/server";
@@ -27,13 +27,14 @@ export default async function ArticlePage({
 }) {
   const { locale, slug } = await params;
   setRequestLocale(locale);
+  const t = await getTranslations("insights");
   const article = await getArticle(slug);
 
   if (!article) notFound();
 
   return (
     <>
-      <PageHero eyebrow="Insights" title={article.title} description={article.excerpt ?? undefined} />
+      <PageHero eyebrow={t("hero.eyebrow")} title={article.title} description={article.excerpt ?? undefined} />
       <Section>
         <div className="mx-auto max-w-3xl whitespace-pre-line text-[15px] leading-relaxed text-muted-500">
           {article.body}

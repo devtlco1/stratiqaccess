@@ -1,6 +1,7 @@
 "use client";
 
 import { useActionState } from "react";
+import { useTranslations } from "next-intl";
 import { accountSignIn, accountSignUp, type AccountAuthState } from "@/app/actions/account";
 import { Button } from "@/components/ui/Button";
 
@@ -10,6 +11,8 @@ const fieldClasses =
 const labelClasses = "mb-2 block text-xs uppercase tracking-wide text-silver-300";
 
 export function AccountAuthForm({ mode, next }: { mode: "login" | "signup"; next?: string }) {
+  const t = useTranslations("account.form");
+  const tCommon = useTranslations("common");
   const action = mode === "login" ? accountSignIn : accountSignUp;
   const [state, formAction, pending] = useActionState(action, initialState);
 
@@ -19,16 +22,16 @@ export function AccountAuthForm({ mode, next }: { mode: "login" | "signup"; next
 
       {mode === "signup" && (
         <div>
-          <label className={labelClasses} htmlFor="full_name">Full name</label>
+          <label className={labelClasses} htmlFor="full_name">{t("fullName")}</label>
           <input className={fieldClasses} id="full_name" name="full_name" required />
         </div>
       )}
       <div>
-        <label className={labelClasses} htmlFor="email">Email</label>
+        <label className={labelClasses} htmlFor="email">{t("email")}</label>
         <input className={fieldClasses} id="email" name="email" type="email" required autoComplete="username" />
       </div>
       <div>
-        <label className={labelClasses} htmlFor="password">Password</label>
+        <label className={labelClasses} htmlFor="password">{t("password")}</label>
         <input
           className={fieldClasses}
           id="password"
@@ -43,7 +46,7 @@ export function AccountAuthForm({ mode, next }: { mode: "login" | "signup"; next
       {state.status === "error" && <p className="text-sm text-red-400">{state.message}</p>}
 
       <Button type="submit" disabled={pending} className="w-full">
-        {pending ? "Please wait…" : mode === "login" ? "Sign In" : "Create Account"}
+        {pending ? tCommon("pleaseWait") : mode === "login" ? t("signIn") : t("createAccount")}
       </Button>
     </form>
   );

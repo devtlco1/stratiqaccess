@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { Lock } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { cn } from "@/lib/utils";
 import type { Database } from "@/lib/supabase/types";
@@ -24,25 +25,25 @@ type Opportunity = Pick<
   | "requires_nda"
 >;
 
-const PROCUREMENT_TABS: { value: "all" | Opportunity["procurement_type"]; label: string }[] = [
-  { value: "all", label: "All" },
-  { value: "tender", label: "Tenders" },
-  { value: "contract", label: "Contracts" },
-  { value: "purchase_request", label: "Purchase Requests" },
+const PROCUREMENT_TABS: { value: "all" | Opportunity["procurement_type"]; key: string }[] = [
+  { value: "all", key: "all" },
+  { value: "tender", key: "tenders" },
+  { value: "contract", key: "contracts" },
+  { value: "purchase_request", key: "purchaseRequests" },
 ];
 
-const OWNERSHIP_TABS: { value: "all" | Opportunity["ownership"]; label: string }[] = [
-  { value: "all", label: "All" },
-  { value: "government", label: "Government" },
-  { value: "private", label: "Private" },
+const OWNERSHIP_TABS: { value: "all" | Opportunity["ownership"]; key: string }[] = [
+  { value: "all", key: "all" },
+  { value: "government", key: "government" },
+  { value: "private", key: "private" },
 ];
 
-const STATUS_TABS: { value: "all" | Opportunity["status"]; label: string }[] = [
-  { value: "all", label: "All Statuses" },
-  { value: "open", label: "Open" },
-  { value: "under_review", label: "Under Review" },
-  { value: "awarded", label: "Awarded" },
-  { value: "closed", label: "Closed" },
+const STATUS_TABS: { value: "all" | Opportunity["status"]; key: string }[] = [
+  { value: "all", key: "all" },
+  { value: "open", key: "open" },
+  { value: "under_review", key: "underReview" },
+  { value: "awarded", key: "awarded" },
+  { value: "closed", key: "closed" },
 ];
 
 const statusDot: Record<string, string> = {
@@ -78,6 +79,7 @@ function RemainingBadge({ deadline, status }: { deadline: string | null; status:
 }
 
 export function TendersTable({ items }: { items: Opportunity[] }) {
+  const t = useTranslations("tenders");
   const [procurementType, setProcurementType] = useState<"all" | Opportunity["procurement_type"]>("all");
   const [ownership, setOwnership] = useState<"all" | Opportunity["ownership"]>("all");
   const [status, setStatus] = useState<"all" | Opportunity["status"]>("all");
@@ -108,7 +110,7 @@ export function TendersTable({ items }: { items: Opportunity[] }) {
                   : "text-muted-500 hover:text-ivory-100",
               )}
             >
-              {tab.label}
+              {t(`tabs.procurement.${tab.key}`)}
             </button>
           ))}
         </div>
@@ -123,7 +125,7 @@ export function TendersTable({ items }: { items: Opportunity[] }) {
                 ownership === tab.value ? "bg-ivory-100/10 text-ivory-100" : "text-muted-600 hover:text-ivory-100",
               )}
             >
-              {tab.label}
+              {t(`tabs.ownership.${tab.key}`)}
             </button>
           ))}
         </div>
@@ -141,28 +143,28 @@ export function TendersTable({ items }: { items: Opportunity[] }) {
                 : "border-ivory-100/12 text-muted-600 hover:border-ivory-100/25 hover:text-ivory-100",
             )}
           >
-            {tab.label}
+            {t(`tabs.status.${tab.key}`)}
           </button>
         ))}
       </div>
 
       {filtered.length === 0 ? (
         <div className="rounded-md border border-dashed border-ivory-100/15 p-12 text-center text-[15px] text-muted-500">
-          No opportunities match this filter yet.
+          {t("noMatch")}
         </div>
       ) : (
         <div className="overflow-x-auto rounded-md border border-ivory-100/10">
           <table className="w-full min-w-[900px] border-collapse text-sm">
             <thead>
-              <tr className="border-b border-ivory-100/10 bg-navy-950 text-left">
-                <th className="px-5 py-4 text-xs font-medium uppercase tracking-wide text-muted-600">Reference</th>
-                <th className="px-5 py-4 text-xs font-medium uppercase tracking-wide text-muted-600">Title</th>
-                <th className="px-5 py-4 text-xs font-medium uppercase tracking-wide text-muted-600">Institution</th>
-                <th className="px-5 py-4 text-xs font-medium uppercase tracking-wide text-muted-600">Location</th>
-                <th className="px-5 py-4 text-xs font-medium uppercase tracking-wide text-muted-600">Published</th>
-                <th className="px-5 py-4 text-xs font-medium uppercase tracking-wide text-muted-600">Closing</th>
-                <th className="px-5 py-4 text-center text-xs font-medium uppercase tracking-wide text-muted-600">Remaining</th>
-                <th className="px-5 py-4 text-xs font-medium uppercase tracking-wide text-muted-600">Status</th>
+              <tr className="border-b border-ivory-100/10 bg-navy-950 text-start">
+                <th className="px-5 py-4 text-start text-xs font-medium uppercase tracking-wide text-muted-600">{t("columns.reference")}</th>
+                <th className="px-5 py-4 text-start text-xs font-medium uppercase tracking-wide text-muted-600">{t("columns.title")}</th>
+                <th className="px-5 py-4 text-start text-xs font-medium uppercase tracking-wide text-muted-600">{t("columns.institution")}</th>
+                <th className="px-5 py-4 text-start text-xs font-medium uppercase tracking-wide text-muted-600">{t("columns.location")}</th>
+                <th className="px-5 py-4 text-start text-xs font-medium uppercase tracking-wide text-muted-600">{t("columns.published")}</th>
+                <th className="px-5 py-4 text-start text-xs font-medium uppercase tracking-wide text-muted-600">{t("columns.closing")}</th>
+                <th className="px-5 py-4 text-center text-xs font-medium uppercase tracking-wide text-muted-600">{t("columns.remaining")}</th>
+                <th className="px-5 py-4 text-start text-xs font-medium uppercase tracking-wide text-muted-600">{t("columns.status")}</th>
                 <th className="px-5 py-4" />
               </tr>
             </thead>
@@ -173,10 +175,10 @@ export function TendersTable({ items }: { items: Opportunity[] }) {
                   <td className="max-w-xs px-5 py-4">
                     <p className="font-medium text-ivory-100">{op.title}</p>
                     <p className="mt-0.5 text-xs text-muted-600">
-                      {op.tender_type ?? (op.kind === "investment" ? "Investment Opportunity" : "Public Tender")}
+                      {op.tender_type ?? t(`kindLabels.${op.kind === "investment" ? "investment" : "tender"}`)}
                     </p>
                   </td>
-                  <td className="px-5 py-4 text-muted-500">{op.buyer ?? "Confidential"}</td>
+                  <td className="px-5 py-4 text-muted-500">{op.buyer ?? t("confidentialFallback")}</td>
                   <td className="px-5 py-4 text-muted-500">{op.location ?? "—"}</td>
                   <td className="px-5 py-4 text-muted-500">{op.published_at}</td>
                   <td className="px-5 py-4 text-muted-500">{op.deadline ?? "—"}</td>
@@ -186,18 +188,18 @@ export function TendersTable({ items }: { items: Opportunity[] }) {
                     </div>
                   </td>
                   <td className="px-5 py-4">
-                    <span className="flex items-center gap-2 text-xs font-medium capitalize text-ivory-100">
+                    <span className="flex items-center gap-2 text-xs font-medium text-ivory-100">
                       <span className={cn("h-1.5 w-1.5 rounded-full", statusDot[op.status] ?? "bg-muted-600")} />
-                      {op.status.replace("_", " ")}
+                      {t(`tabs.status.${op.status === "under_review" ? "underReview" : op.status}`)}
                     </span>
                   </td>
-                  <td className="px-5 py-4 text-right">
+                  <td className="px-5 py-4 text-end">
                     <Link
                       href={`/tenders/${op.id}`}
                       className="inline-flex items-center gap-1.5 whitespace-nowrap border border-ivory-100/15 px-3.5 py-2 text-xs font-medium text-ivory-100 transition-colors hover:border-gold-500/40 hover:text-gold-400"
                     >
                       {op.requires_nda && <Lock size={11} />}
-                      Details
+                      {t("detailsLink")}
                     </Link>
                   </td>
                 </tr>

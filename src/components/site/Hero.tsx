@@ -23,6 +23,9 @@ export function Hero({
     .split(". ")
     .map((s) => s.replace(/\.$/, ""))
     .filter(Boolean);
+  const titleWords = t("title").split(" ");
+  const titleLead = titleWords.slice(0, -1).join(" ");
+  const titleAccent = titleWords[titleWords.length - 1];
 
   return (
     <section className="relative overflow-hidden bg-navy-900">
@@ -45,15 +48,14 @@ export function Hero({
             transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             className="mt-7 text-5xl font-semibold leading-[1.08] tracking-[-0.02em] text-ivory-100 sm:text-6xl lg:text-[3.75rem]"
           >
-            Your Strategic Access to{" "}
+            {titleLead}{" "}
             <span className="relative inline-block">
-              <span className="font-display italic font-normal text-gradient-gold">Iraq.</span>
+              <span className="font-display italic font-normal text-gradient-gold">{titleAccent}</span>
               <motion.span
                 initial={{ scaleX: 0 }}
                 animate={{ scaleX: 1 }}
                 transition={{ duration: 0.9, delay: 0.9, ease: [0.16, 1, 0.3, 1] }}
-                style={{ transformOrigin: "left" }}
-                className="absolute -bottom-1 left-0 h-[3px] w-full rounded-full bg-gradient-to-r from-gold-500 via-gold-300 to-transparent"
+                className="absolute -bottom-1 start-0 h-[3px] w-full origin-left rtl:origin-right rounded-full bg-gradient-to-r rtl:bg-gradient-to-l from-gold-500 via-gold-300 to-transparent"
               />
             </span>
           </motion.h1>
@@ -94,7 +96,7 @@ export function Hero({
           >
             <Button href="/contact">
               {t("ctaPrimary")}
-              <span aria-hidden className="ml-1">
+              <span aria-hidden className="ms-1 inline-block rtl:-scale-x-100">
                 &rarr;
               </span>
             </Button>
