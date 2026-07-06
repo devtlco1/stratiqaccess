@@ -10,7 +10,8 @@
   "common": {
     "submitting": "Submitting…",
     "pleaseWait": "Please wait…",
-    "processing": "Processing…"
+    "processing": "Processing…",
+    "learnMore": "Learn more"
   },
   "nav": {
     "home": "Home",
@@ -84,6 +85,14 @@
         "TENDERS & CONTRACTS — INTELLIGENCE LIVE",
         "ICT & DIGITAL INFRASTRUCTURE — COVERAGE ACTIVE",
         "GOVERNMENT & ENTERPRISE — ENGAGEMENT CHANNELS OPEN"
+      ]
+    },
+    "trustStrip": {
+      "items": [
+        { "value": "9", "label": "Strategic Sectors Monitored" },
+        { "value": "NDA", "label": "Protected Engagement Model" },
+        { "value": "100%", "label": "Formal Representation Mandates" },
+        { "value": "Iraq", "label": "Registered Commercial Structure" }
       ]
     }
   },

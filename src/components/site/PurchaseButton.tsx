@@ -13,7 +13,7 @@ export function PurchaseButton({ reportId, label }: { reportId: string; label: s
 
   if (state.status === "manual") {
     return (
-      <div className="border border-gold-500/30 bg-gold-500/5 p-6 text-sm leading-relaxed text-silver-200">
+      <div className="rounded-lg border border-cyan-400/25 bg-cyan-400/5 p-6 text-sm leading-relaxed text-ivory-200">
         {state.message}
       </div>
     );

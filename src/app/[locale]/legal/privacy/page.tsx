@@ -25,7 +25,7 @@ export default async function PrivacyPage({
           <p>{t("privacy.body2")}</p>
           <p>
             {t("privacy.body3Before")}{" "}
-            <Link href="/legal/confidentiality" className="text-gold-400 underline underline-offset-4">
+            <Link href="/legal/confidentiality" className="text-cyan-300 underline underline-offset-4">
               {t("confidentiality.title")}
             </Link>{" "}
             {t("privacy.body3After")}

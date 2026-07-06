@@ -26,7 +26,7 @@ export default async function AccountLoginPage({
           <AccountAuthForm mode="login" next={next} />
           <p className="mt-6 text-center text-sm text-silver-400">
             {t("login.noAccountText")}{" "}
-            <Link href="/account/signup" className="text-gold-400 hover:text-gold-300">
+            <Link href="/account/signup" className="text-cyan-300 hover:text-cyan-200">
               {t("login.createOneLink")}
             </Link>
           </p>

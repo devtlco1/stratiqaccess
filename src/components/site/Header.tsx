@@ -32,7 +32,7 @@ export function Header() {
   }, [open]);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-ivory-100/8 bg-navy-900/80 backdrop-blur-lg">
+    <header className="glass-nav sticky top-0 z-50 border-b border-ivory-100/8">
       <div className="mx-auto flex max-w-[1440px] items-center justify-between px-6 py-4 lg:px-10">
         <Link href="/" className="flex shrink-0 items-center">
           <Image
@@ -51,11 +51,14 @@ export function Header() {
               key={link.href}
               href={link.href}
               className={cn(
-                "whitespace-nowrap text-[14.5px] text-muted-500 transition-colors hover:text-ivory-100",
-                pathname === link.href && "text-gold-400",
+                "relative whitespace-nowrap py-1 text-[14.5px] text-muted-500 transition-colors hover:text-ivory-100",
+                pathname === link.href && "text-cyan-300",
               )}
             >
               {t(link.key)}
+              {pathname === link.href && (
+                <span className="absolute -bottom-1 start-0 h-px w-full bg-gradient-to-r from-blue-500 to-cyan-400" />
+              )}
             </Link>
           ))}
         </nav>
@@ -64,7 +67,7 @@ export function Header() {
           <Link
             href="/account"
             aria-label={t("clientLogin")}
-            className="flex items-center gap-1.5 text-[14.5px] text-muted-600 transition-colors hover:text-ivory-100"
+            className="flex items-center gap-1.5 text-[14.5px] text-muted-600 transition-colors hover:text-cyan-300"
           >
             <User size={16} />
           </Link>
@@ -85,14 +88,14 @@ export function Header() {
       </div>
 
       {open && (
-        <div className="absolute inset-x-0 top-full h-[calc(100vh-4.5rem)] overflow-y-auto border-t border-ivory-100/8 bg-navy-900 min-[1200px]:hidden">
+        <div className="glass-nav absolute inset-x-0 top-full h-[calc(100vh-4.5rem)] overflow-y-auto border-t border-ivory-100/8 min-[1200px]:hidden">
           <nav className="flex flex-col px-6 py-6">
             {links.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setOpen(false)}
-                className="border-b border-ivory-100/8 py-4 text-lg text-ivory-100 hover:text-gold-400"
+                className="border-b border-ivory-100/8 py-4 text-lg text-ivory-100 hover:text-cyan-300"
               >
                 {t(link.key)}
               </Link>

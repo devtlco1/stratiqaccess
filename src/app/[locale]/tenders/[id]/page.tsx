@@ -61,38 +61,38 @@ export default async function TenderDetailPage({
       <Section>
         <div className="grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-8">
-            <dl className="grid grid-cols-2 gap-6 border border-white/10 bg-navy-900/50 p-8 text-sm sm:grid-cols-3">
+            <dl className="glass-panel grid grid-cols-2 gap-6 rounded-xl p-8 text-sm sm:grid-cols-3">
               <div>
-                <dt className="text-xs uppercase tracking-wide text-silver-400">{labels.reference}</dt>
-                <dd className="mt-1 text-silver-200">{op.reference_no ?? "—"}</dd>
+                <dt className="text-xs uppercase tracking-wide text-muted-600">{labels.reference}</dt>
+                <dd className="mt-1 text-ivory-200">{op.reference_no ?? "—"}</dd>
               </div>
               <div>
-                <dt className="text-xs uppercase tracking-wide text-silver-400">{labels.ownership}</dt>
-                <dd className="mt-1 text-silver-200">{t(`tabs.ownership.${op.ownership}`)}</dd>
+                <dt className="text-xs uppercase tracking-wide text-muted-600">{labels.ownership}</dt>
+                <dd className="mt-1 text-ivory-200">{t(`tabs.ownership.${op.ownership}`)}</dd>
               </div>
               <div>
-                <dt className="text-xs uppercase tracking-wide text-silver-400">{labels.buyer}</dt>
-                <dd className="mt-1 text-silver-200">{op.buyer ?? t("confidentialFallback")}</dd>
+                <dt className="text-xs uppercase tracking-wide text-muted-600">{labels.buyer}</dt>
+                <dd className="mt-1 text-ivory-200">{op.buyer ?? t("confidentialFallback")}</dd>
               </div>
               <div>
-                <dt className="text-xs uppercase tracking-wide text-silver-400">{labels.location}</dt>
-                <dd className="mt-1 text-silver-200">{op.location ?? "—"}</dd>
+                <dt className="text-xs uppercase tracking-wide text-muted-600">{labels.location}</dt>
+                <dd className="mt-1 text-ivory-200">{op.location ?? "—"}</dd>
               </div>
               <div>
-                <dt className="text-xs uppercase tracking-wide text-silver-400">{labels.country}</dt>
-                <dd className="mt-1 text-silver-200">{op.country ?? "—"}</dd>
+                <dt className="text-xs uppercase tracking-wide text-muted-600">{labels.country}</dt>
+                <dd className="mt-1 text-ivory-200">{op.country ?? "—"}</dd>
               </div>
               <div>
-                <dt className="text-xs uppercase tracking-wide text-silver-400">{labels.deadline}</dt>
-                <dd className="mt-1 text-silver-200">{op.deadline ?? "—"}</dd>
+                <dt className="text-xs uppercase tracking-wide text-muted-600">{labels.deadline}</dt>
+                <dd className="mt-1 text-ivory-200">{op.deadline ?? "—"}</dd>
               </div>
               <div>
-                <dt className="text-xs uppercase tracking-wide text-silver-400">{labels.status}</dt>
-                <dd className="mt-1 text-silver-200">{t(`tabs.status.${statusKey[op.status]}`)}</dd>
+                <dt className="text-xs uppercase tracking-wide text-muted-600">{labels.status}</dt>
+                <dd className="mt-1 text-ivory-200">{t(`tabs.status.${statusKey[op.status]}`)}</dd>
               </div>
               <div>
-                <dt className="text-xs uppercase tracking-wide text-silver-400">{labels.type}</dt>
-                <dd className="mt-1 text-silver-200">{op.tender_type ?? "—"}</dd>
+                <dt className="text-xs uppercase tracking-wide text-muted-600">{labels.type}</dt>
+                <dd className="mt-1 text-ivory-200">{op.tender_type ?? "—"}</dd>
               </div>
             </dl>
 
@@ -101,7 +101,7 @@ export default async function TenderDetailPage({
                 {op.tags.map((tag: string) => (
                   <span
                     key={tag}
-                    className="border border-white/10 px-3 py-1 text-xs uppercase tracking-wide text-silver-300"
+                    className="rounded-full border border-blue-400/20 bg-blue-500/[0.06] px-3 py-1 text-xs uppercase tracking-wide text-cyan-300"
                   >
                     {tag}
                   </span>
@@ -114,7 +114,7 @@ export default async function TenderDetailPage({
                 <ConfidentialityNotice text={t("gatedNotice")} />
               ) : (
                 op.confidential_details && (
-                  <div className="border border-white/10 bg-navy-900/50 p-8">
+                  <div className="glass-panel rounded-xl p-8">
                     <h2 className="text-lg font-semibold text-ivory-100">{t("opportunityDetailsTitle")}</h2>
                     <p className="mt-4 whitespace-pre-line text-[15px] leading-relaxed text-muted-500">
                       {op.confidential_details}
@@ -126,8 +126,8 @@ export default async function TenderDetailPage({
           </div>
 
           <div className="lg:col-span-4">
-            <div className="border border-white/10 bg-navy-900/50 p-8">
-              <p className="text-xs uppercase tracking-[0.2em] text-gold-400">{t("requestAccess")}</p>
+            <div className="glass-panel glow-blue rounded-xl p-8">
+              <p className="text-xs uppercase tracking-[0.2em] text-cyan-400">{t("requestAccess")}</p>
               <p className="mt-4 text-[15px] leading-relaxed text-muted-500">
                 {tBrand("disclosureNotice")}
               </p>

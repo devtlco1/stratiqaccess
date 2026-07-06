@@ -8,7 +8,7 @@ export function SectorGrid({
   items: { slug: string; title: string }[];
 }) {
   return (
-    <div className="grid grid-cols-1 gap-px overflow-hidden rounded-md border border-ivory-100/10 bg-ivory-100/10 sm:grid-cols-2 lg:grid-cols-3">
+    <div className="grid grid-cols-1 gap-px overflow-hidden rounded-xl border border-ivory-100/10 bg-ivory-100/10 sm:grid-cols-2 lg:grid-cols-3">
       {items.map((sector, i) => (
         <motion.div
           key={sector.slug}
@@ -16,13 +16,13 @@ export function SectorGrid({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.5, delay: i * 0.04 }}
-          className="group relative flex min-h-[130px] flex-col justify-between bg-navy-900 p-6 transition-colors duration-300 hover:bg-navy-800"
+          className="group relative flex min-h-[130px] flex-col justify-between bg-navy-900 p-6 transition-colors duration-300 hover:bg-navy-800/70"
         >
-          <span className="text-xs font-medium text-muted-600 transition-colors group-hover:text-gold-400">
+          <span className="text-xs font-medium text-muted-600 transition-colors group-hover:text-cyan-300">
             {String(i + 1).padStart(2, "0")}
           </span>
           <span className="text-[17px] font-medium leading-snug text-ivory-100">{sector.title}</span>
-          <span className="absolute inset-x-0 bottom-0 h-0.5 origin-left scale-x-0 bg-gradient-to-r from-gold-500 to-teal-500 transition-transform duration-300 group-hover:scale-x-100" />
+          <span className="absolute inset-x-0 bottom-0 h-0.5 origin-left scale-x-0 bg-gradient-to-r from-blue-500 to-cyan-400 transition-transform duration-300 group-hover:scale-x-100" />
         </motion.div>
       ))}
     </div>

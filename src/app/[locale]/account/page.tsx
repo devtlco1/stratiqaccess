@@ -51,7 +51,7 @@ export default async function AccountPage({
       <Section>
         <div className="mb-10 flex justify-end">
           <form action={accountSignOut}>
-            <button className="border border-white/15 px-5 py-2.5 text-xs uppercase tracking-wide text-silver-300 hover:border-gold-500/40 hover:text-gold-400">
+            <button className="rounded-lg border border-white/15 px-5 py-2.5 text-xs uppercase tracking-wide text-muted-500 transition-colors hover:border-cyan-400/40 hover:text-cyan-300">
               {t("dashboard.signOut")}
             </button>
           </form>
@@ -61,20 +61,20 @@ export default async function AccountPage({
           <div>
             <h2 className="text-xl font-semibold text-ivory-100">{t("dashboard.purchasedReports")}</h2>
             {!purchases || purchases.length === 0 ? (
-              <p className="mt-4 text-sm text-silver-400">{t("dashboard.noPurchases")}</p>
+              <p className="mt-4 text-sm text-muted-500">{t("dashboard.noPurchases")}</p>
             ) : (
               <ul className="mt-4 space-y-3">
                 {purchases.map((p) => (
-                  <li key={p.id} className="border border-white/10 bg-navy-900/50 p-5">
+                  <li key={p.id} className="glass-panel rounded-lg p-5">
                     <div className="flex items-center justify-between text-sm">
-                      <span className="text-silver-200 capitalize">
+                      <span className="text-ivory-200 capitalize">
                         {t("dashboard.purchaseSuffix", { type: p.item_type })}
                       </span>
-                      <span className="text-xs uppercase tracking-wide text-gold-400">{p.status}</span>
+                      <span className="text-xs uppercase tracking-wide text-cyan-300">{p.status}</span>
                     </div>
                     {p.status === "approved" &&
                       p.downloads?.map((d) => (
-                        <p key={d.file_path} className="mt-2 text-xs text-silver-400">
+                        <p key={d.file_path} className="mt-2 text-xs text-muted-500">
                           {t("dashboard.fileReadyPrefix")} {d.file_path}
                         </p>
                       ))}
@@ -87,11 +87,11 @@ export default async function AccountPage({
           <div>
             <h2 className="text-xl font-semibold text-ivory-100">{t("dashboard.savedOpportunities")}</h2>
             {!saved || saved.length === 0 ? (
-              <p className="mt-4 text-sm text-silver-400">{t("dashboard.noSaved")}</p>
+              <p className="mt-4 text-sm text-muted-500">{t("dashboard.noSaved")}</p>
             ) : (
               <ul className="mt-4 space-y-3">
                 {saved.map((s) => (
-                  <li key={s.id} className="border border-white/10 bg-navy-900/50 p-5 text-sm text-silver-200">
+                  <li key={s.id} className="glass-panel rounded-lg p-5 text-sm text-ivory-200">
                     {s.opportunities?.title ?? "—"}
                   </li>
                 ))}

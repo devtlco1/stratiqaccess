@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/Button";
 
 const initialState: SubmitNdaState = { status: "idle" };
 const fieldClasses =
-  "w-full border border-white/15 bg-navy-900/50 px-4 py-3 text-sm text-silver-100 placeholder:text-silver-400 focus:border-gold-500/60 focus:outline-none";
+  "w-full rounded-lg border border-white/15 bg-navy-900/50 px-4 py-3 text-sm text-ivory-100 placeholder:text-muted-600 transition-colors focus:border-cyan-400/60 focus:outline-none";
 
 export function NdaRequestForm({ opportunityId }: { opportunityId: string }) {
   const t = useTranslations("tenders.ndaForm");
@@ -16,7 +16,7 @@ export function NdaRequestForm({ opportunityId }: { opportunityId: string }) {
 
   if (state.status === "success") {
     return (
-      <div className="border border-gold-500/30 bg-gold-500/5 p-6 text-sm leading-relaxed text-silver-200">
+      <div className="rounded-lg border border-cyan-400/25 bg-cyan-400/5 p-6 text-sm leading-relaxed text-ivory-200">
         {t("success")}
       </div>
     );

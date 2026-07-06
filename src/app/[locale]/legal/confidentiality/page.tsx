@@ -24,7 +24,7 @@ export default async function ConfidentialityPage({
       <Section>
         <div className="space-y-8">
           {items.map((item, i) => (
-            <FadeIn key={item.title} delay={i * 0.05} className="border border-white/10 bg-navy-900/50 p-8">
+            <FadeIn key={item.title} delay={i * 0.05} className="glass-panel rounded-xl p-8">
               <h2 className="text-lg font-semibold text-ivory-100">{item.title}</h2>
               <p className="mt-3 text-[15px] leading-relaxed text-muted-500">{item.body}</p>
             </FadeIn>

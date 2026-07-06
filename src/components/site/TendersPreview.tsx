@@ -7,7 +7,7 @@ import { ConfidentialityNotice } from "@/components/site/ConfidentialityNotice";
 import { createClient } from "@/lib/supabase/server";
 
 const statusStyle: Record<string, string> = {
-  open: "text-teal-400 border-teal-400/30 bg-teal-500/10",
+  open: "text-cyan-300 border-cyan-400/30 bg-cyan-500/10",
   under_review: "text-gold-400 border-gold-400/30 bg-gold-500/10",
   awarded: "text-muted-500 border-ivory-100/15 bg-ivory-100/5",
   closed: "text-muted-600 border-ivory-100/10 bg-ivory-100/5",
@@ -38,7 +38,7 @@ export async function TendersPreview() {
   return (
     <div>
       {tenders.length === 0 ? (
-        <div className="rounded-md border border-dashed border-ivory-100/15 p-10 text-center text-[15px] text-muted-500">
+        <div className="rounded-xl border border-dashed border-ivory-100/15 p-10 text-center text-[15px] text-muted-500">
           {t("previewEmpty")}
         </div>
       ) : (
@@ -47,7 +47,7 @@ export async function TendersPreview() {
           <FadeIn key={tender.id} delay={i * 0.06}>
             <Link
               href={`/tenders/${tender.id}`}
-              className="block h-full rounded-md border border-ivory-100/10 bg-navy-800/50 p-6 transition-colors duration-300 hover:border-gold-500/35"
+              className="glow-card-hover block h-full rounded-xl border border-ivory-100/10 bg-navy-800/40 p-6 backdrop-blur-md"
             >
               <div className="flex items-center justify-between">
                 <span

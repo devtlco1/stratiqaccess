@@ -32,15 +32,15 @@ export default async function ServicesPage({
       />
 
       <Section>
-        <div className="space-y-px overflow-hidden border border-white/10 bg-white/10">
+        <div className="space-y-px overflow-hidden rounded-xl border border-white/10 bg-white/10">
           {items.map((service, i) => (
             <FadeIn key={service.slug} delay={i * 0.04}>
               <div
                 id={service.slug}
-                className="scroll-mt-24 grid gap-6 bg-navy-950 p-8 lg:grid-cols-12 lg:gap-10 lg:p-12"
+                className="scroll-mt-24 grid gap-6 bg-navy-950 p-8 transition-colors duration-300 hover:bg-navy-900/60 lg:grid-cols-12 lg:gap-10 lg:p-12"
               >
                 <div className="lg:col-span-2">
-                  <span className="font-display text-3xl text-gold-500/50">
+                  <span className="font-display text-3xl text-cyan-400/60">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                 </div>

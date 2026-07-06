@@ -10,7 +10,7 @@ export function Card({
   return (
     <div
       className={cn(
-        "group relative overflow-hidden rounded-md border border-ivory-100/10 bg-navy-800/50 p-8 transition-all duration-300 hover:border-gold-500/35 hover:bg-navy-800/80",
+        "glow-card-hover group relative overflow-hidden rounded-xl border border-ivory-100/8 bg-navy-800/40 p-8 backdrop-blur-md",
         className,
       )}
     >

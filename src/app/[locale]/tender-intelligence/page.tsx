@@ -35,9 +35,9 @@ export default async function TenderIntelligencePage({
       />
 
       <Section>
-        <div className="grid gap-px overflow-hidden border border-white/10 bg-white/10 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-px overflow-hidden rounded-xl border border-white/10 bg-white/10 sm:grid-cols-2 lg:grid-cols-3">
           {sections.map((s, i) => (
-            <FadeIn key={s.title} delay={i * 0.05} className="bg-navy-950 p-8">
+            <FadeIn key={s.title} delay={i * 0.05} className="bg-navy-950 p-8 transition-colors duration-300 hover:bg-navy-900/60">
               <h2 className="text-lg font-semibold text-ivory-100">{s.title}</h2>
               <p className="mt-3 text-[15px] leading-relaxed text-muted-500">{s.body}</p>
             </FadeIn>

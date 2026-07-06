@@ -28,9 +28,13 @@ export function Hero({
   const titleAccent = titleWords[titleWords.length - 1];
 
   return (
-    <section className="relative overflow-hidden bg-navy-900">
-      <div className="bg-grid absolute inset-0 opacity-70" />
-      <div className="absolute -top-48 left-1/2 h-[620px] w-[620px] -translate-x-1/2 rounded-full bg-gold-500/10 blur-[160px]" />
+    <section className="relative overflow-hidden bg-navy-950">
+      <div className="bg-grid absolute inset-0 opacity-60" />
+
+      {/* Layered ambient lighting — cinematic depth instead of a single flat blob */}
+      <div className="pointer-events-none absolute -top-56 left-1/4 h-[560px] w-[560px] rounded-full bg-blue-600/[0.14] blur-[150px]" />
+      <div className="pointer-events-none absolute -top-32 right-0 h-[480px] w-[480px] rounded-full bg-cyan-500/[0.12] blur-[140px]" />
+      <div className="pointer-events-none absolute bottom-0 left-1/3 h-[380px] w-[380px] rounded-full bg-blue-500/[0.08] blur-[130px]" />
 
       <div className="relative mx-auto grid max-w-[1400px] gap-16 px-6 pb-24 pt-20 lg:grid-cols-12 lg:gap-8 lg:px-12 lg:pb-32 lg:pt-28">
         <div className="lg:col-span-7">
@@ -46,16 +50,16 @@ export function Hero({
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="mt-7 text-5xl font-semibold leading-[1.08] tracking-[-0.02em] text-ivory-100 sm:text-6xl lg:text-[3.75rem]"
+            className="mt-7 text-5xl font-semibold leading-[1.06] tracking-[-0.025em] text-ivory-100 sm:text-6xl lg:text-[4rem]"
           >
             {titleLead}{" "}
             <span className="relative inline-block">
-              <span className="font-display italic font-normal text-gradient-gold">{titleAccent}</span>
+              <span className="font-display italic font-normal text-gradient-blue">{titleAccent}</span>
               <motion.span
                 initial={{ scaleX: 0 }}
                 animate={{ scaleX: 1 }}
                 transition={{ duration: 0.9, delay: 0.9, ease: [0.16, 1, 0.3, 1] }}
-                className="absolute -bottom-1 start-0 h-[3px] w-full origin-left rtl:origin-right rounded-full bg-gradient-to-r rtl:bg-gradient-to-l from-gold-500 via-gold-300 to-transparent"
+                className="absolute -bottom-1 start-0 h-[3px] w-full origin-left rtl:origin-right rounded-full bg-gradient-to-r rtl:bg-gradient-to-l from-blue-500 via-cyan-400 to-transparent"
               />
             </span>
           </motion.h1>
@@ -70,7 +74,7 @@ export function Hero({
               const Icon = PILLAR_ICONS[i] ?? Compass;
               return (
                 <div key={p} className="flex items-center gap-3">
-                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-gold-500/25 bg-gold-500/[0.07] text-gold-400">
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-cyan-400/25 bg-cyan-400/[0.07] text-cyan-300">
                     <Icon size={16} strokeWidth={1.75} />
                   </span>
                   <span className="text-[15px] font-medium text-ivory-100">{p}</span>
@@ -122,7 +126,7 @@ export function Hero({
         </div>
       </div>
 
-      <div className="divider-line" />
+      <div className="divider-glow relative opacity-50" />
     </section>
   );
 }

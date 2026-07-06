@@ -43,7 +43,8 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-ivory-100/8 bg-navy-950">
+    <footer className="relative border-t border-ivory-100/8 bg-navy-950">
+      <div className="divider-glow absolute inset-x-0 top-0 opacity-40" />
       <Container className="py-20">
         <div className="grid gap-14 lg:grid-cols-12">
           <div className="lg:col-span-4">
@@ -64,7 +65,7 @@ export function Footer() {
           </div>
 
           <div className="lg:col-span-3 lg:col-start-6">
-            <p className="text-sm font-medium uppercase tracking-[0.1em] text-gold-400">
+            <p className="text-sm font-medium uppercase tracking-[0.1em] text-cyan-400">
               {tFooter("company")}
             </p>
             <ul className="mt-5 space-y-3.5">
@@ -79,7 +80,7 @@ export function Footer() {
           </div>
 
           <div className="lg:col-span-3">
-            <p className="text-sm font-medium uppercase tracking-[0.1em] text-gold-400">
+            <p className="text-sm font-medium uppercase tracking-[0.1em] text-cyan-400">
               {tFooter("resources")}
             </p>
             <ul className="mt-5 space-y-3.5">
@@ -94,7 +95,7 @@ export function Footer() {
           </div>
 
           <div className="lg:col-span-2">
-            <p className="text-sm font-medium uppercase tracking-[0.1em] text-gold-400">{tFooter("legal")}</p>
+            <p className="text-sm font-medium uppercase tracking-[0.1em] text-cyan-400">{tFooter("legal")}</p>
             <ul className="mt-5 space-y-3.5">
               {legal.map((link) => (
                 <li key={link.href}>

@@ -37,8 +37,8 @@ export default async function ReportDetailPage({
     <>
       <PageHero eyebrow={t("detail.eyebrow")} title={report.title} description={report.description ?? undefined} />
       <Section>
-        <div className="mx-auto max-w-xl border border-white/10 bg-navy-900/50 p-8 text-center">
-          <p className="font-display text-3xl text-gold-400">
+        <div className="glass-panel mx-auto max-w-xl rounded-xl p-8 text-center">
+          <p className="text-gradient-blue font-display text-3xl">
             {report.currency} {Number(report.price).toFixed(2)}
           </p>
           <div className="mt-6">

@@ -10,7 +10,7 @@ export function HowWeWork({
 }) {
   return (
     <div className="relative grid gap-10 lg:grid-cols-4 lg:gap-6">
-      <div className="absolute left-0 right-0 top-6 hidden h-px bg-gradient-to-r from-transparent via-ivory-100/15 to-transparent lg:block" />
+      <div className="absolute inset-x-0 top-6 hidden h-px bg-gradient-to-r from-transparent via-ivory-100/15 to-transparent lg:block" />
 
       {steps.map((s, i) => (
         <motion.div
@@ -22,11 +22,11 @@ export function HowWeWork({
           className="relative"
         >
           <div className="flex items-center gap-3">
-            <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-gold-500/30 bg-navy-900 font-display text-lg text-gold-400">
+            <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-blue-400/30 bg-navy-900 font-display text-lg text-cyan-300 shadow-[0_0_20px_-6px_rgba(59,130,246,0.5)]">
               {s.step}
             </span>
             {i < steps.length - 1 && (
-              <ArrowRight className="hidden text-ivory-100/20 lg:block" size={18} />
+              <ArrowRight className="hidden text-ivory-100/20 rtl:-scale-x-100 lg:block" size={18} />
             )}
           </div>
           <h3 className="mt-5 text-lg font-semibold text-ivory-100">{s.title}</h3>

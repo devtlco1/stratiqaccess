@@ -7,8 +7,8 @@ import { Button } from "@/components/ui/Button";
 
 const initialState: AccountAuthState = { status: "idle" };
 const fieldClasses =
-  "w-full border border-white/15 bg-navy-900/50 px-4 py-3 text-sm text-silver-100 placeholder:text-silver-400 focus:border-gold-500/60 focus:outline-none";
-const labelClasses = "mb-2 block text-xs uppercase tracking-wide text-silver-300";
+  "w-full rounded-lg border border-white/15 bg-navy-900/50 px-4 py-3 text-sm text-ivory-100 placeholder:text-muted-600 transition-colors focus:border-cyan-400/60 focus:outline-none";
+const labelClasses = "mb-2 block text-xs uppercase tracking-wide text-muted-500";
 
 export function AccountAuthForm({ mode, next }: { mode: "login" | "signup"; next?: string }) {
   const t = useTranslations("account.form");

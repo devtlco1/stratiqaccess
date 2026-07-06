@@ -46,20 +46,20 @@ export default async function ReportsPage({
 
       <Section>
         {reports.length === 0 ? (
-          <p className="text-sm text-silver-300">{t("empty")}</p>
+          <p className="text-sm text-muted-500">{t("empty")}</p>
         ) : (
-          <div className="grid gap-px overflow-hidden border border-white/10 bg-white/10 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-px overflow-hidden rounded-xl border border-white/10 bg-white/10 sm:grid-cols-2 lg:grid-cols-3">
             {reports.map((report, i) => (
               <FadeIn key={report.id} delay={i * 0.05}>
                 <Link
                   href={`/reports/${report.slug}`}
-                  className="block h-full bg-navy-950 p-8 transition-colors hover:bg-navy-900"
+                  className="block h-full bg-navy-950 p-8 transition-colors hover:bg-navy-900/60"
                 >
                   <h2 className="text-lg font-semibold text-ivory-100">{report.title}</h2>
                   {report.description && (
                     <p className="mt-3 text-[15px] leading-relaxed text-muted-500">{report.description}</p>
                   )}
-                  <p className="mt-6 text-sm text-gold-400">
+                  <p className="text-gradient-blue mt-6 text-sm font-semibold">
                     {report.currency} {Number(report.price).toFixed(2)}
                   </p>
                 </Link>

@@ -52,10 +52,10 @@ export default async function ContactPage({
             />
           </div>
           <div className="lg:col-span-5">
-            <div className="border border-white/10 bg-navy-900/50 p-8">
-              <p className="text-xs uppercase tracking-[0.2em] text-gold-400">{t("directContactLabel")}</p>
-              <p className="mt-4 text-lg text-silver-100">{t("email")}</p>
-              <div className="mt-8 divider-gold" />
+            <div className="glass-panel rounded-lg p-8">
+              <p className="text-xs uppercase tracking-[0.2em] text-cyan-400">{t("directContactLabel")}</p>
+              <p className="mt-4 text-lg text-ivory-100">{t("email")}</p>
+              <div className="divider-line mt-8" />
               <p className="mt-8 text-[15px] leading-relaxed text-muted-500">
                 {tBrand("legalFooterExtended")}
               </p>

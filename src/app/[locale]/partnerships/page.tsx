@@ -33,11 +33,11 @@ export default async function PartnershipsPage({
         <div className="grid gap-4 sm:grid-cols-2">
           {items.map((item, i) => (
             <FadeIn key={item} delay={i * 0.05}>
-              <div className="flex items-center gap-4 border border-white/10 bg-navy-900/50 px-6 py-6">
-                <span className="font-display text-2xl text-gold-500/50">
+              <div className="glow-card-hover flex items-center gap-4 rounded-lg border border-white/10 bg-navy-900/50 px-6 py-6">
+                <span className="font-display text-2xl text-cyan-400/60">
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <span className="text-sm text-silver-200">{item}</span>
+                <span className="text-sm text-ivory-200">{item}</span>
               </div>
             </FadeIn>
           ))}

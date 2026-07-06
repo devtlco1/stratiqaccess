@@ -67,14 +67,14 @@ export function MarketSignalPanel({
   const signals = t.raw("signals") as string[];
 
   return (
-    <div className="w-full max-w-lg rounded-md border border-ivory-100/12 bg-navy-950/80 shadow-[0_30px_80px_rgba(0,0,0,0.45)]">
+    <div className="glass-panel glow-blue w-full max-w-lg rounded-xl shadow-[0_30px_80px_rgba(0,0,0,0.5)]">
       <div className="flex items-center justify-between border-b border-ivory-100/10 px-6 py-4">
         <div className="flex items-center gap-2.5">
           <span className="relative flex h-2 w-2">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-teal-400 opacity-75" />
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-teal-400" />
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan-400 opacity-75" />
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-cyan-400" />
           </span>
-          <span className="text-xs font-medium uppercase tracking-[0.15em] text-teal-400">{t("live")}</span>
+          <span className="text-xs font-medium uppercase tracking-[0.15em] text-cyan-300">{t("live")}</span>
         </div>
         <span className="text-xs font-medium uppercase tracking-[0.1em] text-muted-600">
           {t("brandLabel")}
@@ -95,7 +95,7 @@ export function MarketSignalPanel({
         >
           {[...signals, ...signals].map((s, i) => (
             <span key={i} className="mx-4 text-[11px] font-medium tracking-[0.04em] text-muted-600">
-              <span className="me-4 text-gold-500">◆</span>
+              <span className="me-4 text-blue-400">◆</span>
               {s}
             </span>
           ))}

@@ -35,7 +35,7 @@ export default async function IraqMarketAccessPage({
         <div className="grid gap-8 lg:grid-cols-2">
           {sections.map((s, i) => (
             <FadeIn key={s.title} delay={i * 0.05}>
-              <div className="h-full border border-white/10 bg-navy-900/50 p-8">
+              <div className="glow-card-hover h-full rounded-xl border border-ivory-100/10 bg-navy-800/40 p-8 backdrop-blur-md">
                 <h2 className="text-xl font-semibold text-ivory-100">{s.title}</h2>
                 <p className="mt-4 text-[15px] leading-relaxed text-muted-500">{s.body}</p>
               </div>

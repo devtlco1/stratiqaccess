@@ -47,7 +47,7 @@ const STATUS_TABS: { value: "all" | Opportunity["status"]; key: string }[] = [
 ];
 
 const statusDot: Record<string, string> = {
-  open: "bg-teal-400",
+  open: "bg-cyan-400",
   under_review: "bg-gold-400",
   awarded: "bg-muted-500",
   closed: "bg-muted-600",
@@ -69,7 +69,7 @@ function RemainingBadge({ deadline, status }: { deadline: string | null; status:
   }
 
   const urgent = days <= 7;
-  const tone = days < 0 ? "border-muted-600 text-muted-600" : urgent ? "border-gold-400 text-gold-400" : "border-teal-400 text-teal-400";
+  const tone = days < 0 ? "border-muted-600 text-muted-600" : urgent ? "border-gold-400 text-gold-400" : "border-cyan-400 text-cyan-300";
 
   return (
     <span className={cn("flex h-11 w-11 shrink-0 items-center justify-center rounded-full border-2 text-sm font-semibold tabular-nums", tone)}>
@@ -104,9 +104,9 @@ export function TendersTable({ items }: { items: Opportunity[] }) {
               key={tab.value}
               onClick={() => setProcurementType(tab.value)}
               className={cn(
-                "rounded-full px-4 py-2 text-sm font-medium transition-colors",
+                "rounded-full px-4 py-2 text-sm font-medium transition-all duration-300",
                 procurementType === tab.value
-                  ? "bg-gold-500 text-navy-950"
+                  ? "bg-gradient-to-r from-blue-600 to-cyan-500 text-ivory-100 shadow-[0_4px_20px_-6px_rgba(59,130,246,0.6)]"
                   : "text-muted-500 hover:text-ivory-100",
               )}
             >
@@ -137,9 +137,9 @@ export function TendersTable({ items }: { items: Opportunity[] }) {
             key={tab.value}
             onClick={() => setStatus(tab.value)}
             className={cn(
-              "border px-3.5 py-1.5 text-xs font-medium uppercase tracking-wide transition-colors",
+              "rounded-md border px-3.5 py-1.5 text-xs font-medium uppercase tracking-wide transition-colors",
               status === tab.value
-                ? "border-gold-500/50 text-gold-400"
+                ? "border-cyan-400/50 bg-cyan-400/[0.06] text-cyan-300"
                 : "border-ivory-100/12 text-muted-600 hover:border-ivory-100/25 hover:text-ivory-100",
             )}
           >
@@ -149,11 +149,11 @@ export function TendersTable({ items }: { items: Opportunity[] }) {
       </div>
 
       {filtered.length === 0 ? (
-        <div className="rounded-md border border-dashed border-ivory-100/15 p-12 text-center text-[15px] text-muted-500">
+        <div className="rounded-xl border border-dashed border-ivory-100/15 p-12 text-center text-[15px] text-muted-500">
           {t("noMatch")}
         </div>
       ) : (
-        <div className="overflow-x-auto rounded-md border border-ivory-100/10">
+        <div className="overflow-x-auto rounded-xl border border-ivory-100/10 bg-navy-900/30 backdrop-blur-sm">
           <table className="w-full min-w-[900px] border-collapse text-sm">
             <thead>
               <tr className="border-b border-ivory-100/10 bg-navy-950 text-start">
@@ -196,7 +196,7 @@ export function TendersTable({ items }: { items: Opportunity[] }) {
                   <td className="px-5 py-4 text-end">
                     <Link
                       href={`/tenders/${op.id}`}
-                      className="inline-flex items-center gap-1.5 whitespace-nowrap border border-ivory-100/15 px-3.5 py-2 text-xs font-medium text-ivory-100 transition-colors hover:border-gold-500/40 hover:text-gold-400"
+                      className="inline-flex items-center gap-1.5 whitespace-nowrap rounded-md border border-ivory-100/15 px-3.5 py-2 text-xs font-medium text-ivory-100 transition-colors hover:border-cyan-400/40 hover:text-cyan-300"
                     >
                       {op.requires_nda && <Lock size={11} />}
                       {t("detailsLink")}

@@ -46,14 +46,14 @@ export default async function InsightsPage({
 
       <Section>
         {articles.length === 0 ? (
-          <p className="text-sm text-silver-300">{t("empty")}</p>
+          <p className="text-sm text-muted-500">{t("empty")}</p>
         ) : (
-          <div className="grid gap-px overflow-hidden border border-white/10 bg-white/10 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-px overflow-hidden rounded-xl border border-white/10 bg-white/10 sm:grid-cols-2 lg:grid-cols-3">
             {articles.map((article, i) => (
               <FadeIn key={article.slug} delay={i * 0.04}>
                 <Link
                   href={`/insights/${article.slug}`}
-                  className="block h-full bg-navy-950 p-8 transition-colors hover:bg-navy-900"
+                  className="block h-full bg-navy-950 p-8 transition-colors hover:bg-navy-900/60"
                 >
                   <h2 className="text-lg font-semibold text-ivory-100">{article.title}</h2>
                   {article.excerpt && (
