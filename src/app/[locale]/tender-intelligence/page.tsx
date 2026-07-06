@@ -8,9 +8,9 @@ import { FadeIn } from "@/components/ui/FadeIn";
 import { Button } from "@/components/ui/Button";
 
 export const metadata: Metadata = {
-  title: "Tender Intelligence — STRATIQ Access",
+  title: "Tender Advisory — STRATIQ Access",
   description:
-    "Tender monitoring, opportunity qualification, buyer and sector mapping, competitor intelligence, and confidential opportunity briefings for Iraq.",
+    "Tender monitoring, opportunity qualification, buyer and sector mapping, competitor analysis, and confidential opportunity briefings for Iraq.",
 };
 
 type IntelSection = { title: string; body: string };

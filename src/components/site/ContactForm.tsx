@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/Button";
 const initialState: SubmitLeadState = { status: "idle" };
 
 const fieldClasses =
-  "w-full rounded-lg border border-white/15 bg-navy-900/50 px-4 py-3 text-sm text-ivory-100 placeholder:text-muted-600 transition-colors focus:border-cyan-400/60 focus:outline-none";
+  "w-full rounded-lg border border-white/15 bg-navy-900/50 px-4 py-3 text-sm text-ivory-100 placeholder:text-muted-600 transition-colors focus:border-gold-400/60 focus:outline-none";
 const labelClasses = "mb-2 block text-xs uppercase tracking-wide text-muted-500";
 
 export function ContactForm({
@@ -41,7 +41,7 @@ export function ContactForm({
 
   if (state.status === "success") {
     return (
-      <div className="rounded-lg border border-cyan-400/25 bg-cyan-400/5 p-8 text-sm leading-relaxed text-ivory-200">
+      <div className="rounded-lg border border-gold-400/25 bg-gold-400/5 p-8 text-sm leading-relaxed text-ivory-200">
         {successMessage}
       </div>
     );

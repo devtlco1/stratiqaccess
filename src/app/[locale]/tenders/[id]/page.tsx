@@ -101,7 +101,7 @@ export default async function TenderDetailPage({
                 {op.tags.map((tag: string) => (
                   <span
                     key={tag}
-                    className="rounded-full border border-blue-400/20 bg-blue-500/[0.06] px-3 py-1 text-xs uppercase tracking-wide text-cyan-300"
+                    className="rounded-full border border-gold-500/20 bg-gold-500/[0.06] px-3 py-1 text-xs uppercase tracking-wide text-gold-300"
                   >
                     {tag}
                   </span>
@@ -126,8 +126,8 @@ export default async function TenderDetailPage({
           </div>
 
           <div className="lg:col-span-4">
-            <div className="glass-panel glow-blue rounded-xl p-8">
-              <p className="text-xs uppercase tracking-[0.2em] text-cyan-400">{t("requestAccess")}</p>
+            <div className="glass-panel glow-gold rounded-xl p-8">
+              <p className="text-xs uppercase tracking-[0.2em] text-gold-400">{t("requestAccess")}</p>
               <p className="mt-4 text-[15px] leading-relaxed text-muted-500">
                 {tBrand("disclosureNotice")}
               </p>

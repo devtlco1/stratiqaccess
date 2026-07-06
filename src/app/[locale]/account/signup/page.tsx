@@ -23,7 +23,7 @@ export default async function AccountSignupPage({
           <AccountAuthForm mode="signup" />
           <p className="mt-6 text-center text-sm text-silver-400">
             {t("signup.hasAccountText")}{" "}
-            <Link href="/account/login" className="text-cyan-300 hover:text-cyan-200">
+            <Link href="/account/login" className="text-gold-300 hover:text-gold-200">
               {t("signup.signInLink")}
             </Link>
           </p>

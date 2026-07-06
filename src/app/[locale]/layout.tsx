@@ -12,7 +12,7 @@ import "../globals.css";
 export const metadata: Metadata = {
   title: "STRATIQ Access — Your Strategic Access to Iraq",
   description:
-    "STRATIQ Access is a premium Iraq market-entry, tender intelligence, and local representation platform helping international companies access qualified opportunities and compete in Iraq's strategic sectors.",
+    "STRATIQ Access is a premium Iraq market-entry, tender advisory, and local representation platform helping international companies access qualified opportunities and compete in Iraq's strategic sectors.",
   icons: {
     icon: "/favicon.ico",
     apple: "/brand/stratiq-icon-512.png",
@@ -42,7 +42,7 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale} dir={dir} className={`${fontVariables} h-full antialiased`}>
-      <body className="min-h-full flex flex-col bg-navy-900 text-ivory-100">
+      <body className="min-h-full flex flex-col bg-navy-950 text-ivory-100">
         <NextIntlClientProvider messages={messages}>
           <Header />
           <main className="flex-1">{children}</main>

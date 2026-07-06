@@ -7,8 +7,8 @@ import { ConfidentialityNotice } from "@/components/site/ConfidentialityNotice";
 import { createClient } from "@/lib/supabase/server";
 
 const statusStyle: Record<string, string> = {
-  open: "text-cyan-300 border-cyan-400/30 bg-cyan-500/10",
-  under_review: "text-gold-400 border-gold-400/30 bg-gold-500/10",
+  open: "text-gold-300 border-gold-300/30 bg-gold-300/10",
+  under_review: "text-gold-500 border-gold-500/30 bg-gold-500/10",
   awarded: "text-muted-500 border-ivory-100/15 bg-ivory-100/5",
   closed: "text-muted-600 border-ivory-100/10 bg-ivory-100/5",
 };

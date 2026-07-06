@@ -13,7 +13,7 @@ export function TrustStrip() {
         <div className="grid grid-cols-2 divide-x divide-y divide-ivory-100/8 sm:grid-cols-4 sm:divide-y-0 rtl:divide-x-reverse">
           {items.map((item) => (
             <div key={item.label} className="px-6 py-8 text-center sm:text-start">
-              <p className="text-gradient-blue text-3xl font-semibold">{item.value}</p>
+              <p className="text-gradient-gold text-3xl font-semibold">{item.value}</p>
               <p className="mt-2 text-sm text-muted-500">{item.label}</p>
             </div>
           ))}

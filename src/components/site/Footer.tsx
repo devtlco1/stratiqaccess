@@ -65,7 +65,7 @@ export function Footer() {
           </div>
 
           <div className="lg:col-span-3 lg:col-start-6">
-            <p className="text-sm font-medium uppercase tracking-[0.1em] text-cyan-400">
+            <p className="text-sm font-medium uppercase tracking-[0.1em] text-gold-400">
               {tFooter("company")}
             </p>
             <ul className="mt-5 space-y-3.5">
@@ -80,7 +80,7 @@ export function Footer() {
           </div>
 
           <div className="lg:col-span-3">
-            <p className="text-sm font-medium uppercase tracking-[0.1em] text-cyan-400">
+            <p className="text-sm font-medium uppercase tracking-[0.1em] text-gold-400">
               {tFooter("resources")}
             </p>
             <ul className="mt-5 space-y-3.5">
@@ -95,7 +95,7 @@ export function Footer() {
           </div>
 
           <div className="lg:col-span-2">
-            <p className="text-sm font-medium uppercase tracking-[0.1em] text-cyan-400">{tFooter("legal")}</p>
+            <p className="text-sm font-medium uppercase tracking-[0.1em] text-gold-400">{tFooter("legal")}</p>
             <ul className="mt-5 space-y-3.5">
               {legal.map((link) => (
                 <li key={link.href}>

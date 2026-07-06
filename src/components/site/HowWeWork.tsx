@@ -22,7 +22,7 @@ export function HowWeWork({
           className="relative"
         >
           <div className="flex items-center gap-3">
-            <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-blue-400/30 bg-navy-900 font-display text-lg text-cyan-300 shadow-[0_0_20px_-6px_rgba(59,130,246,0.5)]">
+            <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-gold-400/30 bg-navy-900 font-display text-lg text-gold-300 shadow-[0_0_20px_-6px_rgba(200,163,90,0.4)]">
               {s.step}
             </span>
             {i < steps.length - 1 && (

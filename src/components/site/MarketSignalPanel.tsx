@@ -2,8 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { animate, motion } from "framer-motion";
-import { useLocale, useTranslations } from "next-intl";
-import { rtlLocales, type Locale } from "@/i18n/routing";
+import { useTranslations } from "next-intl";
 
 function useCountUp(target: number, duration = 1.4, delay = 0) {
   const [value, setValue] = useState(0);
@@ -62,23 +61,14 @@ export function MarketSignalPanel({
   servicesCount: number;
 }) {
   const t = useTranslations("home.marketSignal");
-  const locale = useLocale();
-  const isRtl = rtlLocales.includes(locale as Locale);
-  const signals = t.raw("signals") as string[];
 
   return (
-    <div className="glass-panel glow-blue w-full max-w-lg rounded-xl shadow-[0_30px_80px_rgba(0,0,0,0.5)]">
-      <div className="flex items-center justify-between border-b border-ivory-100/10 px-6 py-4">
-        <div className="flex items-center gap-2.5">
-          <span className="relative flex h-2 w-2">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan-400 opacity-75" />
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-cyan-400" />
-          </span>
-          <span className="text-xs font-medium uppercase tracking-[0.15em] text-cyan-300">{t("live")}</span>
-        </div>
-        <span className="text-xs font-medium uppercase tracking-[0.1em] text-muted-600">
+    <div className="glass-panel glow-gold w-full max-w-lg rounded-xl shadow-[0_30px_80px_rgba(0,0,0,0.5)]">
+      <div className="flex items-center justify-between border-b border-gold-500/15 px-6 py-4">
+        <span className="text-xs font-medium uppercase tracking-[0.16em] text-gold-400">
           {t("brandLabel")}
         </span>
+        <span className="h-1 w-1 rounded-full bg-gold-500/60" />
       </div>
 
       <div className="px-6 py-2">
@@ -87,20 +77,7 @@ export function MarketSignalPanel({
         <StatRow label={t("serviceLines")} value={servicesCount} delay={0.4} />
       </div>
 
-      <div className="overflow-hidden border-t border-ivory-100/10 py-3">
-        <motion.div
-          className="flex whitespace-nowrap"
-          animate={{ x: isRtl ? ["0%", "50%"] : ["0%", "-50%"] }}
-          transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-        >
-          {[...signals, ...signals].map((s, i) => (
-            <span key={i} className="mx-4 text-[11px] font-medium tracking-[0.04em] text-muted-600">
-              <span className="me-4 text-blue-400">◆</span>
-              {s}
-            </span>
-          ))}
-        </motion.div>
-      </div>
+      <div className="divider-line" />
     </div>
   );
 }

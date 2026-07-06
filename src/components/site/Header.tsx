@@ -10,11 +10,7 @@ import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
 
 const links = [
-  { href: "/about", key: "about" },
-  { href: "/services", key: "services" },
-  { href: "/sectors", key: "sectors" },
   { href: "/iraq-market-access", key: "iraqMarketAccess" },
-  { href: "/tender-intelligence", key: "tenderIntelligence" },
   { href: "/partnerships", key: "partnerships" },
   { href: "/insights", key: "insights" },
 ] as const;
@@ -32,7 +28,7 @@ export function Header() {
   }, [open]);
 
   return (
-    <header className="glass-nav sticky top-0 z-50 border-b border-ivory-100/8">
+    <header className="glass-nav sticky top-0 z-50 border-b border-gold-500/[0.12]">
       <div className="mx-auto flex max-w-[1440px] items-center justify-between px-6 py-4 lg:px-10">
         <Link href="/" className="flex shrink-0 items-center">
           <Image
@@ -45,19 +41,30 @@ export function Header() {
           />
         </Link>
 
-        <nav className="hidden items-center gap-6 min-[1200px]:flex">
+        <nav className="hidden items-center gap-7 min-[1200px]:flex">
+          <Link
+            href="/tenders"
+            className={cn(
+              "rounded-full border px-4 py-1.5 text-[14px] font-medium tracking-[0.01em] transition-colors",
+              pathname === "/tenders"
+                ? "border-gold-400/60 bg-gold-400/10 text-gold-300"
+                : "border-gold-500/30 text-gold-400 hover:border-gold-400/55 hover:bg-gold-400/5 hover:text-gold-300",
+            )}
+          >
+            {t("tenders")}
+          </Link>
           {links.map((link) => (
             <Link
               key={link.href}
               href={link.href}
               className={cn(
                 "relative whitespace-nowrap py-1 text-[14.5px] text-muted-500 transition-colors hover:text-ivory-100",
-                pathname === link.href && "text-cyan-300",
+                pathname === link.href && "text-gold-300",
               )}
             >
               {t(link.key)}
               {pathname === link.href && (
-                <span className="absolute -bottom-1 start-0 h-px w-full bg-gradient-to-r from-blue-500 to-cyan-400" />
+                <span className="absolute -bottom-1 start-0 h-px w-full bg-gradient-to-r from-gold-500 to-gold-300" />
               )}
             </Link>
           ))}
@@ -67,7 +74,7 @@ export function Header() {
           <Link
             href="/account"
             aria-label={t("clientLogin")}
-            className="flex items-center gap-1.5 text-[14.5px] text-muted-600 transition-colors hover:text-cyan-300"
+            className="flex items-center gap-1.5 text-[14.5px] text-muted-600 transition-colors hover:text-gold-300"
           >
             <User size={16} />
           </Link>
@@ -88,14 +95,21 @@ export function Header() {
       </div>
 
       {open && (
-        <div className="glass-nav absolute inset-x-0 top-full h-[calc(100vh-4.5rem)] overflow-y-auto border-t border-ivory-100/8 min-[1200px]:hidden">
+        <div className="glass-nav absolute inset-x-0 top-full h-[calc(100vh-4.5rem)] overflow-y-auto border-t border-gold-500/[0.12] min-[1200px]:hidden">
           <nav className="flex flex-col px-6 py-6">
+            <Link
+              href="/tenders"
+              onClick={() => setOpen(false)}
+              className="border-b border-ivory-100/8 py-4 text-lg font-medium text-gold-300"
+            >
+              {t("tenders")}
+            </Link>
             {links.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setOpen(false)}
-                className="border-b border-ivory-100/8 py-4 text-lg text-ivory-100 hover:text-cyan-300"
+                className="border-b border-ivory-100/8 py-4 text-lg text-ivory-100 hover:text-gold-300"
               >
                 {t(link.key)}
               </Link>

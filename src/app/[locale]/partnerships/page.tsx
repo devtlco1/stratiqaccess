@@ -34,7 +34,7 @@ export default async function PartnershipsPage({
           {items.map((item, i) => (
             <FadeIn key={item} delay={i * 0.05}>
               <div className="glow-card-hover flex items-center gap-4 rounded-lg border border-white/10 bg-navy-900/50 px-6 py-6">
-                <span className="font-display text-2xl text-cyan-400/60">
+                <span className="font-display text-2xl text-gold-400/60">
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 <span className="text-sm text-ivory-200">{item}</span>

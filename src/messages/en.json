@@ -2,9 +2,9 @@
   "brand": {
     "name": "STRATIQ Access",
     "tagline": "Your Strategic Access to Iraq.",
-    "subline": "Market Entry. Tender Intelligence. Local Representation.",
+    "subline": "Market Entry Advisory. Tender Advisory. Local Representation.",
     "legalFooter": "STRATIQ Access is a commercial division operated by Abraj Al-Anwar for General Trading, General Contracting & Commercial Agencies LLC, Iraq.",
-    "legalFooterExtended": "STRATIQ Access is a commercial division operated by Abraj Al-Anwar for General Trading, General Contracting & Commercial Agencies LLC, Iraq. All engagements, representation mandates, advisory services, tender intelligence support, and commercial coordination activities are subject to written agreement, applicable Iraqi laws, and appropriate confidentiality and non-circumvention protections.",
+    "legalFooterExtended": "STRATIQ Access is a commercial division operated by Abraj Al-Anwar for General Trading, General Contracting & Commercial Agencies LLC, Iraq. All engagements, representation mandates, advisory services, tender advisory support, and commercial coordination activities are subject to written agreement, applicable Iraqi laws, and appropriate confidentiality and non-circumvention protections.",
     "disclosureNotice": "Detailed opportunity disclosure is subject to NDA, non-circumvention, and engagement approval."
   },
   "common": {
@@ -18,8 +18,8 @@
     "about": "About",
     "services": "Services",
     "sectors": "Sectors",
-    "iraqMarketAccess": "Iraq Market Access",
-    "tenderIntelligence": "Tender Intelligence",
+    "iraqMarketAccess": "Market Access",
+    "tenderIntelligence": "Tender Advisory",
     "partnerships": "Partnerships",
     "insights": "Insights",
     "contact": "Contact",
@@ -31,9 +31,10 @@
   },
   "home": {
     "hero": {
-      "eyebrow": "STRATIQ Access",
-      "title": "Your Strategic Access to Iraq.",
-      "subline": "Market Entry. Tender Intelligence. Local Representation.",
+      "eyebrow": "Strategic Access Platform for Iraq",
+      "title": "STRATIQ Access",
+      "tagline": "Your Strategic Access to Iraq.",
+      "subline": "Market Entry Advisory. Tender Advisory. Local Representation.",
       "description": "A registered commercial platform giving international companies structured, protected access to Iraq's most strategic markets.",
       "ctaPrimary": "Request Market Access Support",
       "ctaSecondary": "View Iraq Tenders"
@@ -50,7 +51,7 @@
     },
     "servicesEyebrow": "Core Services",
     "servicesTitle": "Six disciplines, one structured route into Iraq.",
-    "tendersEyebrow": "Iraq Tender Intelligence",
+    "tendersEyebrow": "Iraq Tenders",
     "tendersTitle": "Qualified opportunities, monitored and briefed.",
     "sectorsEyebrow": "Sectors We Cover",
     "sectorsTitle": "Where international capability meets Iraqi demand.",
@@ -73,19 +74,10 @@
       "button": "Request a Confidential Discussion"
     },
     "marketSignal": {
-      "live": "Live",
-      "brandLabel": "Stratiq Intelligence",
+      "brandLabel": "STRATIQ Intelligence",
       "activeOpportunities": "Active Opportunities",
       "sectorsMonitored": "Sectors Monitored",
-      "serviceLines": "Service Lines",
-      "signals": [
-        "ENERGY & POWER — TENDER WINDOW ACTIVE",
-        "CLEAN & RENEWABLE ENERGY — INVESTMENT PIPELINE MONITORED",
-        "PROCUREMENT & SUPPLY — SOURCING REQUESTS TRACKED",
-        "TENDERS & CONTRACTS — INTELLIGENCE LIVE",
-        "ICT & DIGITAL INFRASTRUCTURE — COVERAGE ACTIVE",
-        "GOVERNMENT & ENTERPRISE — ENGAGEMENT CHANNELS OPEN"
-      ]
+      "serviceLines": "Service Lines"
     },
     "trustStrip": {
       "items": [
@@ -94,6 +86,13 @@
         { "value": "100%", "label": "Formal Representation Mandates" },
         { "value": "Iraq", "label": "Registered Commercial Structure" }
       ]
+    },
+    "rail": {
+      "about": "About",
+      "services": "Services",
+      "sectors": "Sectors",
+      "howItWorks": "How It Works",
+      "contact": "Contact"
     }
   },
   "engagementSteps": [
@@ -124,7 +123,7 @@
     },
     "values": [
       { "title": "Discretion", "body": "Sensitive opportunities, buyer relationships, and commercial terms are protected at every stage of engagement." },
-      { "title": "Intelligence", "body": "Decisions are grounded in structured local market and tender intelligence, not assumption." },
+      { "title": "Insight", "body": "Decisions are grounded in structured local market and tender insight, not assumption." },
       { "title": "Execution", "body": "Engagements are governed by clear mandates and carried through to a defined outcome." },
       { "title": "Compliance", "body": "All activity operates within Iraqi law under a registered commercial structure." }
     ],
@@ -146,7 +145,7 @@
       },
       {
         "slug": "tender-intelligence",
-        "title": "Tender Intelligence",
+        "title": "Tender Advisory",
         "summary": "We monitor, qualify, and brief clients on relevant public and enterprise tender opportunities across strategic Iraqi sectors."
       },
       {
@@ -220,7 +219,7 @@
   },
   "tenderIntelligence": {
     "hero": {
-      "eyebrow": "Tender Intelligence",
+      "eyebrow": "Tender Advisory",
       "title": "Qualified visibility into Iraq's tender landscape.",
       "description": "We monitor, qualify, and brief clients on opportunities that match their sector and capability — not a raw, unfiltered feed."
     },
@@ -228,15 +227,15 @@
       { "title": "Tender Monitoring", "body": "Continuous tracking of public and enterprise tender announcements across strategic sectors." },
       { "title": "Opportunity Qualification", "body": "Each opportunity is screened against buyer credibility, scope, timeline, and fit before it reaches a client." },
       { "title": "Buyer & Sector Mapping", "body": "Structured intelligence on procuring entities, decision processes, and sector-specific demand patterns." },
-      { "title": "Competitor & Pricing Intelligence", "body": "Market-level context to help clients position technically and commercially." },
+      { "title": "Competitor & Pricing Analysis", "body": "Market-level context to help clients position technically and commercially." },
       { "title": "Bid Support Coordination", "body": "Coordination support through the bid lifecycle, from qualification to submission follow-up." },
       { "title": "Confidential Opportunity Briefings", "body": "Detailed briefings delivered to qualified, engaged clients under the appropriate protection framework." }
     ],
-    "viewPreviewsButton": "View Public Opportunity Previews",
+    "viewPreviewsButton": "View Iraq Tenders",
     "cta": {
       "title": "Looking for opportunities in your sector?",
-      "body": "Request a confidential tender intelligence briefing tailored to your company.",
-      "button": "Request Tender Intelligence Access"
+      "body": "Request a confidential tender advisory briefing tailored to your company.",
+      "button": "Request Tender Advisory Access"
     }
   },
   "partnerships": {
@@ -273,7 +272,7 @@
       "title": "Qualified opportunities across Iraq's strategic sectors.",
       "description": "A premium preview of monitored opportunities. Full details, buyer identity, and documents are released under NDA and engagement approval."
     },
-    "empty": "No public opportunities are listed at this time. Contact us to discuss sector-specific tender intelligence.",
+    "empty": "No public opportunities are listed at this time. Contact us to discuss sector-specific tender advisory.",
     "gatedNotice": "Detailed opportunity disclosure is subject to NDA, non-circumvention, and engagement approval.",
     "requestAccess": "Request Access",
     "labels": {
@@ -295,7 +294,7 @@
     "opportunityDetailsTitle": "Opportunity Details",
     "previewEmpty": "New opportunities are added regularly. Contact us for a sector-specific tender briefing.",
     "ndaBadge": "NDA",
-    "viewIntelligenceButton": "View Tender Intelligence",
+    "viewIntelligenceButton": "View Iraq Tenders",
     "noMatch": "No opportunities match this filter yet.",
     "columns": {
       "reference": "Reference",
@@ -345,7 +344,7 @@
     "directContactLabel": "Direct Contact",
     "interests": [
       "Market Entry Advisory",
-      "Tender Intelligence",
+      "Tender Advisory",
       "Local Representation",
       "Procurement & Sourcing Support",
       "Partnership & JV Development",
@@ -424,7 +423,7 @@
   "reports": {
     "hero": {
       "eyebrow": "Reports",
-      "title": "Paid tender intelligence and market-entry reports.",
+      "title": "Paid tender advisory and market-entry reports.",
       "description": "In-depth briefings available for purchase, released after payment or manual approval."
     },
     "empty": "No reports are published yet.",

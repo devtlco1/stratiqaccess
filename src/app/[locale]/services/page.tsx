@@ -8,7 +8,7 @@ import { FadeIn } from "@/components/ui/FadeIn";
 export const metadata: Metadata = {
   title: "Services — STRATIQ Access",
   description:
-    "Market Entry Advisory, Tender Intelligence, Local Representation, Procurement & Sourcing Support, Partnership & JV Development, and Delegation & Meeting Support.",
+    "Market Entry Advisory, Tender Advisory, Local Representation, Procurement & Sourcing Support, Partnership & JV Development, and Delegation & Meeting Support.",
 };
 
 type ServiceItem = { slug: string; title: string; summary: string };
@@ -40,7 +40,7 @@ export default async function ServicesPage({
                 className="scroll-mt-24 grid gap-6 bg-navy-950 p-8 transition-colors duration-300 hover:bg-navy-900/60 lg:grid-cols-12 lg:gap-10 lg:p-12"
               >
                 <div className="lg:col-span-2">
-                  <span className="font-display text-3xl text-cyan-400/60">
+                  <span className="font-display text-3xl text-gold-400/60">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                 </div>

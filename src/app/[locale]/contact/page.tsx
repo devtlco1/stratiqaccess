@@ -53,7 +53,7 @@ export default async function ContactPage({
           </div>
           <div className="lg:col-span-5">
             <div className="glass-panel rounded-lg p-8">
-              <p className="text-xs uppercase tracking-[0.2em] text-cyan-400">{t("directContactLabel")}</p>
+              <p className="text-xs uppercase tracking-[0.2em] text-gold-400">{t("directContactLabel")}</p>
               <p className="mt-4 text-lg text-ivory-100">{t("email")}</p>
               <div className="divider-line mt-8" />
               <p className="mt-8 text-[15px] leading-relaxed text-muted-500">

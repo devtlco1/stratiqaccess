@@ -3,6 +3,7 @@ import { setRequestLocale } from "next-intl/server";
 import { Hero } from "@/components/site/Hero";
 import { TrustStrip } from "@/components/site/TrustStrip";
 import { Section } from "@/components/site/Section";
+import { SectionRail } from "@/components/site/SectionRail";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ServiceGrid } from "@/components/site/ServiceGrid";
 import { SectorGrid } from "@/components/site/SectorGrid";
@@ -69,14 +70,23 @@ function HomeContent({
   const serviceItems = tServices.raw("items") as ServiceItem[];
   const sectorItems = tSectors.raw("items") as SectorItem[];
   const engagementSteps = tRoot.raw("engagementSteps") as EngagementStep[];
+  const tRail = useTranslations("home.rail");
+  const railSections = [
+    { id: "about", label: tRail("about") },
+    { id: "services", label: tRail("services") },
+    { id: "sectors", label: tRail("sectors") },
+    { id: "how-it-works", label: tRail("howItWorks") },
+    { id: "contact", label: tRail("contact") },
+  ];
 
   return (
     <>
       <Hero {...heroCounts} />
+      <SectionRail sections={railSections} />
       <TrustStrip />
 
       {/* What STRATIQ Access Does */}
-      <Section>
+      <Section id="about">
         <div className="grid gap-14 lg:grid-cols-2 lg:gap-20">
           <FadeIn>
             <SectionHeading
@@ -108,7 +118,7 @@ function HomeContent({
       </Section>
 
       {/* Services */}
-      <Section className="border-t border-ivory-100/8 bg-navy-950">
+      <Section id="services" className="border-t border-ivory-100/8 bg-navy-950">
         <SectionHeading
           eyebrow={t("servicesEyebrow")}
           title={t("servicesTitle")}
@@ -118,7 +128,7 @@ function HomeContent({
         <ServiceGrid items={serviceItems} />
       </Section>
 
-      {/* Iraq Tender Intelligence preview */}
+      {/* Iraq Tenders preview */}
       <Section className="border-t border-ivory-100/8">
         <SectionHeading
           eyebrow={t("tendersEyebrow")}
@@ -130,7 +140,7 @@ function HomeContent({
       </Section>
 
       {/* Sectors */}
-      <Section className="border-t border-ivory-100/8 bg-navy-950">
+      <Section id="sectors" className="border-t border-ivory-100/8 bg-navy-950">
         <SectionHeading
           eyebrow={t("sectorsEyebrow")}
           title={t("sectorsTitle")}
@@ -141,7 +151,7 @@ function HomeContent({
       </Section>
 
       {/* How We Work */}
-      <Section className="border-t border-ivory-100/8">
+      <Section id="how-it-works" className="border-t border-ivory-100/8">
         <SectionHeading
           eyebrow={t("howWeWorkEyebrow")}
           title={t("howWeWorkTitle")}
@@ -183,6 +193,7 @@ function HomeContent({
       </Section>
 
       <CTASection
+        id="contact"
         title={t("finalCta.title")}
         body={t("finalCta.body")}
         button={t("finalCta.button")}

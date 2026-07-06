@@ -69,7 +69,7 @@ export default async function AboutPage({
         <div className="grid gap-px overflow-hidden rounded-xl border border-white/10 bg-white/10 sm:grid-cols-2 lg:grid-cols-4">
           {values.map((v, i) => (
             <FadeIn key={v.title} delay={i * 0.05} className="bg-navy-950 p-8">
-              <h3 className="text-lg font-semibold text-cyan-300">{v.title}</h3>
+              <h3 className="text-lg font-semibold text-gold-300">{v.title}</h3>
               <p className="mt-3 text-[15px] leading-relaxed text-muted-500">{v.body}</p>
             </FadeIn>
           ))}
@@ -78,7 +78,7 @@ export default async function AboutPage({
 
       <Section>
         <FadeIn className="glass-panel mx-auto max-w-3xl rounded-xl p-10 text-center">
-          <p className="text-xs uppercase tracking-[0.2em] text-cyan-400">{t("legalStructure.eyebrow")}</p>
+          <p className="text-xs uppercase tracking-[0.2em] text-gold-400">{t("legalStructure.eyebrow")}</p>
           <p className="mt-5 text-[15px] leading-relaxed text-muted-500">
             {tBrand("legalFooterExtended")}
           </p>

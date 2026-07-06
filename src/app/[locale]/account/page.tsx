@@ -51,7 +51,7 @@ export default async function AccountPage({
       <Section>
         <div className="mb-10 flex justify-end">
           <form action={accountSignOut}>
-            <button className="rounded-lg border border-white/15 px-5 py-2.5 text-xs uppercase tracking-wide text-muted-500 transition-colors hover:border-cyan-400/40 hover:text-cyan-300">
+            <button className="rounded-lg border border-white/15 px-5 py-2.5 text-xs uppercase tracking-wide text-muted-500 transition-colors hover:border-gold-400/40 hover:text-gold-300">
               {t("dashboard.signOut")}
             </button>
           </form>
@@ -70,7 +70,7 @@ export default async function AccountPage({
                       <span className="text-ivory-200 capitalize">
                         {t("dashboard.purchaseSuffix", { type: p.item_type })}
                       </span>
-                      <span className="text-xs uppercase tracking-wide text-cyan-300">{p.status}</span>
+                      <span className="text-xs uppercase tracking-wide text-gold-300">{p.status}</span>
                     </div>
                     {p.status === "approved" &&
                       p.downloads?.map((d) => (

@@ -8,7 +8,7 @@ import { createClient } from "@/lib/supabase/server";
 
 export const metadata: Metadata = {
   title: "Reports — STRATIQ Access",
-  description: "Paid tender intelligence and market-entry reports for Iraq.",
+  description: "Paid tender advisory and market-entry reports for Iraq.",
 };
 
 async function getReports() {
@@ -59,7 +59,7 @@ export default async function ReportsPage({
                   {report.description && (
                     <p className="mt-3 text-[15px] leading-relaxed text-muted-500">{report.description}</p>
                   )}
-                  <p className="text-gradient-blue mt-6 text-sm font-semibold">
+                  <p className="text-gradient-gold mt-6 text-sm font-semibold">
                     {report.currency} {Number(report.price).toFixed(2)}
                   </p>
                 </Link>
