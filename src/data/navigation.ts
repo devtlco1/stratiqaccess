@@ -26,7 +26,7 @@ export const mainNav: NavItem[] = [
       { label: "Procurement", href: "/services/food-supply-procurement" },
     ],
   },
-  { label: "Clients", href: "/#clients" },
+  { label: "Clients", href: "/clients" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
 ];

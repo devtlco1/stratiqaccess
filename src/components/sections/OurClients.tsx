@@ -3,7 +3,7 @@ import { createClient } from "@/lib/supabase/server";
 import type { ClientRow } from "@/lib/types";
 import { Container } from "@/components/ui/Container";
 
-export async function OurClients() {
+export async function OurClients({ showWhenEmpty = false }: { showWhenEmpty?: boolean } = {}) {
   const supabase = await createClient();
   const { data } = await supabase
     .from("clients")
@@ -12,7 +12,7 @@ export async function OurClients() {
     .order("display_order", { ascending: true });
   const clients = (data ?? []) as ClientRow[];
 
-  if (clients.length === 0) return null;
+  if (clients.length === 0 && !showWhenEmpty) return null;
 
   return (
     <section id="clients" className="scroll-mt-24 py-24 lg:py-32 bg-white">
@@ -29,11 +29,17 @@ export async function OurClients() {
           </p>
         </div>
 
-        <div className="mt-16 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
-          {clients.map((client) => (
-            <ClientLogo key={client.id} client={client} />
-          ))}
-        </div>
+        {clients.length === 0 ? (
+          <p className="mt-16 text-center text-sm text-ink/60">
+            We&rsquo;re onboarding our first clients — check back soon.
+          </p>
+        ) : (
+          <div className="mt-16 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
+            {clients.map((client) => (
+              <ClientLogo key={client.id} client={client} />
+            ))}
+          </div>
+        )}
       </Container>
     </section>
   );
