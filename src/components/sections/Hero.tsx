@@ -10,7 +10,7 @@ export async function Hero() {
     <section className="relative flex min-h-[85vh] items-center overflow-hidden bg-navy pt-20 lg:pt-24">
       {/* Managed from Admin → Site Images → "Homepage — Hero Background" */}
       <Image src={heroImage} alt="" fill priority className="object-cover" />
-      <div className="absolute inset-0 bg-gradient-to-tr from-navy/95 via-navy/60 to-navy/20" />
+      <div className="absolute inset-0 bg-gradient-to-r from-black/65 via-black/25 to-transparent" />
 
       <div className="relative z-10 mx-auto w-full max-w-7xl px-6 lg:px-10">
         <div className="max-w-3xl">
