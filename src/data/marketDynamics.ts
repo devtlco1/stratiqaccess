@@ -6,54 +6,55 @@ export type MarketDynamic = {
   description: string;
 };
 
-// EDIT ME: "Exploring Iraq's Market Dynamics" section content
+// EDIT ME: "What We Cover on the Ground" section content — the core pillars
+// of on-the-ground support STRATIQ Access coordinates for clients in Iraq.
 export const marketDynamics: MarketDynamic[] = [
   {
-    icon: "bolt",
-    title: "Energy & Power Infrastructure",
+    icon: "compass",
+    title: "Ground Operations",
     description:
-      "Grid modernization and generation capacity expansion are opening space for international operators and equipment suppliers.",
-  },
-  {
-    icon: "cpu",
-    title: "Digital Transformation",
-    description:
-      "Government and enterprise digitization programs are creating sustained demand for technology partners.",
-  },
-  {
-    icon: "hard-hat",
-    title: "Construction & Reconstruction",
-    description:
-      "National rebuilding programs continue to drive activity across housing, public buildings, and urban development.",
-  },
-  {
-    icon: "heart-pulse",
-    title: "Healthcare Development",
-    description:
-      "Investment in hospitals, clinics, and medical supply chains is accelerating across Baghdad and the provinces.",
-  },
-  {
-    icon: "shield",
-    title: "Security & Defense Support",
-    description:
-      "Ongoing modernization of security capability creates opportunities for qualified support and equipment providers.",
+      "End-to-end coordination for teams operating, visiting, or expanding in Iraq, from arrival to project close-out.",
   },
   {
     icon: "truck",
-    title: "Logistics & Trade",
+    title: "Logistics & Mobility",
     description:
-      "Iraq's position as a regional trade corridor is driving growth in freight, warehousing, and distribution infrastructure.",
+      "Secure transport, drivers, and movement planning for delegations, engineers, and project teams across the country.",
   },
   {
-    icon: "file-search",
-    title: "Public Sector Tenders",
+    icon: "handshake",
+    title: "Local Network",
     description:
-      "A steady pipeline of ministry and provincial tenders offers structured entry points for qualified international bidders.",
+      "Trusted introductions to Iraqi stakeholders, partners, suppliers, and authorities who move projects forward.",
   },
   {
-    icon: "trending-up",
-    title: "Investment Opportunities",
+    icon: "landmark",
+    title: "Legal & Administrative Support",
     description:
-      "Reform momentum and reconstruction financing are widening the field for long-term strategic investment.",
+      "Contract attestation, documentation coordination, and legal advisory through trusted Iraqi legal partners.",
+  },
+  {
+    icon: "users",
+    title: "Staffing & Field Teams",
+    description:
+      "Freelance and local staffing — interpreters, engineers, coordinators, and technical workers, short or long term.",
+  },
+  {
+    icon: "calendar",
+    title: "Events & Delegations",
+    description:
+      "Full logistics for business events, delegations, and government or private-sector meetings, from venue to translation.",
+  },
+  {
+    icon: "shield-check",
+    title: "Security & Permits",
+    description:
+      "Coordination with licensed private security providers and support with permit and access documentation.",
+  },
+  {
+    icon: "package",
+    title: "Procurement & Supplies",
+    description:
+      "Food supply, office supplies, and site procurement for teams, camps, and project locations across Iraq.",
   },
 ];

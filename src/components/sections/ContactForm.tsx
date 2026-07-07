@@ -31,7 +31,7 @@ export function ContactForm() {
 
       <div className="sm:col-span-2">
         <label htmlFor="rfpFiles" className="block text-sm font-medium text-ink/80 mb-2">
-          RFP Files
+          Attachments (Optional)
         </label>
         <input
           id="rfpFiles"
@@ -40,7 +40,9 @@ export function ContactForm() {
           accept=".pdf,.doc,.docx,.txt,.rtf,.jpg,.jpeg,.png,.webp,.xls,.xlsx,.ppt,.pptx"
           className="w-full rounded-lg border border-navy/15 bg-white px-4 py-3 text-sm text-ink/70 file:mr-4 file:rounded-full file:border-0 file:bg-navy/5 file:px-4 file:py-2 file:text-sm file:font-medium file:text-navy"
         />
-        <p className="mt-1.5 text-xs text-ink/50">PDF, Word, Excel, PowerPoint, text, or image files.</p>
+        <p className="mt-1.5 text-xs text-ink/50">
+          Scope documents, itineraries, or requirements — PDF, Word, Excel, PowerPoint, text, or image files.
+        </p>
       </div>
 
       <div className="sm:col-span-2">

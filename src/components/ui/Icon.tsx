@@ -22,7 +22,14 @@ export type IconName =
   | "arrow-right"
   | "mail"
   | "map-pin"
-  | "globe";
+  | "globe"
+  | "phone"
+  | "users"
+  | "file-check"
+  | "scale"
+  | "calendar"
+  | "key"
+  | "languages";
 
 const paths: Record<IconName, React.ReactNode> = {
   compass: (
@@ -147,6 +154,50 @@ const paths: Record<IconName, React.ReactNode> = {
     <>
       <circle cx="12" cy="12" r="9" />
       <path d="M3 12h18M12 3a14 14 0 0 1 0 18 14 14 0 0 1 0-18Z" />
+    </>
+  ),
+  phone: (
+    <path d="M5 4h3.5l1.5 4-2 1.3a11 11 0 0 0 5.7 5.7L14.7 13l4 1.5V18a2 2 0 0 1-2 2C10 20 4 14 4 6a2 2 0 0 1 1-2Z" />
+  ),
+  users: (
+    <>
+      <circle cx="9" cy="8" r="3" />
+      <path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6" />
+      <circle cx="17" cy="8.5" r="2.5" />
+      <path d="M15.5 14.2c2.6.4 4.5 2.7 4.5 5.8" />
+    </>
+  ),
+  "file-check": (
+    <>
+      <path d="M7 3h7l4 4v14H7Z" />
+      <path d="m9.5 14 2 2 4-4.5" />
+    </>
+  ),
+  scale: (
+    <>
+      <path d="M12 3v18M8 21h8" />
+      <path d="M5 7h5M14 7h5" />
+      <path d="M5 7 2.5 12a2.5 2.5 0 0 0 5 0L5 7ZM19 7l-2.5 5a2.5 2.5 0 0 0 5 0L19 7Z" />
+    </>
+  ),
+  calendar: (
+    <>
+      <rect x="3.5" y="5" width="17" height="15" rx="1.5" />
+      <path d="M3.5 9.5h17M8 3v3.5M16 3v3.5" />
+      <path d="M7.5 13h2M11 13h2M14.5 13h2M7.5 16.3h2M11 16.3h2" />
+    </>
+  ),
+  key: (
+    <>
+      <circle cx="8" cy="8" r="4" />
+      <path d="m10.8 10.8 9.2 9.2M16 15l2-2M19 18l2-2" />
+    </>
+  ),
+  languages: (
+    <>
+      <path d="M3 6h9M7.5 4v2.2c0 3.6-2 6.5-4.5 6.5" />
+      <path d="M4 9.5c1 2.3 3.4 3.8 6 4" />
+      <path d="m13 21 4-9 4 9M14.5 18h5" />
     </>
   ),
 };

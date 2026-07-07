@@ -1,8 +1,8 @@
-import Image from "next/image";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import type { ServiceRow } from "@/lib/types";
 import { Container } from "@/components/ui/Container";
+import { Icon, type IconName } from "@/components/ui/Icon";
 
 export async function Services() {
   const supabase = await createClient();
@@ -21,34 +21,35 @@ export async function Services() {
               What We Do
             </span>
             <h2 className="mt-4 font-display text-3xl sm:text-4xl lg:text-[2.75rem] text-navy leading-tight">
-              Our Services
+              Ground Support Services
             </h2>
           </div>
           <p className="text-base sm:text-lg text-ink/70 leading-relaxed">
-            Practical advisory services for companies entering and expanding in Iraq — every
-            engagement is built around execution, not just recommendations.
+            Practical, on-the-ground execution for companies operating in Iraq — from logistics and
+            staffing to legal coordination and permits, delivered through our local team and trusted
+            partner network, subject to applicable Iraqi laws and authority requirements.
           </p>
         </div>
 
-        <div className="mt-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {services.map((service) => (
             <Link
               key={service.id}
               href={`/services/${service.slug}`}
-              className="group relative block aspect-4/3 overflow-hidden rounded-lg shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+              className="group flex flex-col rounded-xl bg-white p-7 shadow-sm ring-1 ring-navy/5 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:ring-stratiq-blue/30"
             >
-              {service.image_url && (
-                <Image
-                  src={service.image_url}
-                  alt={service.title}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+              <span className="inline-flex size-12 items-center justify-center rounded-lg bg-navy/5 text-navy transition-colors duration-300 group-hover:bg-stratiq-blue/10 group-hover:text-stratiq-blue">
+                <Icon name={service.icon as IconName} className="size-6" />
+              </span>
+              <h3 className="mt-5 font-display text-lg text-navy leading-snug">{service.title}</h3>
+              <p className="mt-2 text-sm text-ink/65 leading-relaxed flex-1">{service.description}</p>
+              <span className="mt-5 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-stratiq-blue">
+                Learn More
+                <Icon
+                  name="arrow-right"
+                  className="size-3.5 rotate-45 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                 />
-              )}
-              <div className="absolute inset-0 bg-gradient-to-t from-navy/90 via-navy/20 to-transparent" />
-              <div className="absolute inset-0 flex items-end p-5">
-                <h3 className="font-display text-lg text-white leading-snug">{service.title}</h3>
-              </div>
+              </span>
             </Link>
           ))}
         </div>

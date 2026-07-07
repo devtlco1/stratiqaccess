@@ -5,27 +5,27 @@ export type IntroPoint = {
 
 // EDIT ME: Introduction section copy (homepage + /about page)
 export const introLead =
-  "STRATIQ Access is an Iraq-based advisory and representation platform designed to help global companies understand, enter, and grow in the Iraqi market.";
+  "Iraq offers real opportunity for international companies — but execution on the ground requires trusted local coordination, security awareness, verified relationships, and people who know how things actually get done. STRATIQ Access is the operational partner that closes that gap, so your team can focus on the work, not the logistics.";
 
 export const introPoints: IntroPoint[] = [
   {
-    title: "Local Insight",
+    title: "Local Network",
     description:
-      "Years of on-the-ground presence give us a working understanding of how business actually moves in Iraq — beyond what any report can capture.",
+      "Direct access to reliable Iraqi stakeholders, partners, suppliers, authorities, and field contacts — we help you understand who to meet and how to move.",
   },
   {
-    title: "Government Understanding",
+    title: "Security-Aware Coordination",
     description:
-      "We know how ministries, provincial authorities, and public entities operate, and how to engage them in a way that keeps projects moving.",
+      "Every engagement is planned with secure movement, safe accommodation, and delegation safety in mind, coordinated with licensed local partners.",
   },
   {
-    title: "Commercial Execution",
+    title: "Operational Execution",
     description:
-      "Strategy is only useful if it converts into signed agreements and delivered projects — our work is built around execution, not just advice.",
+      "From transport and staffing to documentation and events, our local team handles execution — not just recommendations.",
   },
   {
-    title: "Opportunity Mapping",
+    title: "Full-Service Ground Support",
     description:
-      "We continuously map tenders, partners, and sector activity so our clients act on current, verified opportunity rather than outdated assumptions.",
+      "One partner for logistics, legal coordination, procurement, and field teams, so you are not managing a dozen separate local contacts.",
   },
 ];

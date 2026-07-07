@@ -6,6 +6,7 @@ const ICONS = [
   "compass", "radar", "shield-check", "handshake", "landmark", "flask-conical",
   "briefcase", "truck", "bolt", "building-2", "hard-hat", "heart-pulse", "cpu",
   "shield", "package", "file-search", "trending-up", "mail", "map-pin", "globe",
+  "phone", "users", "file-check", "scale", "calendar", "key", "languages",
 ];
 
 export function ServiceForm({

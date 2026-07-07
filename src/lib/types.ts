@@ -61,6 +61,19 @@ export type MessageRow = {
   created_at: string;
 };
 
+export type ClientRow = {
+  id: string;
+  name: string;
+  logo_url: string | null;
+  website_url: string | null;
+  industry: string | null;
+  is_featured: boolean;
+  is_published: boolean;
+  display_order: number;
+  created_at: string;
+  updated_at: string;
+};
+
 export type SiteImageRow = {
   key: string;
   label: string;

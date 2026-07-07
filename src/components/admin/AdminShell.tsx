@@ -5,6 +5,7 @@ import { LogoutButton } from "./LogoutButton";
 const navItems = [
   { label: "Dashboard", href: "/admin" },
   { label: "Services", href: "/admin/services" },
+  { label: "Clients", href: "/admin/clients" },
   { label: "Sectors", href: "/admin/sectors" },
   { label: "Case Studies", href: "/admin/case-studies" },
   { label: "Insights", href: "/admin/insights" },

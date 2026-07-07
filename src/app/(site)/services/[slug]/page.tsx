@@ -39,12 +39,16 @@ export default async function ServiceDetailPage({ params }: Props) {
             All Services
           </Link>
 
-          <div className="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-14 items-start">
-            <div className="relative aspect-4/3 rounded-2xl overflow-hidden lg:order-2">
-              {service.image_url && (
+          <div
+            className={`mt-8 grid grid-cols-1 gap-14 items-start ${
+              service.image_url ? "lg:grid-cols-2" : "max-w-3xl"
+            }`}
+          >
+            {service.image_url && (
+              <div className="relative aspect-4/3 rounded-2xl overflow-hidden lg:order-2">
                 <Image src={service.image_url} alt={service.title} fill className="object-cover" />
-              )}
-            </div>
+              </div>
+            )}
 
             <div className="lg:order-1">
               <span className="inline-flex size-14 items-center justify-center rounded-xl bg-stratiq-blue/10 text-stratiq-blue">

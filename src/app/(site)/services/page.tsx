@@ -7,7 +7,7 @@ import { getSiteImage } from "@/lib/siteImages";
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "Market entry, tender intelligence, local representation, and government liaison services for companies entering the Iraqi market.",
+    "Ground operations, logistics, staffing, legal coordination, secure accommodation, transportation, permits, and events support for companies operating in Iraq.",
 };
 
 export default async function ServicesPage() {

@@ -8,35 +8,35 @@ import { getSiteImage } from "@/lib/siteImages";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "STRATIQ Access is an Iraq-based advisory and representation platform helping global companies enter and grow in the Iraqi market.",
+    "STRATIQ Access is an Iraq-based ground operations partner helping international companies execute securely and reliably on the ground in Iraq.",
 };
 
 // EDIT ME: keep these honest — no fabricated history or headcount, only verifiable facts
 const stats = [
-  { value: "8", label: "Sectors Covered" },
-  { value: "8", label: "Advisory Services" },
+  { value: "14", label: "Ground Services" },
   { value: "100%", label: "Iraq-Focused" },
-  { value: "1", label: "Dedicated Local Partner" },
+  { value: "24/7", label: "Field Support" },
+  { value: "1", label: "Dedicated Local Team" },
 ];
 
 const approach = [
   {
     step: "01",
-    title: "Understand",
+    title: "Assess",
     description:
-      "We start by mapping your objectives against Iraq's regulatory, commercial, and political landscape.",
+      "We map your operational needs against Iraq's security, regulatory, and logistical landscape before anyone lands.",
   },
   {
     step: "02",
-    title: "Structure",
+    title: "Coordinate",
     description:
-      "We design a market entry, tender, or partnership strategy built around realistic timelines and verified opportunity.",
+      "We line up the local network — accommodation, transport, staffing, permits, and legal partners — around your timeline.",
   },
   {
     step: "03",
     title: "Execute",
     description:
-      "We stay engaged through implementation — representation, negotiation, and government liaison included.",
+      "We stay on the ground through delivery, handling logistics and field support so your team can focus on the work.",
   },
 ];
 

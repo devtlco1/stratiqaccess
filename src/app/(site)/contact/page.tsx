@@ -5,7 +5,8 @@ import { getSiteImage } from "@/lib/siteImages";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: "Get in touch with STRATIQ Access to discuss your Iraq market entry, tender, or partnership objectives.",
+  description:
+    "Tell STRATIQ Access what you need on the ground in Iraq — accommodation, transport, staffing, permits, legal coordination, or full field execution.",
 };
 
 export default async function ContactPage() {

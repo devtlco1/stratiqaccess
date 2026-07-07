@@ -20,7 +20,7 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: `${siteConfig.name} | Iraq Market Entry & Tender Intelligence`,
+    default: `${siteConfig.name} | Ground Operations & Logistics Partner in Iraq`,
     template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,

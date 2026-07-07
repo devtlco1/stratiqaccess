@@ -44,7 +44,7 @@ export async function MarketOverview() {
               Introduction
             </span>
             <h2 className="mt-4 font-display text-3xl sm:text-4xl text-navy leading-tight">
-              A local partner for Iraq market access
+              Your operational partner on the ground in Iraq
             </h2>
             <p className="mt-6 text-base sm:text-lg text-ink/80 leading-relaxed">{introLead}</p>
 
@@ -55,11 +55,11 @@ export async function MarketOverview() {
             </ul>
 
             <h3 className="mt-12 font-display text-2xl text-navy leading-snug">
-              Exploring Iraq&rsquo;s Market Dynamics
+              What We Cover on the Ground
             </h3>
             <p className="mt-4 text-base text-ink/80 leading-relaxed">
-              A fast-moving landscape across public and private sectors — here is where we see the
-              most durable opportunity:
+              Complete operational support across the areas foreign companies need most when
+              working in Iraq:
             </p>
 
             <ul className="mt-6 flex flex-col gap-3">

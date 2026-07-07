@@ -5,8 +5,9 @@ import { createClient } from "@/lib/supabase/server";
 export default async function AdminDashboardPage() {
   const supabase = await createClient();
 
-  const [services, sectors, caseStudies, insights, messages] = await Promise.all([
+  const [services, clients, sectors, caseStudies, insights, messages] = await Promise.all([
     supabase.from("services").select("id", { count: "exact", head: true }),
+    supabase.from("clients").select("id", { count: "exact", head: true }),
     supabase.from("sectors").select("id", { count: "exact", head: true }),
     supabase.from("case_studies").select("id", { count: "exact", head: true }),
     supabase.from("insights").select("id", { count: "exact", head: true }),
@@ -15,6 +16,7 @@ export default async function AdminDashboardPage() {
 
   const cards = [
     { label: "Services", count: services.count ?? 0, href: "/admin/services" },
+    { label: "Clients", count: clients.count ?? 0, href: "/admin/clients" },
     { label: "Sectors", count: sectors.count ?? 0, href: "/admin/sectors" },
     { label: "Case Studies", count: caseStudies.count ?? 0, href: "/admin/case-studies" },
     { label: "Insights", count: insights.count ?? 0, href: "/admin/insights" },

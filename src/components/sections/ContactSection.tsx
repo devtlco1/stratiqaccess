@@ -20,8 +20,12 @@ export async function ContactSection() {
           Get In Touch
         </span>
         <h2 className="mt-4 max-w-3xl font-display text-3xl sm:text-4xl lg:text-[2.75rem] text-navy leading-tight">
-          We are ready to support your Iraq market entry and business development plans.
+          Planning operations in Iraq?
         </h2>
+        <p className="mt-4 max-w-2xl text-base sm:text-lg text-ink/70 leading-relaxed">
+          Tell us what you need on the ground — from accommodation and transport to staffing,
+          permits, legal coordination, and full field execution.
+        </p>
 
         <div className="mt-8 flex flex-wrap gap-x-10 gap-y-4">
           <ContactDetail icon="mail" value={email} href={`mailto:${email}`} />
