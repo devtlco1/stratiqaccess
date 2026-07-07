@@ -1,89 +1,15 @@
 @import "tailwindcss";
 
-:root {
-  /* Luxury black scale — near-black background deepening into elevated
-     charcoal surfaces. Built to sit behind the logo's warm gold panel,
-     not compete with it. */
-  --color-navy-950: #050505;
-  --color-navy-900: #0b0d10;
-  --color-navy-800: #111418;
-  --color-navy-700: #191d22;
-  --color-navy-600: #22262c;
-  --color-navy-500: #2c3138;
+@theme {
+  /* STRATIQ brand palette — update here to re-theme the whole site */
+  --color-navy: #2f456c;
+  --color-slate: #4c5f80;
+  --color-stratiq-blue: #2694d8;
+  --color-ink: #182033;
+  --color-paper: #f7f9fc;
 
-  /* Warm ivory text scale */
-  --color-ivory-100: #f7f2e8;
-  --color-ivory-200: #ece4d3;
-
-  /* Muted text */
-  --color-muted-500: #a6a6a6;
-  --color-muted-600: #7a7a7a;
-
-  /* Brand accent — the logo's own gold, used with restraint */
-  --color-gold-300: #e8d6a3;
-  --color-gold-400: #d4b579;
-  --color-gold-500: #c8a35a;
-  --color-gold-600: #a8843f;
-
-  --background: var(--color-navy-950);
-  --foreground: var(--color-ivory-100);
-
-  /* --- Legacy aliases ---
-     The admin dashboard still references these class names. Keep them
-     mapped onto the new palette so nothing regresses visually without
-     a line-by-line pass. New public-site components use the
-     navy/ivory/muted/gold tokens above directly — teal and any prior
-     blue/cyan references now resolve to gold, the site's one accent. */
-  --color-silver-100: var(--color-ivory-100);
-  --color-silver-200: var(--color-ivory-200);
-  --color-silver-300: var(--color-muted-500);
-  --color-silver-400: var(--color-muted-600);
-  --color-silver-500: #5c5c5c;
-  --color-graphite-700: var(--color-navy-800);
-  --color-graphite-600: var(--color-navy-700);
-  --color-graphite-500: var(--color-navy-600);
-  --color-teal-400: var(--color-gold-400);
-  --color-teal-500: var(--color-gold-500);
-  --color-teal-600: var(--color-gold-600);
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-
-  --color-navy-950: var(--color-navy-950);
-  --color-navy-900: var(--color-navy-900);
-  --color-navy-800: var(--color-navy-800);
-  --color-navy-700: var(--color-navy-700);
-  --color-navy-600: var(--color-navy-600);
-  --color-navy-500: var(--color-navy-500);
-
-  --color-ivory-100: var(--color-ivory-100);
-  --color-ivory-200: var(--color-ivory-200);
-
-  --color-muted-500: var(--color-muted-500);
-  --color-muted-600: var(--color-muted-600);
-
-  --color-gold-300: var(--color-gold-300);
-  --color-gold-400: var(--color-gold-400);
-  --color-gold-500: var(--color-gold-500);
-  --color-gold-600: var(--color-gold-600);
-
-  --color-silver-100: var(--color-silver-100);
-  --color-silver-200: var(--color-silver-200);
-  --color-silver-300: var(--color-silver-300);
-  --color-silver-400: var(--color-silver-400);
-  --color-silver-500: var(--color-silver-500);
-  --color-graphite-700: var(--color-graphite-700);
-  --color-graphite-600: var(--color-graphite-600);
-  --color-graphite-500: var(--color-graphite-500);
-  --color-teal-400: var(--color-teal-400);
-  --color-teal-500: var(--color-teal-500);
-  --color-teal-600: var(--color-teal-600);
-
-  --font-display: var(--font-fraunces);
-  --font-sans: var(--font-geist);
-  --font-arabic: var(--font-cairo);
+  --font-display: var(--font-playfair), "Georgia", serif;
+  --font-sans: var(--font-inter), "Helvetica Neue", Arial, sans-serif;
 }
 
 html {
@@ -91,95 +17,33 @@ html {
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
-  font-size: 16px;
-  line-height: 1.6;
-}
-
-/* Arabic (and any future RTL locale) uses Cairo instead of Geist —
-   overridden here rather than by re-theming --font-sans so the switch
-   is guaranteed regardless of how Tailwind inlines the token. */
-html[dir="rtl"] body {
-  font-family: var(--font-cairo), ui-sans-serif, system-ui, sans-serif;
-}
-
-/* Fraunces doesn't carry Arabic glyphs — fall back to Cairo for the
-   one decorative serif word so RTL pages never render tofu/serif-latin
-   mixed into Arabic text. */
-html[dir="rtl"] .font-display {
-  font-family: var(--font-cairo), ui-sans-serif, system-ui, sans-serif;
-  font-style: normal;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
 }
 
 ::selection {
-  background: var(--color-gold-500);
-  color: var(--color-navy-950);
+  background: var(--color-stratiq-blue);
+  color: #ffffff;
 }
 
-.font-display {
-  font-family: var(--font-display), ui-serif, Georgia, serif;
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/* Fine structural grid — a quiet texture behind hero / section backgrounds */
-.bg-grid {
-  background-image:
-    linear-gradient(to right, rgba(200, 163, 90, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(200, 163, 90, 0.05) 1px, transparent 1px);
-  background-size: 80px 80px;
-}
-
-/* Glass surfaces */
-.glass-panel {
-  background: rgba(17, 20, 24, 0.78);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(200, 163, 90, 0.18);
-}
-
-.glass-nav {
-  background: rgba(5, 5, 5, 0.8);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-}
-
-.text-gradient-gold {
-  background: linear-gradient(90deg, var(--color-gold-300), var(--color-gold-500) 50%, var(--color-gold-300));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-.divider-line {
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(200, 163, 90, 0.2), transparent);
-}
-
-.divider-glow {
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--color-gold-500), var(--color-gold-300), transparent);
-}
-
-.glow-gold {
-  box-shadow: 0 0 0 1px rgba(200, 163, 90, 0.2), 0 16px 44px -12px rgba(200, 163, 90, 0.22);
-}
-
-.glow-card-hover {
-  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease, background-color 0.3s ease;
-}
-
-.glow-card-hover:hover {
-  border-color: rgba(200, 163, 90, 0.35);
-  box-shadow: 0 20px 50px -24px rgba(200, 163, 90, 0.3);
-  transform: translateY(-2px);
+.animate-fade-in-up {
+  animation: fade-in-up 0.7s ease-out both;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-  .glow-card-hover:hover {
-    transform: none;
+  .animate-fade-in-up {
+    animation: none;
   }
 }

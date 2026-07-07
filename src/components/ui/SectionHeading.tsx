@@ -1,35 +1,33 @@
-import { Badge } from "./Badge";
-import { cn } from "@/lib/utils";
-
 export function SectionHeading({
   eyebrow,
   title,
-  description,
-  align = "left",
-  className,
+  subtitle,
+  align = "center",
+  tone = "dark",
 }: {
   eyebrow?: string;
   title: string;
-  description?: string;
-  align?: "left" | "center";
-  className?: string;
+  subtitle?: string;
+  align?: "center" | "left";
+  tone?: "dark" | "light";
 }) {
+  const alignClass = align === "center" ? "text-center items-center mx-auto" : "text-left items-start";
+  const titleColor = tone === "light" ? "text-white" : "text-navy";
+  const subtitleColor = tone === "light" ? "text-white/75" : "text-slate";
+  const eyebrowColor = tone === "light" ? "text-stratiq-blue" : "text-stratiq-blue";
+
   return (
-    <div
-      className={cn(
-        "max-w-3xl",
-        align === "center" && "mx-auto text-center",
-        className,
+    <div className={`flex flex-col gap-4 ${alignClass} max-w-2xl`}>
+      {eyebrow && (
+        <span className={`text-xs font-semibold tracking-[0.2em] uppercase ${eyebrowColor}`}>
+          {eyebrow}
+        </span>
       )}
-    >
-      {eyebrow && <Badge className={align === "center" ? "justify-center" : ""}>{eyebrow}</Badge>}
-      <h2 className="mt-6 text-3xl font-semibold leading-[1.15] tracking-[-0.02em] text-ivory-100 sm:text-4xl lg:text-[2.75rem]">
+      <h2 className={`font-display text-3xl sm:text-4xl lg:text-[2.75rem] leading-tight ${titleColor}`}>
         {title}
       </h2>
-      {description && (
-        <p className="mt-5 text-lg leading-relaxed text-muted-500">
-          {description}
-        </p>
+      {subtitle && (
+        <p className={`text-base sm:text-lg leading-relaxed ${subtitleColor}`}>{subtitle}</p>
       )}
     </div>
   );

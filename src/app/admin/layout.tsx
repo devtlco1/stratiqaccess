@@ -1,23 +1,25 @@
 import type { Metadata } from "next";
-import { fontVariables } from "@/lib/fonts";
+import { Inter } from "next/font/google";
 import "../globals.css";
 
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
-  title: "Admin Console — STRATIQ Access",
-  icons: {
-    icon: "/favicon.ico",
-    apple: "/brand/stratiq-icon-512.png",
+  title: {
+    default: "Admin",
+    template: "%s | STRATIQ Admin",
   },
+  robots: { index: false, follow: false },
 };
 
-export default function AdminRootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function AdminLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" dir="ltr" className={`${fontVariables} h-full antialiased`}>
-      <body className="min-h-full flex flex-col bg-navy-900 text-ivory-100">{children}</body>
+    <html lang="en">
+      <body className={`${inter.variable} antialiased bg-paper`}>{children}</body>
     </html>
   );
 }
