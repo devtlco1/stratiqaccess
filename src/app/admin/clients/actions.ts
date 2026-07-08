@@ -28,7 +28,10 @@ export async function createClientRow(formData: FormData) {
   const { error } = await supabase.from("clients").insert(fields);
   if (error) throw new Error(error.message);
 
+  revalidatePath("/clients");
+  revalidatePath("/ar/clients");
   revalidatePath("/");
+  revalidatePath("/ar");
   redirect("/admin/clients");
 }
 
@@ -39,7 +42,10 @@ export async function updateClientRow(id: string, formData: FormData) {
   const { error } = await supabase.from("clients").update(fields).eq("id", id);
   if (error) throw new Error(error.message);
 
+  revalidatePath("/clients");
+  revalidatePath("/ar/clients");
   revalidatePath("/");
+  revalidatePath("/ar");
   redirect("/admin/clients");
 }
 
@@ -48,6 +54,9 @@ export async function deleteClientRow(id: string) {
   const { error } = await supabase.from("clients").delete().eq("id", id);
   if (error) throw new Error(error.message);
 
+  revalidatePath("/clients");
+  revalidatePath("/ar/clients");
   revalidatePath("/");
+  revalidatePath("/ar");
   redirect("/admin/clients");
 }
