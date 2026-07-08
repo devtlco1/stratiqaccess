@@ -2,7 +2,6 @@ import { createServerClient } from "@supabase/ssr";
 import createIntlMiddleware from "next-intl/middleware";
 import { NextResponse, type NextRequest } from "next/server";
 import { routing } from "@/i18n/routing";
-import { siteConfig } from "@/data/siteConfig";
 
 const intlMiddleware = createIntlMiddleware(routing);
 
@@ -49,7 +48,17 @@ async function adminMiddleware(request: NextRequest) {
   return response;
 }
 
-const apexHost = new URL(siteConfig.url).host;
+// Hostinger's reverse proxy sits in front of the Node process and doesn't
+// reliably surface the original request host on `request.nextUrl.hostname`
+// (nor the original protocol) — it forwards those via standard proxy
+// headers instead. Check x-forwarded-host first, falling back to the Host
+// header and finally nextUrl, so this works regardless of which one the
+// proxy actually preserves.
+function getRequestHostname(request: NextRequest): string {
+  const forwardedHost = request.headers.get("x-forwarded-host")?.split(",")[0]?.trim();
+  const host = forwardedHost || request.headers.get("host") || request.nextUrl.hostname;
+  return host.split(":")[0];
+}
 
 // /admin stays outside the public language system entirely — it keeps its
 // own auth-only middleware, untouched by locale routing. Everything else
@@ -57,10 +66,15 @@ const apexHost = new URL(siteConfig.url).host;
 export function middleware(request: NextRequest) {
   // Canonicalize on the apex domain — serving both www and non-www live
   // (as Hostinger does by default) reads as duplicate content to search
-  // engines, so redirect www -> apex before anything else runs.
-  if (request.nextUrl.hostname === `www.${apexHost}`) {
+  // engines, so redirect www -> apex before anything else runs. Force
+  // https explicitly: behind Hostinger's proxy, nextUrl's own protocol can
+  // reflect the internal (plain HTTP) hop rather than what the client used.
+  const hostname = getRequestHostname(request);
+  if (hostname.startsWith("www.")) {
     const url = request.nextUrl.clone();
-    url.hostname = apexHost;
+    url.protocol = "https:";
+    url.hostname = hostname.slice(4);
+    url.port = "";
     return NextResponse.redirect(url, 301);
   }
 
