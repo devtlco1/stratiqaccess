@@ -6,6 +6,7 @@ import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { getSiteImage } from "@/lib/siteImages";
 import { buildAlternates } from "@/i18n/alternates";
+import { buildOpenGraph } from "@/lib/seo";
 import type { Locale } from "@/i18n/config";
 
 type Props = { params: Promise<{ locale: string }> };
@@ -13,10 +14,12 @@ type Props = { params: Promise<{ locale: string }> };
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "seo.about" });
+  const loc = locale as Locale;
   return {
     title: t("title"),
     description: t("description"),
-    alternates: buildAlternates("/about", locale as Locale),
+    alternates: buildAlternates("/about", loc),
+    ...buildOpenGraph({ title: t("title"), description: t("description"), path: "/about", locale: loc }),
   };
 }
 

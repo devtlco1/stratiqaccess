@@ -9,6 +9,7 @@ import { createPublicClient } from "@/lib/supabase/public";
 import type { CaseStudyRow } from "@/lib/types";
 import { getSiteImage } from "@/lib/siteImages";
 import { buildAlternates } from "@/i18n/alternates";
+import { buildOpenGraph } from "@/lib/seo";
 import type { Locale } from "@/i18n/config";
 import { pickText, pickList } from "@/lib/localizedContent";
 
@@ -17,10 +18,12 @@ type Props = { params: Promise<{ locale: string }> };
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "seo.caseStudies" });
+  const loc = locale as Locale;
   return {
     title: t("title"),
     description: t("description"),
-    alternates: buildAlternates("/case-studies", locale as Locale),
+    alternates: buildAlternates("/case-studies", loc),
+    ...buildOpenGraph({ title: t("title"), description: t("description"), path: "/case-studies", locale: loc }),
   };
 }
 
@@ -45,13 +48,15 @@ export default async function CaseStudiesPage({ params }: Props) {
       <section className="py-24 lg:py-32 bg-white">
         <Container className="max-w-4xl">
           <div className="flex flex-col gap-20">
-            {caseStudies.map((study) => (
+            {caseStudies.map((study) => {
+              const title = pickText(loc, study.title, study.title_ar);
+              return (
               <article key={study.id} id={study.slug} className="scroll-mt-28">
                 <div className="relative aspect-[16/8] rounded-lg overflow-hidden">
                   {study.image_url && (
                     <Image
                       src={study.image_url}
-                      alt={study.title}
+                      alt={title}
                       fill
                       sizes="(min-width: 1024px) 60vw, 100vw"
                       className="object-cover"
@@ -62,7 +67,7 @@ export default async function CaseStudiesPage({ params }: Props) {
                   {pickText(loc, study.sector, study.sector_ar)}
                 </span>
                 <h2 className="mt-3 font-display text-2xl sm:text-3xl text-navy leading-snug">
-                  {pickText(loc, study.title, study.title_ar)}
+                  {title}
                 </h2>
                 <div className="mt-6 flex flex-col gap-4">
                   {pickList(loc, study.body, study.body_ar).map((paragraph, i) => (
@@ -72,7 +77,8 @@ export default async function CaseStudiesPage({ params }: Props) {
                   ))}
                 </div>
               </article>
-            ))}
+              );
+            })}
           </div>
         </Container>
       </section>

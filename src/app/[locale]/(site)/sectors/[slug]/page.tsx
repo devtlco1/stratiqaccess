@@ -9,6 +9,8 @@ import { Container } from "@/components/ui/Container";
 import { Icon, type IconName } from "@/components/ui/Icon";
 import { ContactSection } from "@/components/sections/ContactSection";
 import { buildAlternates } from "@/i18n/alternates";
+import { buildOpenGraph, buildBreadcrumbList } from "@/lib/seo";
+import { JsonLd } from "@/components/seo/JsonLd";
 import type { Locale } from "@/i18n/config";
 import { pickText, pickList } from "@/lib/localizedContent";
 
@@ -21,15 +23,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const supabase = await createClient();
   const { data } = await supabase
     .from("sectors")
-    .select("title, description, title_ar, description_ar")
+    .select("title, description, title_ar, description_ar, image_url")
     .eq("slug", slug)
     .single();
   if (!data) return {};
   const loc = locale as Locale;
+  const title = pickText(loc, data.title, data.title_ar);
+  const description = pickText(loc, data.description, data.description_ar);
   return {
-    title: pickText(loc, data.title, data.title_ar),
-    description: pickText(loc, data.description, data.description_ar),
+    title,
+    description,
     alternates: buildAlternates(`/sectors/${slug}`, loc),
+    ...buildOpenGraph({ title, description, path: `/sectors/${slug}`, locale: loc, image: data.image_url }),
   };
 }
 
@@ -40,6 +45,8 @@ export default async function SectorDetailPage({ params }: Props) {
   const sector = data as SectorRow | null;
   if (!sector) notFound();
   const t = await getTranslations("sectors");
+  const tSeo = await getTranslations("seo.sectors");
+  const tNav = await getTranslations("navigation");
   const loc = locale as Locale;
   const title = pickText(loc, sector.title, sector.title_ar);
   const body = pickList(loc, sector.body, sector.body_ar);
@@ -47,6 +54,16 @@ export default async function SectorDetailPage({ params }: Props) {
 
   return (
     <>
+      <JsonLd
+        data={buildBreadcrumbList(
+          [
+            { name: tSeo("heroTitle"), path: "/sectors" },
+            { name: title, path: `/sectors/${slug}` },
+          ],
+          loc,
+          tNav("home")
+        )}
+      />
       <section className="pt-32 pb-16 lg:pt-40 lg:pb-24 bg-white">
         <Container>
           <Link
@@ -92,7 +109,7 @@ export default async function SectorDetailPage({ params }: Props) {
 
             <div className="relative aspect-4/3 rounded-2xl overflow-hidden">
               {sector.image_url && (
-                <Image src={sector.image_url} alt={sector.title} fill className="object-cover" />
+                <Image src={sector.image_url} alt={title} fill className="object-cover" />
               )}
             </div>
           </div>

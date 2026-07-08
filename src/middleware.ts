@@ -2,6 +2,7 @@ import { createServerClient } from "@supabase/ssr";
 import createIntlMiddleware from "next-intl/middleware";
 import { NextResponse, type NextRequest } from "next/server";
 import { routing } from "@/i18n/routing";
+import { siteConfig } from "@/data/siteConfig";
 
 const intlMiddleware = createIntlMiddleware(routing);
 
@@ -48,10 +49,21 @@ async function adminMiddleware(request: NextRequest) {
   return response;
 }
 
+const apexHost = new URL(siteConfig.url).host;
+
 // /admin stays outside the public language system entirely — it keeps its
 // own auth-only middleware, untouched by locale routing. Everything else
 // goes through next-intl for locale resolution/redirects.
 export function middleware(request: NextRequest) {
+  // Canonicalize on the apex domain — serving both www and non-www live
+  // (as Hostinger does by default) reads as duplicate content to search
+  // engines, so redirect www -> apex before anything else runs.
+  if (request.nextUrl.hostname === `www.${apexHost}`) {
+    const url = request.nextUrl.clone();
+    url.hostname = apexHost;
+    return NextResponse.redirect(url, 301);
+  }
+
   if (request.nextUrl.pathname.startsWith("/admin")) {
     return adminMiddleware(request);
   }

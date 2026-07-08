@@ -9,6 +9,8 @@ import { Container } from "@/components/ui/Container";
 import { Icon, type IconName } from "@/components/ui/Icon";
 import { ContactSection } from "@/components/sections/ContactSection";
 import { buildAlternates } from "@/i18n/alternates";
+import { buildOpenGraph, buildBreadcrumbList, buildServiceSchema } from "@/lib/seo";
+import { JsonLd } from "@/components/seo/JsonLd";
 import type { Locale } from "@/i18n/config";
 import { pickText, pickList } from "@/lib/localizedContent";
 
@@ -21,15 +23,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const supabase = await createClient();
   const { data } = await supabase
     .from("services")
-    .select("title, description, title_ar, description_ar")
+    .select("title, description, title_ar, description_ar, image_url")
     .eq("slug", slug)
     .single();
   if (!data) return {};
   const loc = locale as Locale;
+  const title = pickText(loc, data.title, data.title_ar);
+  const description = pickText(loc, data.description, data.description_ar);
   return {
-    title: pickText(loc, data.title, data.title_ar),
-    description: pickText(loc, data.description, data.description_ar),
+    title,
+    description,
     alternates: buildAlternates(`/services/${slug}`, loc),
+    ...buildOpenGraph({ title, description, path: `/services/${slug}`, locale: loc, image: data.image_url }),
   };
 }
 
@@ -40,12 +45,29 @@ export default async function ServiceDetailPage({ params }: Props) {
   const service = data as ServiceRow | null;
   if (!service) notFound();
   const t = await getTranslations("services");
+  const tSeo = await getTranslations("seo.services");
+  const tNav = await getTranslations("navigation");
   const loc = locale as Locale;
+  const title = pickText(loc, service.title, service.title_ar);
+  const description = pickText(loc, service.description, service.description_ar);
   const body = pickList(loc, service.body, service.body_ar);
   const highlights = pickList(loc, service.highlights, service.highlights_ar);
 
   return (
     <>
+      <JsonLd
+        data={buildBreadcrumbList(
+          [
+            { name: tSeo("heroTitle"), path: "/services" },
+            { name: title, path: `/services/${slug}` },
+          ],
+          loc,
+          tNav("home")
+        )}
+      />
+      <JsonLd
+        data={buildServiceSchema({ name: title, description, path: `/services/${slug}`, locale: loc })}
+      />
       <section className="pt-32 pb-16 lg:pt-40 lg:pb-24 bg-white">
         <Container>
           <Link
@@ -65,7 +87,7 @@ export default async function ServiceDetailPage({ params }: Props) {
               <div className="relative aspect-4/3 rounded-2xl overflow-hidden lg:order-2">
                 <Image
                   src={service.image_url}
-                  alt={service.title}
+                  alt={title}
                   fill
                   sizes="(min-width: 1024px) 50vw, 100vw"
                   className="object-cover"
@@ -78,7 +100,7 @@ export default async function ServiceDetailPage({ params }: Props) {
                 <Icon name={service.icon as IconName} className="size-7" />
               </span>
               <h1 className="mt-6 font-display text-4xl sm:text-5xl text-navy leading-tight">
-                {pickText(loc, service.title, service.title_ar)}
+                {title}
               </h1>
 
               <div className="mt-6 flex flex-col gap-4">

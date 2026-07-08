@@ -5,6 +5,8 @@ import { Insights } from "@/components/sections/Insights";
 import { ContactSection } from "@/components/sections/ContactSection";
 import { getSiteImage } from "@/lib/siteImages";
 import { buildAlternates } from "@/i18n/alternates";
+import { buildOpenGraph, buildBreadcrumbList } from "@/lib/seo";
+import { JsonLd } from "@/components/seo/JsonLd";
 import type { Locale } from "@/i18n/config";
 
 type Props = { params: Promise<{ locale: string }> };
@@ -12,19 +14,27 @@ type Props = { params: Promise<{ locale: string }> };
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "seo.insights" });
+  const loc = locale as Locale;
   return {
     title: t("title"),
     description: t("description"),
-    alternates: buildAlternates("/insights", locale as Locale),
+    alternates: buildAlternates("/insights", loc),
+    ...buildOpenGraph({ title: t("title"), description: t("description"), path: "/insights", locale: loc }),
   };
 }
 
-export default async function InsightsPage() {
+export default async function InsightsPage({ params }: Props) {
+  const { locale } = await params;
+  const loc = locale as Locale;
   const heroImage = await getSiteImage("insights_hero", "/images/photo-erbil-expressway.jpg");
   const t = await getTranslations("seo.insights");
+  const tNav = await getTranslations("navigation");
 
   return (
     <>
+      <JsonLd
+        data={buildBreadcrumbList([{ name: t("heroTitle"), path: "/insights" }], loc, tNav("home"))}
+      />
       <PageHero title={t("heroTitle")} image={heroImage} />
 
       <Insights />

@@ -4,6 +4,7 @@ import { PageHero } from "@/components/sections/PageHero";
 import { ContactSection } from "@/components/sections/ContactSection";
 import { getSiteImage } from "@/lib/siteImages";
 import { buildAlternates } from "@/i18n/alternates";
+import { buildOpenGraph } from "@/lib/seo";
 import type { Locale } from "@/i18n/config";
 
 type Props = { params: Promise<{ locale: string }> };
@@ -11,10 +12,12 @@ type Props = { params: Promise<{ locale: string }> };
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "seo.contact" });
+  const loc = locale as Locale;
   return {
     title: t("title"),
     description: t("description"),
-    alternates: buildAlternates("/contact", locale as Locale),
+    alternates: buildAlternates("/contact", loc),
+    ...buildOpenGraph({ title: t("title"), description: t("description"), path: "/contact", locale: loc }),
   };
 }
 

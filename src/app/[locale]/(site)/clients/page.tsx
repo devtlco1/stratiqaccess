@@ -5,6 +5,7 @@ import { OurClients } from "@/components/sections/OurClients";
 import { ContactSection } from "@/components/sections/ContactSection";
 import { getSiteImage } from "@/lib/siteImages";
 import { buildAlternates } from "@/i18n/alternates";
+import { buildOpenGraph } from "@/lib/seo";
 import type { Locale } from "@/i18n/config";
 
 type Props = { params: Promise<{ locale: string }> };
@@ -12,10 +13,12 @@ type Props = { params: Promise<{ locale: string }> };
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "seo.clients" });
+  const loc = locale as Locale;
   return {
     title: t("title"),
     description: t("description"),
-    alternates: buildAlternates("/clients", locale as Locale),
+    alternates: buildAlternates("/clients", loc),
+    ...buildOpenGraph({ title: t("title"), description: t("description"), path: "/clients", locale: loc }),
   };
 }
 

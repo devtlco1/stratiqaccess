@@ -7,6 +7,8 @@ import "../globals.css";
 import { routing } from "@/i18n/routing";
 import { isRtl, type Locale } from "@/i18n/config";
 import { siteConfig } from "@/data/siteConfig";
+import { buildOrganizationSchema, buildWebSiteSchema } from "@/lib/seo";
+import { JsonLd } from "@/components/seo/JsonLd";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -95,9 +97,13 @@ export default async function LocaleLayout({ children, params }: Props) {
     contact: messages.contact,
   };
 
+  const loc = locale as Locale;
+
   return (
-    <html lang={locale} dir={isRtl(locale as Locale) ? "rtl" : "ltr"}>
+    <html lang={locale} dir={isRtl(loc) ? "rtl" : "ltr"}>
       <body className={`${inter.variable} ${playfair.variable} ${arabic.variable} antialiased`}>
+        <JsonLd data={buildOrganizationSchema(loc)} />
+        <JsonLd data={buildWebSiteSchema(loc)} />
         <NextIntlClientProvider messages={clientMessages}>{children}</NextIntlClientProvider>
       </body>
     </html>
