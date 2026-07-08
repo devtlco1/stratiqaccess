@@ -22,8 +22,8 @@ export async function Footer() {
         <Image
           src={siteConfig.logo.light}
           alt={siteConfig.name}
-          width={160}
-          height={65}
+          width={898}
+          height={240}
           className="h-9 w-auto"
         />
 

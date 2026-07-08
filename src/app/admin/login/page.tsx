@@ -35,7 +35,7 @@ export default function AdminLoginPage() {
     <div className="flex min-h-screen items-center justify-center bg-paper px-6">
       <div className="w-full max-w-sm">
         <div className="flex justify-center mb-8">
-          <Image src={siteConfig.logo.dark} alt={siteConfig.name} width={160} height={65} className="h-9 w-auto" />
+          <Image src={siteConfig.logo.dark} alt={siteConfig.name} width={898} height={240} className="h-9 w-auto" />
         </div>
 
         <div className="rounded-2xl bg-white p-8 shadow-[0_20px_50px_rgba(24,32,51,0.1)]">

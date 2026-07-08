@@ -57,8 +57,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       images: [
         {
           url: "/brand/stratiq-social-share.png",
-          width: 2400,
-          height: 1100,
+          width: 2630,
+          height: 871,
           alt: t("siteName"),
         },
       ],

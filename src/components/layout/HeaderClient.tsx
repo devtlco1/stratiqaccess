@@ -26,7 +26,7 @@ export function HeaderClient({ logoLeft, logoRight }: { logoLeft: string; logoRi
           direction so labels/underlines/dropdowns still mirror correctly. */}
       <Container dir="ltr" className="flex items-center h-20 lg:h-24">
         <Link href="/" className="flex items-center shrink-0 transition-transform duration-300 hover:scale-[1.03]" aria-label={siteConfig.name}>
-          <Image src={logoLeft} alt={siteConfig.name} width={160} height={65} priority className="h-8 lg:h-9 w-auto" />
+          <Image src={logoLeft} alt={siteConfig.name} width={898} height={240} priority className="h-8 lg:h-9 w-auto" />
         </Link>
 
         <nav dir={navDir} className="hidden lg:flex flex-1 items-center justify-center gap-1">
@@ -79,7 +79,7 @@ export function HeaderClient({ logoLeft, logoRight }: { logoLeft: string; logoRi
             className="flex items-center transition-transform duration-300 hover:scale-[1.03]"
             aria-label={siteConfig.name}
           >
-            <Image src={logoRight} alt={siteConfig.name} width={160} height={65} className="h-8 lg:h-9 w-auto" />
+            <Image src={logoRight} alt={siteConfig.name} width={898} height={240} className="h-8 lg:h-9 w-auto" />
           </Link>
         </div>
 

@@ -1,9 +1,10 @@
 STRATIQ Access Brand Colors
 
-Midnight Navy: #0B1220
-Charcoal Navy: #111827
-Premium Gold: #B08D57
-Deep Gold: #9A7A3F
-Ivory White: #F8F5EF
+Logo Blue (mark + wordmark): #4A84D0
+Navy (dark logo variant / site background): #2F456C
+White (light logo variant, for dark backgrounds): #FFFFFF
 
-Primary logo use: Navy background + gold panel + ivory text.
+Primary logo use:
+- Blue logo on white/light backgrounds
+- White logo on navy/dark backgrounds
+- Navy logo as an alternate on light backgrounds where blue is too loud (e.g. printed documents)

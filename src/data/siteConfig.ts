@@ -7,11 +7,10 @@ export const siteConfig = {
   url: "https://stratiqaccess.com",
   email: "partners@stratiqaccess.com",
   logo: {
-    // The STRATIQ Access lockup (gold panel + ivory text) carries its own
-    // background panel, so the same transparent SVG reads correctly on both
-    // light (header) and dark (footer) surfaces.
-    dark: "/brand/stratiq-logo.svg", // used on light backgrounds (header)
-    light: "/brand/stratiq-logo.svg", // used on dark backgrounds (footer, hero)
+    // Per STRATIQ_Access_logo_pack/STRATIQ_brand_colors.txt: blue logo on
+    // light backgrounds, white logo on navy/dark backgrounds.
+    dark: "/brand/stratiq-logo-blue.svg", // used on light backgrounds (header, admin)
+    light: "/brand/stratiq-logo-white.svg", // used on dark backgrounds (footer)
   },
   hero: {
     primaryCtaHref: "/contact",
