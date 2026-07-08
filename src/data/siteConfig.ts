@@ -7,9 +7,11 @@ export const siteConfig = {
   url: "https://stratiqaccess.com",
   email: "partners@stratiqaccess.com",
   logo: {
-    // EDIT ME: swap these for the final vector logo files when ready
-    dark: "/images/logo-navy.svg", // used on light backgrounds (header)
-    light: "/images/logo-white.svg", // used on dark backgrounds (footer, hero)
+    // The STRATIQ Access lockup (gold panel + ivory text) carries its own
+    // background panel, so the same transparent SVG reads correctly on both
+    // light (header) and dark (footer) surfaces.
+    dark: "/brand/stratiq-logo.svg", // used on light backgrounds (header)
+    light: "/brand/stratiq-logo.svg", // used on dark backgrounds (footer, hero)
   },
   hero: {
     primaryCtaHref: "/contact",

@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { mainNav } from "@/data/navigation";
 import { siteConfig } from "@/data/siteConfig";
@@ -13,18 +13,23 @@ import { LanguageSwitcher } from "./LanguageSwitcher";
 export function HeaderClient({ logoLeft, logoRight }: { logoLeft: string; logoRight: string }) {
   const t = useTranslations("navigation");
   const tCommon = useTranslations("common");
+  const locale = useLocale();
+  const navDir = locale === "ar" ? "rtl" : "ltr";
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const closeMobile = () => setMobileOpen(false);
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white shadow-[0_1px_0_rgba(24,32,51,0.08)]">
-      <Container className="flex items-center h-20 lg:h-24">
+      {/* Forced ltr: the logo slots must stay physically left/right regardless
+          of locale — only the nav content (below) re-asserts its own RTL
+          direction so labels/underlines/dropdowns still mirror correctly. */}
+      <Container dir="ltr" className="flex items-center h-20 lg:h-24">
         <Link href="/" className="flex items-center shrink-0 transition-transform duration-300 hover:scale-[1.03]" aria-label={siteConfig.name}>
-          <Image src={logoLeft} alt={siteConfig.name} width={176} height={38} priority className="h-8 lg:h-9 w-auto" />
+          <Image src={logoLeft} alt={siteConfig.name} width={160} height={65} priority className="h-8 lg:h-9 w-auto" />
         </Link>
 
-        <nav className="hidden lg:flex flex-1 items-center justify-center gap-1">
+        <nav dir={navDir} className="hidden lg:flex flex-1 items-center justify-center gap-1">
           {mainNav.map((item) => (
             <div
               key={item.key}
@@ -74,7 +79,7 @@ export function HeaderClient({ logoLeft, logoRight }: { logoLeft: string; logoRi
             className="flex items-center transition-transform duration-300 hover:scale-[1.03]"
             aria-label={siteConfig.name}
           >
-            <Image src={logoRight} alt={siteConfig.name} width={176} height={38} className="h-8 lg:h-9 w-auto" />
+            <Image src={logoRight} alt={siteConfig.name} width={160} height={65} className="h-8 lg:h-9 w-auto" />
           </Link>
         </div>
 

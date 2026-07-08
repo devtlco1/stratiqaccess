@@ -54,6 +54,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       siteName: t("siteName"),
       type: "website",
       locale: locale === "ar" ? "ar_IQ" : "en_US",
+      images: [
+        {
+          url: "/brand/stratiq-social-share.png",
+          width: 2400,
+          height: 1100,
+          alt: t("siteName"),
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: t("siteName"),
+      description: t("defaultDescription"),
+      images: ["/brand/stratiq-social-share.png"],
     },
   };
 }

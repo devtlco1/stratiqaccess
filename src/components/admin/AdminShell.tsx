@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import type { ReactNode } from "react";
 import { LogoutButton } from "./LogoutButton";
 
@@ -18,8 +19,9 @@ export function AdminShell({ children }: { children: ReactNode }) {
   return (
     <div className="flex min-h-screen">
       <aside className="hidden w-64 shrink-0 flex-col border-r border-navy/10 bg-white p-6 lg:flex">
-        <Link href="/admin" className="font-display text-lg text-navy">
-          STRATIQ Admin
+        <Link href="/admin" className="flex items-center gap-2">
+          <Image src="/brand/stratiq-logo.svg" alt="STRATIQ Access" width={160} height={65} className="h-8 w-auto" />
+          <span className="text-xs font-semibold uppercase tracking-wide text-ink/50">Admin</span>
         </Link>
         <nav className="mt-10 flex flex-col gap-1">
           {navItems.map((item) => (
