@@ -5,6 +5,13 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { siteConfig } from "@/data/siteConfig";
 
+// Public marketing pages read via the cookie-free public Supabase client
+// (see src/lib/supabase/public.ts), so this route group is eligible for
+// Next.js's Full Route Cache — revalidate on a timer, with instant
+// on-demand invalidation already wired up via revalidatePath() in the
+// admin actions.
+export const revalidate = 300;
+
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",

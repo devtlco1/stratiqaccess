@@ -1,12 +1,12 @@
 import { siteConfig } from "@/data/siteConfig";
-import { createClient } from "@/lib/supabase/server";
+import { createPublicClient } from "@/lib/supabase/public";
 import type { SiteSettingsRow } from "@/lib/types";
 import { Container } from "@/components/ui/Container";
 import { Icon } from "@/components/ui/Icon";
 import { ContactForm } from "./ContactForm";
 
 export async function ContactSection() {
-  const supabase = await createClient();
+  const supabase = createPublicClient();
   const { data } = await supabase.from("site_settings").select("*").eq("id", 1).single();
   const settings = data as SiteSettingsRow | null;
 

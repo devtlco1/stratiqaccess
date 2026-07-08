@@ -9,7 +9,15 @@ export async function Hero() {
   return (
     <section className="relative flex min-h-[85vh] items-center overflow-hidden bg-navy pt-20 lg:pt-24">
       {/* Managed from Admin → Site Images → "Homepage — Hero Background" */}
-      <Image src={heroImage} alt="" fill priority className="object-cover" />
+      <Image
+        src={heroImage}
+        alt=""
+        fill
+        priority
+        fetchPriority="high"
+        sizes="100vw"
+        className="object-cover"
+      />
       <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/35 to-black/10" />
 
       <div className="relative z-10 mx-auto w-full max-w-7xl px-6 lg:px-10">

@@ -4,7 +4,7 @@ import { PageHero } from "@/components/sections/PageHero";
 import { CaseStudies } from "@/components/sections/CaseStudies";
 import { ContactSection } from "@/components/sections/ContactSection";
 import { Container } from "@/components/ui/Container";
-import { createClient } from "@/lib/supabase/server";
+import { createPublicClient } from "@/lib/supabase/public";
 import type { CaseStudyRow } from "@/lib/types";
 import { getSiteImage } from "@/lib/siteImages";
 
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 };
 
 export default async function CaseStudiesPage() {
-  const supabase = await createClient();
+  const supabase = createPublicClient();
   const { data } = await supabase
     .from("case_studies")
     .select("*")
@@ -36,7 +36,13 @@ export default async function CaseStudiesPage() {
               <article key={study.id} id={study.slug} className="scroll-mt-28">
                 <div className="relative aspect-[16/8] rounded-lg overflow-hidden">
                   {study.image_url && (
-                    <Image src={study.image_url} alt={study.title} fill className="object-cover" />
+                    <Image
+                      src={study.image_url}
+                      alt={study.title}
+                      fill
+                      sizes="(min-width: 1024px) 60vw, 100vw"
+                      className="object-cover"
+                    />
                   )}
                 </div>
                 <span className="mt-6 inline-block text-xs font-semibold tracking-[0.15em] uppercase text-stratiq-blue">

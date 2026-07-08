@@ -1,11 +1,11 @@
 import Image from "next/image";
 import { siteConfig } from "@/data/siteConfig";
-import { createClient } from "@/lib/supabase/server";
+import { createPublicClient } from "@/lib/supabase/public";
 import type { SiteSettingsRow } from "@/lib/types";
 import { Container } from "@/components/ui/Container";
 
 export async function Footer() {
-  const supabase = await createClient();
+  const supabase = createPublicClient();
   const { data } = await supabase.from("site_settings").select("*").eq("id", 1).single();
   const settings = data as SiteSettingsRow | null;
   const email = settings?.email || siteConfig.email;

@@ -1,10 +1,10 @@
 import Image from "next/image";
-import { createClient } from "@/lib/supabase/server";
+import { createPublicClient } from "@/lib/supabase/public";
 import type { ClientRow } from "@/lib/types";
 import { Container } from "@/components/ui/Container";
 
 export async function OurClients({ showWhenEmpty = false }: { showWhenEmpty?: boolean } = {}) {
-  const supabase = await createClient();
+  const supabase = createPublicClient();
   const { data } = await supabase
     .from("clients")
     .select("*")
@@ -52,6 +52,7 @@ function ClientLogo({ client }: { client: ClientRow }) {
         src={client.logo_url}
         alt={client.name}
         fill
+        sizes="(min-width: 1024px) 25vw, (min-width: 640px) 33vw, 50vw"
         className="object-contain grayscale opacity-70 transition-all duration-300 group-hover:grayscale-0 group-hover:opacity-100"
       />
     </div>

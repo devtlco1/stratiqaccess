@@ -29,13 +29,31 @@ export async function MarketOverview() {
           <div className="flex flex-col">
             {/* Managed from Admin → Site Images → "Homepage Introduction — Image 1/2/3" */}
             <div className="relative aspect-[6/5] overflow-hidden">
-              <Image src={intro1} alt="Baghdad skyline" fill className="object-cover" />
+              <Image
+                src={intro1}
+                alt="Baghdad skyline"
+                fill
+                sizes="(min-width: 1024px) 50vw, 100vw"
+                className="object-cover"
+              />
             </div>
             <div className="relative aspect-2/3 overflow-hidden">
-              <Image src={intro2} alt="Street view in Baghdad" fill className="object-cover" />
+              <Image
+                src={intro2}
+                alt="Street view in Baghdad"
+                fill
+                sizes="(min-width: 1024px) 50vw, 100vw"
+                className="object-cover"
+              />
             </div>
             <div className="relative aspect-[6/5] overflow-hidden">
-              <Image src={intro3} alt="Construction and development in Iraq" fill className="object-cover" />
+              <Image
+                src={intro3}
+                alt="Construction and development in Iraq"
+                fill
+                sizes="(min-width: 1024px) 50vw, 100vw"
+                className="object-cover"
+              />
             </div>
           </div>
 

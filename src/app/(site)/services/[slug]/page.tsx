@@ -46,7 +46,13 @@ export default async function ServiceDetailPage({ params }: Props) {
           >
             {service.image_url && (
               <div className="relative aspect-4/3 rounded-2xl overflow-hidden lg:order-2">
-                <Image src={service.image_url} alt={service.title} fill className="object-cover" />
+                <Image
+                  src={service.image_url}
+                  alt={service.title}
+                  fill
+                  sizes="(min-width: 1024px) 50vw, 100vw"
+                  className="object-cover"
+                />
               </div>
             )}
 
