@@ -22,6 +22,10 @@ async function readForm(formData: FormData, supabase: Awaited<ReturnType<typeof 
     sector: String(formData.get("sector") || ""),
     summary: String(formData.get("summary") || ""),
     body: parseBody(String(formData.get("body") || "")),
+    titleAr: String(formData.get("titleAr") || "") || null,
+    sectorAr: String(formData.get("sectorAr") || "") || null,
+    summaryAr: String(formData.get("summaryAr") || "") || null,
+    bodyAr: parseBody(String(formData.get("bodyAr") || "")),
     imageUrl,
   };
 }
@@ -37,13 +41,19 @@ export async function createCaseStudy(formData: FormData) {
     sector: fields.sector,
     summary: fields.summary,
     body: fields.body,
+    title_ar: fields.titleAr,
+    sector_ar: fields.sectorAr,
+    summary_ar: fields.summaryAr,
+    body_ar: fields.bodyAr,
     image_url: fields.imageUrl,
   });
 
   if (error) throw new Error(error.message);
 
   revalidatePath("/case-studies");
+  revalidatePath("/ar/case-studies");
   revalidatePath("/");
+  revalidatePath("/ar");
   redirect("/admin/case-studies");
 }
 
@@ -58,6 +68,10 @@ export async function updateCaseStudy(id: string, formData: FormData) {
     sector: fields.sector,
     summary: fields.summary,
     body: fields.body,
+    title_ar: fields.titleAr,
+    sector_ar: fields.sectorAr,
+    summary_ar: fields.summaryAr,
+    body_ar: fields.bodyAr,
   };
   if (fields.imageUrl) update.image_url = fields.imageUrl;
 
@@ -65,7 +79,9 @@ export async function updateCaseStudy(id: string, formData: FormData) {
   if (error) throw new Error(error.message);
 
   revalidatePath("/case-studies");
+  revalidatePath("/ar/case-studies");
   revalidatePath("/");
+  revalidatePath("/ar");
   redirect("/admin/case-studies");
 }
 
@@ -75,6 +91,8 @@ export async function deleteCaseStudy(id: string) {
   if (error) throw new Error(error.message);
 
   revalidatePath("/case-studies");
+  revalidatePath("/ar/case-studies");
   revalidatePath("/");
+  revalidatePath("/ar");
   redirect("/admin/case-studies");
 }

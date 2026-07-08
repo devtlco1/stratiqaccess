@@ -1,8 +1,10 @@
 import Image from "next/image";
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { createPublicClient } from "@/lib/supabase/public";
 import type { InsightRow } from "@/lib/types";
+import type { Locale } from "@/i18n/config";
+import { pickText } from "@/lib/localizedContent";
 import { Container } from "@/components/ui/Container";
 import { Icon } from "@/components/ui/Icon";
 
@@ -15,6 +17,7 @@ export async function Insights() {
   const insights = (data ?? []) as InsightRow[];
   const t = await getTranslations("home.insightsSection");
   const tCommon = await getTranslations("common");
+  const locale = (await getLocale()) as Locale;
 
   return (
     <section id="insights" className="scroll-mt-24 py-24 lg:py-32 bg-white">
@@ -42,7 +45,7 @@ export async function Insights() {
                 )}
               </div>
               <h3 className="mt-5 font-display text-base text-navy leading-snug group-hover:text-stratiq-blue transition-colors">
-                {insight.title}
+                {pickText(locale, insight.title, insight.title_ar)}
               </h3>
               <span className="mt-4 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-stratiq-blue">
                 <span className="border-b border-stratiq-blue/60 pb-0.5 group-hover:border-stratiq-blue">

@@ -10,6 +10,10 @@ export type ServiceRow = {
   body: string[];
   highlights: Highlight[];
   sort_order: number;
+  title_ar: string | null;
+  description_ar: string | null;
+  body_ar: string[];
+  highlights_ar: Highlight[];
 };
 
 export type SectorRow = {
@@ -22,6 +26,10 @@ export type SectorRow = {
   body: string[];
   highlights: Highlight[];
   sort_order: number;
+  title_ar: string | null;
+  description_ar: string | null;
+  body_ar: string[];
+  highlights_ar: Highlight[];
 };
 
 export type CaseStudyRow = {
@@ -33,6 +41,10 @@ export type CaseStudyRow = {
   image_url: string | null;
   body: string[];
   sort_order: number;
+  title_ar: string | null;
+  sector_ar: string | null;
+  summary_ar: string | null;
+  body_ar: string[];
 };
 
 export type InsightRow = {
@@ -44,6 +56,9 @@ export type InsightRow = {
   image_url: string | null;
   body: string[];
   sort_order: number;
+  title_ar: string | null;
+  excerpt_ar: string | null;
+  body_ar: string[];
 };
 
 export type MessageRow = {

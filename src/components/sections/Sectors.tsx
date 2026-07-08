@@ -1,7 +1,9 @@
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { createPublicClient } from "@/lib/supabase/public";
 import type { SectorRow } from "@/lib/types";
+import type { Locale } from "@/i18n/config";
+import { pickText } from "@/lib/localizedContent";
 import { Container } from "@/components/ui/Container";
 import { Icon, type IconName } from "@/components/ui/Icon";
 
@@ -13,6 +15,7 @@ export async function Sectors() {
     .order("sort_order", { ascending: true });
   const sectors = (data ?? []) as SectorRow[];
   const t = await getTranslations("home.sectorsSection");
+  const locale = (await getLocale()) as Locale;
 
   return (
     <section id="sectors" className="scroll-mt-24 py-24 lg:py-32 bg-white">
@@ -32,7 +35,9 @@ export async function Sectors() {
                 name={sector.icon as IconName}
                 className="size-8 shrink-0 text-navy transition-colors duration-300 group-hover:text-stratiq-blue"
               />
-              <span className="flex-1 font-display text-lg text-navy">{sector.title}</span>
+              <span className="flex-1 font-display text-lg text-navy">
+                {pickText(locale, sector.title, sector.title_ar)}
+              </span>
               <Icon
                 name="arrow-right"
                 className="size-4 shrink-0 rotate-45 rtl:-scale-x-100 text-ink/40 group-hover:text-stratiq-blue group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all"

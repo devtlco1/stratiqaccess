@@ -23,6 +23,10 @@ async function readForm(formData: FormData, supabase: Awaited<ReturnType<typeof 
     description: String(formData.get("description") || ""),
     body: parseBody(String(formData.get("body") || "")),
     highlights: parseHighlights(String(formData.get("highlights") || "")),
+    titleAr: String(formData.get("titleAr") || "") || null,
+    descriptionAr: String(formData.get("descriptionAr") || "") || null,
+    bodyAr: parseBody(String(formData.get("bodyAr") || "")),
+    highlightsAr: parseHighlights(String(formData.get("highlightsAr") || "")),
     imageUrl,
   };
 }
@@ -39,13 +43,19 @@ export async function createService(formData: FormData) {
     description: fields.description,
     body: fields.body,
     highlights: fields.highlights,
+    title_ar: fields.titleAr,
+    description_ar: fields.descriptionAr,
+    body_ar: fields.bodyAr,
+    highlights_ar: fields.highlightsAr,
     image_url: fields.imageUrl,
   });
 
   if (error) throw new Error(error.message);
 
   revalidatePath("/services");
+  revalidatePath("/ar/services");
   revalidatePath("/");
+  revalidatePath("/ar");
   redirect("/admin/services");
 }
 
@@ -61,6 +71,10 @@ export async function updateService(id: string, formData: FormData) {
     description: fields.description,
     body: fields.body,
     highlights: fields.highlights,
+    title_ar: fields.titleAr,
+    description_ar: fields.descriptionAr,
+    body_ar: fields.bodyAr,
+    highlights_ar: fields.highlightsAr,
   };
   if (fields.imageUrl) update.image_url = fields.imageUrl;
 
@@ -68,8 +82,11 @@ export async function updateService(id: string, formData: FormData) {
   if (error) throw new Error(error.message);
 
   revalidatePath("/services");
+  revalidatePath("/ar/services");
   revalidatePath(`/services/${slug}`);
+  revalidatePath(`/ar/services/${slug}`);
   revalidatePath("/");
+  revalidatePath("/ar");
   redirect("/admin/services");
 }
 
@@ -79,6 +96,8 @@ export async function deleteService(id: string) {
   if (error) throw new Error(error.message);
 
   revalidatePath("/services");
+  revalidatePath("/ar/services");
   revalidatePath("/");
+  revalidatePath("/ar");
   redirect("/admin/services");
 }

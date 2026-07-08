@@ -22,6 +22,9 @@ async function readForm(formData: FormData, supabase: Awaited<ReturnType<typeof 
     excerpt: String(formData.get("excerpt") || ""),
     publishedDate: String(formData.get("publishedDate") || new Date().toISOString().slice(0, 10)),
     body: parseBody(String(formData.get("body") || "")),
+    titleAr: String(formData.get("titleAr") || "") || null,
+    excerptAr: String(formData.get("excerptAr") || "") || null,
+    bodyAr: parseBody(String(formData.get("bodyAr") || "")),
     imageUrl,
   };
 }
@@ -37,13 +40,18 @@ export async function createInsight(formData: FormData) {
     excerpt: fields.excerpt,
     published_date: fields.publishedDate,
     body: fields.body,
+    title_ar: fields.titleAr,
+    excerpt_ar: fields.excerptAr,
+    body_ar: fields.bodyAr,
     image_url: fields.imageUrl,
   });
 
   if (error) throw new Error(error.message);
 
   revalidatePath("/insights");
+  revalidatePath("/ar/insights");
   revalidatePath("/");
+  revalidatePath("/ar");
   redirect("/admin/insights");
 }
 
@@ -58,6 +66,9 @@ export async function updateInsight(id: string, formData: FormData) {
     excerpt: fields.excerpt,
     published_date: fields.publishedDate,
     body: fields.body,
+    title_ar: fields.titleAr,
+    excerpt_ar: fields.excerptAr,
+    body_ar: fields.bodyAr,
   };
   if (fields.imageUrl) update.image_url = fields.imageUrl;
 
@@ -65,7 +76,9 @@ export async function updateInsight(id: string, formData: FormData) {
   if (error) throw new Error(error.message);
 
   revalidatePath("/insights");
+  revalidatePath("/ar/insights");
   revalidatePath("/");
+  revalidatePath("/ar");
   redirect("/admin/insights");
 }
 
@@ -75,6 +88,8 @@ export async function deleteInsight(id: string) {
   if (error) throw new Error(error.message);
 
   revalidatePath("/insights");
+  revalidatePath("/ar/insights");
   revalidatePath("/");
+  revalidatePath("/ar");
   redirect("/admin/insights");
 }

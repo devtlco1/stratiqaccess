@@ -1,8 +1,10 @@
 import Image from "next/image";
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { createPublicClient } from "@/lib/supabase/public";
 import type { CaseStudyRow } from "@/lib/types";
+import type { Locale } from "@/i18n/config";
+import { pickText } from "@/lib/localizedContent";
 import { Container } from "@/components/ui/Container";
 
 export async function CaseStudies() {
@@ -13,6 +15,7 @@ export async function CaseStudies() {
     .order("sort_order", { ascending: true });
   const caseStudies = (data ?? []) as CaseStudyRow[];
   const t = await getTranslations("home.caseStudiesSection");
+  const locale = (await getLocale()) as Locale;
 
   return (
     <section id="case-studies" className="scroll-mt-24 py-24 lg:py-32 bg-navy">
@@ -54,7 +57,9 @@ export async function CaseStudies() {
               )}
               <div className="absolute inset-0 bg-gradient-to-t from-navy/90 via-navy/10 to-transparent" />
               <div className="absolute inset-0 flex items-end p-6">
-                <h3 className="font-display text-lg text-white leading-snug">{study.title}</h3>
+                <h3 className="font-display text-lg text-white leading-snug">
+                  {pickText(locale, study.title, study.title_ar)}
+                </h3>
               </div>
             </Link>
           ))}

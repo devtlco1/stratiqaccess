@@ -63,6 +63,38 @@ export function SectorForm({
         rows={4}
       />
 
+      <div className="border-t border-navy/10 pt-6 flex flex-col gap-6">
+        <p className="text-xs font-semibold uppercase tracking-wide text-ink/50">
+          Arabic translation (optional — falls back to English when left blank)
+        </p>
+
+        <Field label="Title (Arabic)" name="titleAr" defaultValue={sector?.title_ar ?? ""} dir="rtl" />
+
+        <TextArea
+          label="Short description (Arabic)"
+          name="descriptionAr"
+          defaultValue={sector?.description_ar ?? ""}
+          rows={2}
+          dir="rtl"
+        />
+
+        <TextArea
+          label="Body paragraphs (Arabic — separate paragraphs with a blank line)"
+          name="bodyAr"
+          defaultValue={sector && sector.body_ar.length ? bodyToText(sector.body_ar) : ""}
+          rows={6}
+          dir="rtl"
+        />
+
+        <TextArea
+          label="Includes bullets (Arabic) — one per line, format: Title | Description"
+          name="highlightsAr"
+          defaultValue={sector && sector.highlights_ar.length ? highlightsToText(sector.highlights_ar) : ""}
+          rows={4}
+          dir="rtl"
+        />
+      </div>
+
       <div>
         <label htmlFor="image" className="block text-sm font-medium text-ink/80 mb-1.5">
           Image {sector?.image_url && "(leave empty to keep current image)"}
@@ -96,11 +128,13 @@ function Field({
   name,
   defaultValue,
   required,
+  dir,
 }: {
   label: string;
   name: string;
   defaultValue?: string;
   required?: boolean;
+  dir?: "rtl" | "ltr";
 }) {
   return (
     <div>
@@ -112,6 +146,7 @@ function Field({
         name={name}
         defaultValue={defaultValue}
         required={required}
+        dir={dir}
         className="w-full rounded-lg border border-navy/15 px-4 py-2.5 text-sm focus:border-stratiq-blue focus:outline-none focus:ring-2 focus:ring-stratiq-blue/20"
       />
     </div>
@@ -124,12 +159,14 @@ function TextArea({
   defaultValue,
   rows = 4,
   required,
+  dir,
 }: {
   label: string;
   name: string;
   defaultValue?: string;
   rows?: number;
   required?: boolean;
+  dir?: "rtl" | "ltr";
 }) {
   return (
     <div>
@@ -142,6 +179,7 @@ function TextArea({
         defaultValue={defaultValue}
         rows={rows}
         required={required}
+        dir={dir}
         className="w-full rounded-lg border border-navy/15 px-4 py-2.5 text-sm font-mono focus:border-stratiq-blue focus:outline-none focus:ring-2 focus:ring-stratiq-blue/20"
       />
     </div>

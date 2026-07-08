@@ -1,7 +1,9 @@
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { createPublicClient } from "@/lib/supabase/public";
 import type { ServiceRow } from "@/lib/types";
+import type { Locale } from "@/i18n/config";
+import { pickText } from "@/lib/localizedContent";
 import { Container } from "@/components/ui/Container";
 import { Icon, type IconName } from "@/components/ui/Icon";
 
@@ -14,6 +16,7 @@ export async function Services() {
   const services = (data ?? []) as ServiceRow[];
   const t = await getTranslations("home.servicesSection");
   const tCommon = await getTranslations("common");
+  const locale = (await getLocale()) as Locale;
 
   return (
     <section id="services" className="scroll-mt-24 py-24 lg:py-32 bg-paper">
@@ -40,8 +43,12 @@ export async function Services() {
               <span className="inline-flex size-12 items-center justify-center rounded-lg bg-navy/5 text-navy transition-colors duration-300 group-hover:bg-stratiq-blue/10 group-hover:text-stratiq-blue">
                 <Icon name={service.icon as IconName} className="size-6" />
               </span>
-              <h3 className="mt-5 font-display text-lg text-navy leading-snug">{service.title}</h3>
-              <p className="mt-2 text-sm text-ink/65 leading-relaxed flex-1">{service.description}</p>
+              <h3 className="mt-5 font-display text-lg text-navy leading-snug">
+                {pickText(locale, service.title, service.title_ar)}
+              </h3>
+              <p className="mt-2 text-sm text-ink/65 leading-relaxed flex-1">
+                {pickText(locale, service.description, service.description_ar)}
+              </p>
               <span className="mt-5 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-stratiq-blue">
                 {tCommon("learnMore")}
                 <Icon

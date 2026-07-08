@@ -10,6 +10,7 @@ import { Icon } from "@/components/ui/Icon";
 import { ContactSection } from "@/components/sections/ContactSection";
 import { buildAlternates } from "@/i18n/alternates";
 import type { Locale } from "@/i18n/config";
+import { pickText, pickList } from "@/lib/localizedContent";
 
 type Props = { params: Promise<{ locale: string; slug: string }> };
 
@@ -18,12 +19,17 @@ export const dynamic = "force-dynamic";
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, slug } = await params;
   const supabase = await createClient();
-  const { data } = await supabase.from("insights").select("title, excerpt").eq("slug", slug).single();
+  const { data } = await supabase
+    .from("insights")
+    .select("title, excerpt, title_ar, excerpt_ar")
+    .eq("slug", slug)
+    .single();
   if (!data) return {};
+  const loc = locale as Locale;
   return {
-    title: data.title,
-    description: data.excerpt,
-    alternates: buildAlternates(`/insights/${slug}`, locale as Locale),
+    title: pickText(loc, data.title, data.title_ar),
+    description: pickText(loc, data.excerpt, data.excerpt_ar),
+    alternates: buildAlternates(`/insights/${slug}`, loc),
   };
 }
 
@@ -34,6 +40,8 @@ export default async function InsightDetailPage({ params }: Props) {
   const insight = data as InsightRow | null;
   if (!insight) notFound();
   const t = await getTranslations("insights");
+  const loc = locale as Locale;
+  const body = pickList(loc, insight.body, insight.body_ar);
   const publishedDate = new Intl.DateTimeFormat(locale === "ar" ? "ar" : "en-US", {
     year: "numeric",
     month: "long",
@@ -62,11 +70,11 @@ export default async function InsightDetailPage({ params }: Props) {
             {publishedDate}
           </p>
           <h1 className="mt-3 font-display text-3xl sm:text-4xl text-navy leading-snug">
-            {insight.title}
+            {pickText(loc, insight.title, insight.title_ar)}
           </h1>
 
           <div className="mt-6 flex flex-col gap-4">
-            {insight.body.map((paragraph, i) => (
+            {body.map((paragraph, i) => (
               <p key={i} className="text-base sm:text-lg text-ink/75 leading-relaxed">
                 {paragraph}
               </p>

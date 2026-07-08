@@ -10,6 +10,7 @@ import { Icon, type IconName } from "@/components/ui/Icon";
 import { ContactSection } from "@/components/sections/ContactSection";
 import { buildAlternates } from "@/i18n/alternates";
 import type { Locale } from "@/i18n/config";
+import { pickText, pickList } from "@/lib/localizedContent";
 
 type Props = { params: Promise<{ locale: string; slug: string }> };
 
@@ -18,22 +19,30 @@ export const dynamic = "force-dynamic";
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, slug } = await params;
   const supabase = await createClient();
-  const { data } = await supabase.from("services").select("title, description").eq("slug", slug).single();
+  const { data } = await supabase
+    .from("services")
+    .select("title, description, title_ar, description_ar")
+    .eq("slug", slug)
+    .single();
   if (!data) return {};
+  const loc = locale as Locale;
   return {
-    title: data.title,
-    description: data.description,
-    alternates: buildAlternates(`/services/${slug}`, locale as Locale),
+    title: pickText(loc, data.title, data.title_ar),
+    description: pickText(loc, data.description, data.description_ar),
+    alternates: buildAlternates(`/services/${slug}`, loc),
   };
 }
 
 export default async function ServiceDetailPage({ params }: Props) {
-  const { slug } = await params;
+  const { locale, slug } = await params;
   const supabase = await createClient();
   const { data } = await supabase.from("services").select("*").eq("slug", slug).single();
   const service = data as ServiceRow | null;
   if (!service) notFound();
   const t = await getTranslations("services");
+  const loc = locale as Locale;
+  const body = pickList(loc, service.body, service.body_ar);
+  const highlights = pickList(loc, service.highlights, service.highlights_ar);
 
   return (
     <>
@@ -69,11 +78,11 @@ export default async function ServiceDetailPage({ params }: Props) {
                 <Icon name={service.icon as IconName} className="size-7" />
               </span>
               <h1 className="mt-6 font-display text-4xl sm:text-5xl text-navy leading-tight">
-                {service.title}
+                {pickText(loc, service.title, service.title_ar)}
               </h1>
 
               <div className="mt-6 flex flex-col gap-4">
-                {service.body.map((paragraph, i) => (
+                {body.map((paragraph, i) => (
                   <p key={i} className="text-base sm:text-lg text-ink/75 leading-relaxed">
                     {paragraph}
                   </p>
@@ -82,7 +91,7 @@ export default async function ServiceDetailPage({ params }: Props) {
 
               <h2 className="mt-10 font-display text-xl text-navy">{t("includesHeading")}</h2>
               <ul className="mt-5 flex flex-col gap-4">
-                {service.highlights.map((highlight) => (
+                {highlights.map((highlight) => (
                   <li key={highlight.title} className="flex gap-3">
                     <Icon name="arrow-right" className="mt-1.5 size-3.5 shrink-0 rotate-45 rtl:-scale-x-100 text-stratiq-blue" />
                     <p className="text-base text-ink/80 leading-relaxed">
