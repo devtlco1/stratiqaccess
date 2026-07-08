@@ -1,5 +1,6 @@
 import Image from "next/image";
-import Link from "next/link";
+import { getTranslations } from "next-intl/server";
+import { Link } from "@/i18n/navigation";
 import { createPublicClient } from "@/lib/supabase/public";
 import type { InsightRow } from "@/lib/types";
 import { Container } from "@/components/ui/Container";
@@ -12,12 +13,14 @@ export async function Insights() {
     .select("*")
     .order("published_date", { ascending: false });
   const insights = (data ?? []) as InsightRow[];
+  const t = await getTranslations("home.insightsSection");
+  const tCommon = await getTranslations("common");
 
   return (
     <section id="insights" className="scroll-mt-24 py-24 lg:py-32 bg-white">
       <Container>
         <h2 className="font-display text-3xl sm:text-4xl lg:text-[2.75rem] text-navy leading-tight">
-          Our Views on the Iraq Market
+          {t("title")}
         </h2>
 
         <div className="mt-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -43,11 +46,11 @@ export async function Insights() {
               </h3>
               <span className="mt-4 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-stratiq-blue">
                 <span className="border-b border-stratiq-blue/60 pb-0.5 group-hover:border-stratiq-blue">
-                  Read More
+                  {tCommon("readMore")}
                 </span>
                 <Icon
                   name="arrow-right"
-                  className="size-3.5 rotate-45 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                  className="size-3.5 rotate-45 rtl:-scale-x-100 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                 />
               </span>
             </Link>

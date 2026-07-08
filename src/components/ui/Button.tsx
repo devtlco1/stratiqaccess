@@ -1,5 +1,5 @@
-import Link from "next/link";
 import type { ReactNode } from "react";
+import { Link } from "@/i18n/navigation";
 import { Icon } from "./Icon";
 
 type ButtonProps = {
@@ -30,7 +30,7 @@ export function Button({
     return (
       <a href={href} className={classes}>
         {children}
-        {showArrow && <Icon name="arrow-right" className="size-4" />}
+        {showArrow && <Icon name="arrow-right" className="size-4 rtl:-scale-x-100" />}
       </a>
     );
   }

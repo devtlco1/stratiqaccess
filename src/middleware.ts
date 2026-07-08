@@ -1,7 +1,11 @@
 import { createServerClient } from "@supabase/ssr";
+import createIntlMiddleware from "next-intl/middleware";
 import { NextResponse, type NextRequest } from "next/server";
+import { routing } from "@/i18n/routing";
 
-export async function middleware(request: NextRequest) {
+const intlMiddleware = createIntlMiddleware(routing);
+
+async function adminMiddleware(request: NextRequest) {
   let response = NextResponse.next({ request });
 
   const supabase = createServerClient(
@@ -27,10 +31,9 @@ export async function middleware(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser();
 
-  const isAdminRoute = request.nextUrl.pathname.startsWith("/admin");
   const isLoginRoute = request.nextUrl.pathname === "/admin/login";
 
-  if (isAdminRoute && !isLoginRoute && !user) {
+  if (!isLoginRoute && !user) {
     const url = request.nextUrl.clone();
     url.pathname = "/admin/login";
     return NextResponse.redirect(url);
@@ -45,6 +48,16 @@ export async function middleware(request: NextRequest) {
   return response;
 }
 
+// /admin stays outside the public language system entirely — it keeps its
+// own auth-only middleware, untouched by locale routing. Everything else
+// goes through next-intl for locale resolution/redirects.
+export function middleware(request: NextRequest) {
+  if (request.nextUrl.pathname.startsWith("/admin")) {
+    return adminMiddleware(request);
+  }
+  return intlMiddleware(request);
+}
+
 export const config = {
-  matcher: ["/admin/:path*"],
+  matcher: ["/((?!_next|.*\\..*).*)"],
 };

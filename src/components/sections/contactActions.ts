@@ -4,7 +4,7 @@ import { createClient } from "@/lib/supabase/server";
 
 export type ContactFormState = {
   status: "idle" | "success" | "error";
-  message?: string;
+  errorCode?: "missingFields" | "server";
 };
 
 export async function submitContactForm(
@@ -25,7 +25,7 @@ export async function submitContactForm(
   };
 
   if (!fields.first_name || !fields.last_name || !fields.company_name || !fields.country || !fields.email || !fields.message) {
-    return { status: "error", message: "Please fill in all required fields." };
+    return { status: "error", errorCode: "missingFields" };
   }
 
   // Stores the raw storage path, not a signed URL — the anon visitor submitting
@@ -58,7 +58,7 @@ export async function submitContactForm(
   });
 
   if (error) {
-    return { status: "error", message: "Something went wrong submitting your message. Please try again." };
+    return { status: "error", errorCode: "server" };
   }
 
   await sendNotificationEmail(fields, attachment);

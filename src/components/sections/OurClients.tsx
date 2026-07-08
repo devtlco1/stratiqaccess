@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { getTranslations } from "next-intl/server";
 import { createPublicClient } from "@/lib/supabase/public";
 import type { ClientRow } from "@/lib/types";
 import { Container } from "@/components/ui/Container";
@@ -11,6 +12,7 @@ export async function OurClients({ showWhenEmpty = false }: { showWhenEmpty?: bo
     .eq("is_published", true)
     .order("display_order", { ascending: true });
   const clients = (data ?? []) as ClientRow[];
+  const t = await getTranslations("home.clientsSection");
 
   if (clients.length === 0 && !showWhenEmpty) return null;
 
@@ -19,20 +21,16 @@ export async function OurClients({ showWhenEmpty = false }: { showWhenEmpty?: bo
       <Container>
         <div className="text-center max-w-2xl mx-auto">
           <span className="text-xs font-semibold tracking-[0.2em] uppercase text-stratiq-blue">
-            Our Clients
+            {t("eyebrow")}
           </span>
           <h2 className="mt-4 font-display text-3xl sm:text-4xl lg:text-[2.75rem] text-navy leading-tight">
-            Our Clients
+            {t("title")}
           </h2>
-          <p className="mt-5 text-base sm:text-lg text-ink/70 leading-relaxed">
-            Trusted by companies and organizations operating, visiting, and expanding across Iraq.
-          </p>
+          <p className="mt-5 text-base sm:text-lg text-ink/70 leading-relaxed">{t("subtitle")}</p>
         </div>
 
         {clients.length === 0 ? (
-          <p className="mt-16 text-center text-sm text-ink/60">
-            We&rsquo;re onboarding our first clients — check back soon.
-          </p>
+          <p className="mt-16 text-center text-sm text-ink/60">{t("empty")}</p>
         ) : (
           <div className="mt-16 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
             {clients.map((client) => (

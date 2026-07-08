@@ -1,32 +1,34 @@
 export type NavLink = {
-  label: string;
+  key: string;
   href: string;
 };
 
 export type NavItem = {
-  label: string;
+  key: string;
   href: string;
   dropdown?: NavLink[];
 };
 
-// EDIT ME: header nav labels/order. Dropdown items link to their own
+// Structure only (hrefs + dropdown nesting) — labels live in
+// src/messages/{locale}/navigation.ts, keyed by `key` below, so the tree
+// itself isn't duplicated per locale. Dropdown items link to their own
 // dedicated /services/[slug] page.
 export const mainNav: NavItem[] = [
-  { label: "Home", href: "/" },
+  { key: "home", href: "/" },
   {
-    label: "Services",
+    key: "services",
     href: "/services",
     dropdown: [
-      { label: "Ground Operations", href: "/services/field-operations-support" },
-      { label: "Logistics & Transport", href: "/services/internal-transportation" },
-      { label: "Security Coordination", href: "/services/private-security-coordination" },
-      { label: "Legal & Administrative", href: "/services/legal-advisory" },
-      { label: "Staffing", href: "/services/freelance-local-staffing" },
-      { label: "Events", href: "/services/event-management" },
-      { label: "Procurement", href: "/services/food-supply-procurement" },
+      { key: "groundOperations", href: "/services/field-operations-support" },
+      { key: "logisticsTransport", href: "/services/internal-transportation" },
+      { key: "securityCoordination", href: "/services/private-security-coordination" },
+      { key: "legalAdministrative", href: "/services/legal-advisory" },
+      { key: "staffing", href: "/services/freelance-local-staffing" },
+      { key: "events", href: "/services/event-management" },
+      { key: "procurement", href: "/services/food-supply-procurement" },
     ],
   },
-  { label: "Clients", href: "/clients" },
-  { label: "About", href: "/about" },
-  { label: "Contact", href: "/contact" },
+  { key: "clients", href: "/clients" },
+  { key: "about", href: "/about" },
+  { key: "contact", href: "/contact" },
 ];

@@ -1,3 +1,4 @@
+import { getTranslations } from "next-intl/server";
 import { siteConfig } from "@/data/siteConfig";
 import { createPublicClient } from "@/lib/supabase/public";
 import type { SiteSettingsRow } from "@/lib/types";
@@ -9,23 +10,21 @@ export async function ContactSection() {
   const supabase = createPublicClient();
   const { data } = await supabase.from("site_settings").select("*").eq("id", 1).single();
   const settings = data as SiteSettingsRow | null;
+  const t = await getTranslations("contact.section");
 
   const email = settings?.email || siteConfig.email;
-  const location = settings?.location || siteConfig.location;
+  const location = settings?.location || t("location");
 
   return (
     <section id="contact" className="scroll-mt-24 py-24 lg:py-32 bg-white">
       <Container>
         <span className="text-xs font-semibold tracking-[0.2em] uppercase text-stratiq-blue">
-          Get In Touch
+          {t("eyebrow")}
         </span>
         <h2 className="mt-4 max-w-3xl font-display text-3xl sm:text-4xl lg:text-[2.75rem] text-navy leading-tight">
-          Planning operations in Iraq?
+          {t("title")}
         </h2>
-        <p className="mt-4 max-w-2xl text-base sm:text-lg text-ink/70 leading-relaxed">
-          Tell us what you need on the ground — from accommodation and transport to staffing,
-          permits, legal coordination, and full field execution.
-        </p>
+        <p className="mt-4 max-w-2xl text-base sm:text-lg text-ink/70 leading-relaxed">{t("lead")}</p>
 
         <div className="mt-8 flex flex-wrap gap-x-10 gap-y-4">
           <ContactDetail icon="mail" value={email} href={`mailto:${email}`} />

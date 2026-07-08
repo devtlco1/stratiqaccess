@@ -1,5 +1,6 @@
 import Image from "next/image";
-import Link from "next/link";
+import { getTranslations } from "next-intl/server";
+import { Link } from "@/i18n/navigation";
 import { createPublicClient } from "@/lib/supabase/public";
 import type { CaseStudyRow } from "@/lib/types";
 import { Container } from "@/components/ui/Container";
@@ -11,6 +12,7 @@ export async function CaseStudies() {
     .select("*")
     .order("sort_order", { ascending: true });
   const caseStudies = (data ?? []) as CaseStudyRow[];
+  const t = await getTranslations("home.caseStudiesSection");
 
   return (
     <section id="case-studies" className="scroll-mt-24 py-24 lg:py-32 bg-navy">
@@ -18,19 +20,18 @@ export async function CaseStudies() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-end">
           <div>
             <span className="text-xs font-semibold tracking-[0.2em] uppercase text-stratiq-blue">
-              Case Studies
+              {t("eyebrow")}
             </span>
             <p className="mt-5 font-display text-2xl sm:text-3xl text-white leading-snug max-w-lg">
-              We help companies identify opportunities, structure partnerships, and approach the
-              Iraqi market with confidence.
+              {t("lead")}
             </p>
           </div>
-          <div className="text-left lg:text-right">
+          <div className="text-start lg:text-end">
             <span className="text-xs font-semibold tracking-[0.2em] uppercase text-stratiq-blue">
-              Trusted
+              {t("trustedEyebrow")}
             </span>
             <h2 className="mt-2 font-display text-4xl sm:text-5xl text-white leading-tight">
-              Delivered With Discipline
+              {t("title")}
             </h2>
           </div>
         </div>

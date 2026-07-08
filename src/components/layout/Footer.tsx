@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { getTranslations } from "next-intl/server";
 import { siteConfig } from "@/data/siteConfig";
 import { createPublicClient } from "@/lib/supabase/public";
 import type { SiteSettingsRow } from "@/lib/types";
@@ -9,6 +10,7 @@ export async function Footer() {
   const { data } = await supabase.from("site_settings").select("*").eq("id", 1).single();
   const settings = data as SiteSettingsRow | null;
   const email = settings?.email || siteConfig.email;
+  const t = await getTranslations("footer");
 
   return (
     <footer className="bg-navy text-white/70">
@@ -22,8 +24,8 @@ export async function Footer() {
         />
 
         <div>
-          <h3 className="font-display text-lg text-white">Email</h3>
-          <p className="mt-2 text-sm">Interested in working with us?</p>
+          <h3 className="font-display text-lg text-white">{t("emailHeading")}</h3>
+          <p className="mt-2 text-sm">{t("emailPrompt")}</p>
           <a
             href={`mailto:${email}`}
             className="group mt-1 inline-block text-sm text-stratiq-blue hover:text-white transition-colors"
@@ -37,7 +39,9 @@ export async function Footer() {
 
       <div className="border-t border-white/10">
         <Container className="py-6 text-xs text-white/50">
-          <p>© {new Date().getFullYear()} {siteConfig.name}. All Rights Reserved.</p>
+          <p>
+            © {new Date().getFullYear()} {siteConfig.name}. {t("rightsReserved")}
+          </p>
         </Container>
       </div>
     </footer>

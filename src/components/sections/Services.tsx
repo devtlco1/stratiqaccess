@@ -1,4 +1,5 @@
-import Link from "next/link";
+import { getTranslations } from "next-intl/server";
+import { Link } from "@/i18n/navigation";
 import { createPublicClient } from "@/lib/supabase/public";
 import type { ServiceRow } from "@/lib/types";
 import { Container } from "@/components/ui/Container";
@@ -11,6 +12,8 @@ export async function Services() {
     .select("*")
     .order("sort_order", { ascending: true });
   const services = (data ?? []) as ServiceRow[];
+  const t = await getTranslations("home.servicesSection");
+  const tCommon = await getTranslations("common");
 
   return (
     <section id="services" className="scroll-mt-24 py-24 lg:py-32 bg-paper">
@@ -18,17 +21,13 @@ export async function Services() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-end">
           <div>
             <span className="text-xs font-semibold tracking-[0.2em] uppercase text-stratiq-blue">
-              What We Do
+              {t("eyebrow")}
             </span>
             <h2 className="mt-4 font-display text-3xl sm:text-4xl lg:text-[2.75rem] text-navy leading-tight">
-              Ground Support Services
+              {t("title")}
             </h2>
           </div>
-          <p className="text-base sm:text-lg text-ink/70 leading-relaxed">
-            Practical, on-the-ground execution for companies operating in Iraq — from logistics and
-            staffing to legal coordination and permits, delivered through our local team and trusted
-            partner network, subject to applicable Iraqi laws and authority requirements.
-          </p>
+          <p className="text-base sm:text-lg text-ink/70 leading-relaxed">{t("intro")}</p>
         </div>
 
         <div className="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -44,10 +43,10 @@ export async function Services() {
               <h3 className="mt-5 font-display text-lg text-navy leading-snug">{service.title}</h3>
               <p className="mt-2 text-sm text-ink/65 leading-relaxed flex-1">{service.description}</p>
               <span className="mt-5 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-stratiq-blue">
-                Learn More
+                {tCommon("learnMore")}
                 <Icon
                   name="arrow-right"
-                  className="size-3.5 rotate-45 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                  className="size-3.5 rotate-45 rtl:-scale-x-100 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                 />
               </span>
             </Link>

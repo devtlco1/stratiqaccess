@@ -1,53 +1,51 @@
 "use client";
 
 import { useActionState } from "react";
+import { useTranslations } from "next-intl";
 import { submitContactForm, type ContactFormState } from "./contactActions";
 
 const initialState: ContactFormState = { status: "idle" };
 
 export function ContactForm() {
+  const t = useTranslations("contact.form");
   const [state, formAction, pending] = useActionState(submitContactForm, initialState);
 
   if (state.status === "success") {
     return (
       <div className="rounded-2xl bg-paper border border-navy/10 p-10 text-center">
-        <h3 className="font-display text-2xl text-navy">Thank you</h3>
-        <p className="mt-3 text-ink/70">
-          Your message has been received. A member of our team will be in touch shortly.
-        </p>
+        <h3 className="font-display text-2xl text-navy">{t("successTitle")}</h3>
+        <p className="mt-3 text-ink/70">{t("successMessage")}</p>
       </div>
     );
   }
 
   return (
     <form action={formAction} className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-      <Field label="First Name" name="firstName" required />
-      <Field label="Last Name" name="lastName" required />
-      <Field label="Job Title" name="jobTitle" />
-      <Field label="Company Name" name="companyName" required />
-      <Field label="Country" name="country" required />
-      <Field label="Phone" name="phone" type="tel" />
-      <Field label="Corporate Email" name="email" type="email" required className="sm:col-span-2" />
+      <Field label={t("firstName")} name="firstName" required />
+      <Field label={t("lastName")} name="lastName" required />
+      <Field label={t("jobTitle")} name="jobTitle" />
+      <Field label={t("companyName")} name="companyName" required />
+      <Field label={t("country")} name="country" required />
+      <Field label={t("phone")} name="phone" type="tel" />
+      <Field label={t("email")} name="email" type="email" required className="sm:col-span-2" />
 
       <div className="sm:col-span-2">
         <label htmlFor="rfpFiles" className="block text-sm font-medium text-ink/80 mb-2">
-          Attachments (Optional)
+          {t("attachments")}
         </label>
         <input
           id="rfpFiles"
           name="rfpFiles"
           type="file"
           accept=".pdf,.doc,.docx,.txt,.rtf,.jpg,.jpeg,.png,.webp,.xls,.xlsx,.ppt,.pptx"
-          className="w-full rounded-lg border border-navy/15 bg-white px-4 py-3 text-sm text-ink/70 file:mr-4 file:rounded-full file:border-0 file:bg-navy/5 file:px-4 file:py-2 file:text-sm file:font-medium file:text-navy"
+          className="w-full rounded-lg border border-navy/15 bg-white px-4 py-3 text-sm text-ink/70 file:me-4 file:rounded-full file:border-0 file:bg-navy/5 file:px-4 file:py-2 file:text-sm file:font-medium file:text-navy"
         />
-        <p className="mt-1.5 text-xs text-ink/50">
-          Scope documents, itineraries, or requirements — PDF, Word, Excel, PowerPoint, text, or image files.
-        </p>
+        <p className="mt-1.5 text-xs text-ink/50">{t("attachmentsHelp")}</p>
       </div>
 
       <div className="sm:col-span-2">
         <label htmlFor="message" className="block text-sm font-medium text-ink/80 mb-2">
-          Message
+          {t("message")}
         </label>
         <textarea
           id="message"
@@ -59,7 +57,9 @@ export function ContactForm() {
       </div>
 
       {state.status === "error" && (
-        <p className="sm:col-span-2 text-sm text-red-600">{state.message}</p>
+        <p className="sm:col-span-2 text-sm text-red-600">
+          {state.errorCode === "missingFields" ? t("errorMissingFields") : t("errorServer")}
+        </p>
       )}
 
       <div className="sm:col-span-2">
@@ -68,7 +68,7 @@ export function ContactForm() {
           disabled={pending}
           className="inline-flex items-center rounded-md bg-stratiq-blue px-10 py-3.5 text-sm font-semibold uppercase tracking-wide text-white transition-all duration-300 hover:bg-navy hover:scale-[1.03] active:scale-[0.98] disabled:opacity-60 disabled:hover:scale-100"
         >
-          {pending ? "Sending..." : "Send"}
+          {pending ? t("sending") : t("send")}
         </button>
       </div>
     </form>
