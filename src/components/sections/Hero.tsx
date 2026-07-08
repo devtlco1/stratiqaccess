@@ -9,7 +9,7 @@ export async function Hero() {
   const t = await getTranslations("home.hero");
 
   return (
-    <section className="relative flex min-h-[85vh] items-center overflow-hidden bg-navy pt-20 lg:pt-24">
+    <section className="relative flex min-h-screen items-center overflow-hidden bg-navy pt-20 lg:pt-24">
       {/* Managed from Admin → Site Images → "Homepage — Hero Background" */}
       <Image
         src={heroImage}
