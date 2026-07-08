@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { AdminShell } from "@/components/admin/AdminShell";
+import { Icon } from "@/components/ui/Icon";
 import { createClient } from "@/lib/supabase/server";
 import type { SiteImageRow } from "@/lib/types";
 import { updateSiteImage } from "./actions";
@@ -24,9 +25,11 @@ export default async function AdminSiteImagesPage() {
 
           return (
             <div key={image.key} className="rounded-xl bg-white p-5 shadow-sm">
-              <div className="relative aspect-video overflow-hidden rounded-lg bg-navy/5">
-                {image.image_url && (
+              <div className="relative flex aspect-video items-center justify-center overflow-hidden rounded-lg bg-navy/5">
+                {image.image_url ? (
                   <Image src={image.image_url} alt={image.label} fill className="object-cover" />
+                ) : (
+                  <Icon name="image" className="size-8 text-navy/25" />
                 )}
               </div>
               <p className="mt-3 text-sm font-medium text-navy">{image.label}</p>

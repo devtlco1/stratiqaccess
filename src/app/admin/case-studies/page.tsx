@@ -1,6 +1,6 @@
 import Link from "next/link";
-import Image from "next/image";
 import { AdminShell } from "@/components/admin/AdminShell";
+import { AdminThumbnail } from "@/components/admin/AdminThumbnail";
 import { createClient } from "@/lib/supabase/server";
 import type { CaseStudyRow } from "@/lib/types";
 
@@ -34,11 +34,7 @@ export default async function AdminCaseStudiesPage() {
             href={`/admin/case-studies/${study.id}`}
             className="flex items-center gap-4 rounded-xl bg-white p-4 shadow-sm hover:shadow-md transition-shadow"
           >
-            <div className="relative size-14 shrink-0 overflow-hidden rounded-lg bg-navy/5">
-              {study.image_url && (
-                <Image src={study.image_url} alt={study.title} fill className="object-cover" />
-              )}
-            </div>
+            <AdminThumbnail src={study.image_url} alt={study.title} />
             <div className="flex-1">
               <p className="font-medium text-navy">{study.title}</p>
               <p className="text-sm text-ink/60">{study.sector} · /{study.slug}</p>

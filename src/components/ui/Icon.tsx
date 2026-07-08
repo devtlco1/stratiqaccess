@@ -29,7 +29,8 @@ export type IconName =
   | "scale"
   | "calendar"
   | "key"
-  | "languages";
+  | "languages"
+  | "image";
 
 const paths: Record<IconName, React.ReactNode> = {
   compass: (
@@ -198,6 +199,13 @@ const paths: Record<IconName, React.ReactNode> = {
       <path d="M3 6h9M7.5 4v2.2c0 3.6-2 6.5-4.5 6.5" />
       <path d="M4 9.5c1 2.3 3.4 3.8 6 4" />
       <path d="m13 21 4-9 4 9M14.5 18h5" />
+    </>
+  ),
+  image: (
+    <>
+      <rect x="3.5" y="4.5" width="17" height="15" rx="1.5" />
+      <circle cx="8.5" cy="9.5" r="1.5" />
+      <path d="m4 17 5-5 3.5 3.5L17 10l3 3" />
     </>
   ),
 };

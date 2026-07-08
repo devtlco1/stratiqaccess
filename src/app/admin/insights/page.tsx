@@ -1,6 +1,6 @@
 import Link from "next/link";
-import Image from "next/image";
 import { AdminShell } from "@/components/admin/AdminShell";
+import { AdminThumbnail } from "@/components/admin/AdminThumbnail";
 import { createClient } from "@/lib/supabase/server";
 import type { InsightRow } from "@/lib/types";
 
@@ -34,11 +34,7 @@ export default async function AdminInsightsPage() {
             href={`/admin/insights/${insight.id}`}
             className="flex items-center gap-4 rounded-xl bg-white p-4 shadow-sm hover:shadow-md transition-shadow"
           >
-            <div className="relative size-14 shrink-0 overflow-hidden rounded-lg bg-navy/5">
-              {insight.image_url && (
-                <Image src={insight.image_url} alt={insight.title} fill className="object-cover" />
-              )}
-            </div>
+            <AdminThumbnail src={insight.image_url} alt={insight.title} />
             <div className="flex-1">
               <p className="font-medium text-navy">{insight.title}</p>
               <p className="text-sm text-ink/60">{insight.published_date} · /{insight.slug}</p>

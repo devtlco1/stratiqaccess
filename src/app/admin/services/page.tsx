@@ -1,6 +1,6 @@
 import Link from "next/link";
-import Image from "next/image";
 import { AdminShell } from "@/components/admin/AdminShell";
+import { AdminThumbnail } from "@/components/admin/AdminThumbnail";
 import { createClient } from "@/lib/supabase/server";
 import type { ServiceRow } from "@/lib/types";
 
@@ -34,11 +34,7 @@ export default async function AdminServicesPage() {
             href={`/admin/services/${service.id}`}
             className="flex items-center gap-4 rounded-xl bg-white p-4 shadow-sm hover:shadow-md transition-shadow"
           >
-            <div className="relative size-14 shrink-0 overflow-hidden rounded-lg bg-navy/5">
-              {service.image_url && (
-                <Image src={service.image_url} alt={service.title} fill className="object-cover" />
-              )}
-            </div>
+            <AdminThumbnail src={service.image_url} alt={service.title} />
             <div className="flex-1">
               <p className="font-medium text-navy">{service.title}</p>
               <p className="text-sm text-ink/60">/{service.slug}</p>

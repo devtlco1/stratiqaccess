@@ -1,6 +1,6 @@
 import Link from "next/link";
-import Image from "next/image";
 import { AdminShell } from "@/components/admin/AdminShell";
+import { AdminThumbnail } from "@/components/admin/AdminThumbnail";
 import { createClient } from "@/lib/supabase/server";
 import type { ClientRow } from "@/lib/types";
 
@@ -34,11 +34,7 @@ export default async function AdminClientsPage() {
             href={`/admin/clients/${client.id}`}
             className="flex items-center gap-4 rounded-xl bg-white p-4 shadow-sm hover:shadow-md transition-shadow"
           >
-            <div className="relative flex size-14 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-navy/5">
-              {client.logo_url && (
-                <Image src={client.logo_url} alt={client.name} fill className="object-contain p-1.5" />
-              )}
-            </div>
+            <AdminThumbnail src={client.logo_url} alt={client.name} fit="contain" />
             <div className="flex-1">
               <p className="font-medium text-navy">{client.name}</p>
               <p className="text-sm text-ink/60">
