@@ -46,6 +46,9 @@ export async function Footer() {
           <p>
             © {new Date().getFullYear()} {siteConfig.name}. {t("rightsReserved")}
           </p>
+          <p dir={locale === "ar" ? "rtl" : "ltr"} className="mt-2 max-w-2xl text-[11px] leading-relaxed text-white/40">
+            {t("legalNotice")}
+          </p>
         </Container>
       </div>
     </footer>

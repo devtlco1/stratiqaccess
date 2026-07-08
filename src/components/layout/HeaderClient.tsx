@@ -8,7 +8,7 @@ import { mainNav } from "@/data/navigation";
 import { siteConfig } from "@/data/siteConfig";
 import { Icon } from "@/components/ui/Icon";
 import { Container } from "@/components/ui/Container";
-import { LanguageSwitcher } from "./LanguageSwitcher";
+import { LanguageNavItem, MobileLanguageNavItem } from "./LanguageSwitcher";
 
 export function HeaderClient({ logoLeft, logoRight }: { logoLeft: string; logoRight: string }) {
   const t = useTranslations("navigation");
@@ -70,10 +70,14 @@ export function HeaderClient({ logoLeft, logoRight }: { logoLeft: string; logoRi
               )}
             </div>
           ))}
+          <LanguageNavItem
+            isOpen={openDropdown === "language"}
+            onOpen={() => setOpenDropdown("language")}
+            onClose={() => setOpenDropdown(null)}
+          />
         </nav>
 
-        <div className="hidden lg:flex items-center gap-6 shrink-0">
-          <LanguageSwitcher />
+        <div className="hidden lg:flex items-center shrink-0">
           <Link
             href="/"
             className="flex items-center transition-transform duration-300 hover:scale-[1.03]"
@@ -107,9 +111,7 @@ export function HeaderClient({ logoLeft, logoRight }: { logoLeft: string; logoRi
                 onNavigate={closeMobile}
               />
             ))}
-            <div className="pt-4 mt-2 border-t border-navy/5">
-              <LanguageSwitcher onNavigate={closeMobile} />
-            </div>
+            <MobileLanguageNavItem onNavigate={closeMobile} />
           </Container>
         </div>
       )}

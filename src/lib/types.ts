@@ -89,6 +89,22 @@ export type ClientRow = {
   updated_at: string;
 };
 
+export type CustomerStatus = "New" | "Contacted" | "Qualified" | "In Progress" | "Won" | "Lost";
+
+export type CustomerRow = {
+  id: string;
+  name: string;
+  company: string | null;
+  email: string | null;
+  phone: string | null;
+  source: string | null;
+  status: CustomerStatus;
+  notes: string | null;
+  source_message_id: string | null;
+  created_at: string;
+  updated_at: string;
+};
+
 export type SiteImageRow = {
   key: string;
   label: string;
