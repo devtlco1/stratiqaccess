@@ -2,8 +2,10 @@
 
 import { useLocale, useTranslations } from "next-intl";
 import { usePathname, useRouter } from "@/i18n/navigation";
-import { locales, type Locale } from "@/i18n/config";
+import { locales, localeNames, type Locale } from "@/i18n/config";
 
+// A dropdown rather than an inline toggle — scales cleanly as more locales
+// are added to src/i18n/config.ts without redesigning the header.
 // Preserves the current page across locales — /services <-> /ar/services —
 // via next-intl's locale-aware router/pathname (see src/i18n/navigation.ts).
 export function LanguageSwitcher({ onNavigate }: { onNavigate?: () => void }) {
@@ -13,25 +15,20 @@ export function LanguageSwitcher({ onNavigate }: { onNavigate?: () => void }) {
   const t = useTranslations("common");
 
   return (
-    <div className="flex items-center gap-1 text-sm font-semibold tracking-wide" aria-label={t("language")}>
-      {locales.map((code, i) => (
-        <span key={code} className="flex items-center gap-1">
-          {i > 0 && <span className="text-ink/25">/</span>}
-          <button
-            type="button"
-            onClick={() => {
-              router.replace(pathname, { locale: code });
-              onNavigate?.();
-            }}
-            aria-current={locale === code}
-            className={`px-1.5 py-1 uppercase transition-colors duration-200 ${
-              locale === code ? "text-stratiq-blue" : "text-ink/50 hover:text-navy"
-            }`}
-          >
-            {code}
-          </button>
-        </span>
+    <select
+      aria-label={t("language")}
+      value={locale}
+      onChange={(event) => {
+        router.replace(pathname, { locale: event.target.value as Locale });
+        onNavigate?.();
+      }}
+      className="cursor-pointer rounded-md border border-navy/15 bg-white px-2.5 py-1.5 text-sm font-semibold text-ink/70 transition-colors hover:text-navy hover:border-navy/25 focus:outline-none focus:ring-2 focus:ring-stratiq-blue/20"
+    >
+      {locales.map((code) => (
+        <option key={code} value={code}>
+          {localeNames[code]}
+        </option>
       ))}
-    </div>
+    </select>
   );
 }

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display, IBM_Plex_Sans_Arabic } from "next/font/google";
+import { Inter, Playfair_Display, Almarai } from "next/font/google";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
@@ -20,9 +20,9 @@ const playfair = Playfair_Display({
   display: "swap",
 });
 
-const arabic = IBM_Plex_Sans_Arabic({
+const arabic = Almarai({
   subsets: ["arabic"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "700", "800"],
   variable: "--font-arabic",
   display: "swap",
 });

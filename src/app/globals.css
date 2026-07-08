@@ -15,11 +15,19 @@
 /* Arabic pages reuse the same font-sans/font-display theme tokens every
    component already styles with — flipping these two custom properties is
    enough to swap the whole site's typography, no component changes needed.
-   One premium Arabic family (IBM Plex Sans Arabic) covers both body and
-   headings; hierarchy comes from weight, not a second family. */
+   Almarai (an official, formal Arabic Google Font) covers both body and
+   headings; hierarchy comes from weight, not a second family — Regular
+   for body copy, Bold for headings (below). */
 html[dir="rtl"] {
   --font-sans: var(--font-arabic), "Segoe UI", Tahoma, sans-serif;
   --font-display: var(--font-arabic), "Segoe UI", Tahoma, sans-serif;
+}
+
+/* Headings across the site use the font-display token without an explicit
+   weight utility (Playfair Display reads as "display" at its own default
+   weight) — Almarai needs an explicit bold to read the same way. */
+html[dir="rtl"] .font-display {
+  font-weight: 700;
 }
 
 html {
