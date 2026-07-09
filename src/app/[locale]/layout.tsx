@@ -49,6 +49,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       template: t("titleTemplate"),
     },
     description: t("defaultDescription"),
+    icons: {
+      icon: [
+        { url: "/favicon-stratiq-v2.ico", sizes: "any" },
+        { url: "/icon-stratiq-v2.png", type: "image/png", sizes: "512x512" },
+      ],
+      apple: [{ url: "/apple-touch-icon-stratiq-v2.png", sizes: "180x180" }],
+      shortcut: ["/favicon-stratiq-v2.ico"],
+    },
     openGraph: {
       title: t("siteName"),
       description: t("defaultDescription"),
