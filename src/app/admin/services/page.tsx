@@ -36,7 +36,14 @@ export default async function AdminServicesPage() {
           >
             <AdminThumbnail src={service.image_url} alt={service.title} />
             <div className="flex-1">
-              <p className="font-medium text-navy">{service.title}</p>
+              <div className="flex items-center gap-2">
+                <p className="font-medium text-navy">{service.title}</p>
+                {service.is_featured && (
+                  <span className="rounded-full bg-stratiq-blue/10 px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wide text-stratiq-blue">
+                    Featured
+                  </span>
+                )}
+              </div>
               <p className="text-sm text-ink/60">/{service.slug}</p>
             </div>
           </Link>

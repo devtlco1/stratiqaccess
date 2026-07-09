@@ -53,7 +53,7 @@ const messages = {
           "Contact us with an outline of what you're trying to achieve in Iraq — market entry, a specific tender, or field support for an existing project — and we'll scope the right combination of services for your situation.",
       },
     },
-    viewAll: "View all services",
+    viewAll: "View All Services",
   },
 };
 

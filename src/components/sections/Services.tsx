@@ -7,12 +7,14 @@ import { pickText } from "@/lib/localizedContent";
 import { Container } from "@/components/ui/Container";
 import { Icon, type IconName } from "@/components/ui/Icon";
 
-export async function Services({ linkToIndex = false }: { linkToIndex?: boolean } = {}) {
+export async function Services({
+  linkToIndex = false,
+  featuredOnly = false,
+}: { linkToIndex?: boolean; featuredOnly?: boolean } = {}) {
   const supabase = createPublicClient();
-  const { data } = await supabase
-    .from("services")
-    .select("*")
-    .order("sort_order", { ascending: true });
+  let query = supabase.from("services").select("*").order("sort_order", { ascending: true });
+  if (featuredOnly) query = query.eq("is_featured", true).limit(6);
+  const { data } = await query;
   const services = (data ?? []) as ServiceRow[];
   const t = await getTranslations("home.servicesSection");
   const tCommon = await getTranslations("common");

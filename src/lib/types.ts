@@ -11,6 +11,7 @@ export type ServiceRow = {
   body: string[];
   highlights: Highlight[];
   faq: Faq[];
+  is_featured: boolean;
   sort_order: number;
   title_ar: string | null;
   description_ar: string | null;

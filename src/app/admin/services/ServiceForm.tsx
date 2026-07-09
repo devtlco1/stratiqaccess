@@ -43,6 +43,17 @@ export function ServiceForm({
         </select>
       </div>
 
+      <label className="flex items-center gap-2.5 text-sm font-medium text-ink/80">
+        <input
+          type="checkbox"
+          name="isFeatured"
+          value="true"
+          defaultChecked={service?.is_featured ?? false}
+          className="size-4 rounded border-navy/25 text-stratiq-blue focus:ring-stratiq-blue/30"
+        />
+        Featured (shown in the homepage Top Services section — keep this to 6 services)
+      </label>
+
       <TextArea
         label="Short description (shown on the service card)"
         name="description"
