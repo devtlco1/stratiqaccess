@@ -1,33 +1,17 @@
-export type NavLink = {
-  key: string;
-  href: string;
-};
-
 export type NavItem = {
   key: string;
   href: string;
-  dropdown?: NavLink[];
+  hasDropdown?: boolean;
 };
 
-// Structure only (hrefs + dropdown nesting) — labels live in
-// src/messages/{locale}/navigation.ts, keyed by `key` below, so the tree
-// itself isn't duplicated per locale. Dropdown items link to their own
-// dedicated /services/[slug] page.
+// Structure only (hrefs) — labels live in src/messages/{locale}/navigation.ts,
+// keyed by `key` below, so the tree itself isn't duplicated per locale.
+// The "services" item's dropdown is populated at render time from the
+// `services` table (see Header.tsx) so it always matches what's live on
+// /services and in the admin dashboard, instead of a hardcoded list here.
 export const mainNav: NavItem[] = [
   { key: "home", href: "/" },
-  {
-    key: "services",
-    href: "/services",
-    dropdown: [
-      { key: "groundOperations", href: "/services/field-operations-support" },
-      { key: "logisticsTransport", href: "/services/internal-transportation" },
-      { key: "securityCoordination", href: "/services/private-security-coordination" },
-      { key: "legalAdministrative", href: "/services/legal-advisory" },
-      { key: "staffing", href: "/services/freelance-local-staffing" },
-      { key: "events", href: "/services/event-management" },
-      { key: "procurement", href: "/services/food-supply-procurement" },
-    ],
-  },
+  { key: "services", href: "/services", hasDropdown: true },
   { key: "clients", href: "/clients" },
   { key: "about", href: "/about" },
   { key: "contact", href: "/contact" },
