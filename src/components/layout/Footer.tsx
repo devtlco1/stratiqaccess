@@ -29,16 +29,18 @@ export async function Footer() {
     <footer className="bg-navy text-white/70">
       {/* Forced ltr: the logo must stay on the same physical side regardless
           of locale — the text block re-asserts its own direction below. */}
-      <Container dir="ltr" className="py-20 flex flex-col sm:flex-row sm:items-start gap-10 sm:gap-20">
-        <Image
-          src={siteConfig.logo.light}
-          alt={siteConfig.name}
-          width={898}
-          height={240}
-          className="h-9 w-auto"
-        />
+      <Container dir="ltr" className="py-16 sm:py-20 grid grid-cols-1 sm:grid-cols-3 gap-10 sm:gap-12">
+        <div className="flex sm:col-span-1">
+          <Image
+            src={siteConfig.logo.light}
+            alt={siteConfig.name}
+            width={898}
+            height={240}
+            className="h-9 w-auto"
+          />
+        </div>
 
-        <div dir={locale === "ar" ? "rtl" : "ltr"}>
+        <div dir={locale === "ar" ? "rtl" : "ltr"} className="sm:col-span-1">
           <h3 className="font-display text-lg text-white">{t("emailHeading")}</h3>
           <p className="mt-2 text-sm">{t("emailPrompt")}</p>
           <a
@@ -54,10 +56,10 @@ export async function Footer() {
         <nav
           dir={locale === "ar" ? "rtl" : "ltr"}
           aria-label={t("linksHeading")}
-          className="sm:ms-auto"
+          className="sm:col-span-1"
         >
           <h3 className="font-display text-lg text-white">{t("linksHeading")}</h3>
-          <ul className="mt-3 flex flex-wrap gap-x-6 gap-y-2 sm:flex-col sm:gap-y-2">
+          <ul className="mt-3 grid grid-cols-2 gap-x-6 gap-y-2 sm:flex sm:flex-col sm:gap-y-2">
             {FOOTER_LINKS.map((link) => (
               <li key={link.key}>
                 <Link href={link.href} className="text-sm hover:text-white transition-colors">
