@@ -1,6 +1,6 @@
 import Image from "next/image";
 import type { ServiceRow } from "@/lib/types";
-import { bodyToText, highlightsToText } from "@/lib/admin/uploadImage";
+import { bodyToText, highlightsToText, faqToText } from "@/lib/admin/uploadImage";
 
 const ICONS = [
   "compass", "radar", "shield-check", "handshake", "landmark", "flask-conical",
@@ -65,6 +65,13 @@ export function ServiceForm({
         rows={4}
       />
 
+      <TextArea
+        label="FAQ — one per line, format: Question | Answer (optional)"
+        name="faq"
+        defaultValue={service ? faqToText(service.faq) : ""}
+        rows={4}
+      />
+
       <div className="border-t border-navy/10 pt-6 flex flex-col gap-6">
         <p className="text-xs font-semibold uppercase tracking-wide text-ink/50">
           Arabic translation (optional — falls back to English when left blank)
@@ -92,6 +99,14 @@ export function ServiceForm({
           label="Includes bullets (Arabic) — one per line, format: Title | Description"
           name="highlightsAr"
           defaultValue={service && service.highlights_ar.length ? highlightsToText(service.highlights_ar) : ""}
+          rows={4}
+          dir="rtl"
+        />
+
+        <TextArea
+          label="FAQ (Arabic) — one per line, format: Question | Answer"
+          name="faqAr"
+          defaultValue={service && service.faq_ar.length ? faqToText(service.faq_ar) : ""}
           rows={4}
           dir="rtl"
         />

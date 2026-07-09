@@ -51,3 +51,19 @@ export function bodyToText(body: string[]): string {
 export function highlightsToText(highlights: { title: string; description: string }[]): string {
   return highlights.map((h) => `${h.title} | ${h.description}`).join("\n");
 }
+
+// "Question | Answer" per line -> {question, answer}[]
+export function parseFaq(raw: string): { question: string; answer: string }[] {
+  return raw
+    .split("\n")
+    .map((line) => line.trim())
+    .filter(Boolean)
+    .map((line) => {
+      const [question, ...rest] = line.split("|");
+      return { question: question.trim(), answer: rest.join("|").trim() };
+    });
+}
+
+export function faqToText(faq: { question: string; answer: string }[]): string {
+  return faq.map((f) => `${f.question} | ${f.answer}`).join("\n");
+}

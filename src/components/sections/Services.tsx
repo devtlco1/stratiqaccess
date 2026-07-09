@@ -7,7 +7,7 @@ import { pickText } from "@/lib/localizedContent";
 import { Container } from "@/components/ui/Container";
 import { Icon, type IconName } from "@/components/ui/Icon";
 
-export async function Services() {
+export async function Services({ linkToIndex = false }: { linkToIndex?: boolean } = {}) {
   const supabase = createPublicClient();
   const { data } = await supabase
     .from("services")
@@ -16,6 +16,7 @@ export async function Services() {
   const services = (data ?? []) as ServiceRow[];
   const t = await getTranslations("home.servicesSection");
   const tCommon = await getTranslations("common");
+  const tIndex = await getTranslations("services.index");
   const locale = (await getLocale()) as Locale;
 
   return (
@@ -59,6 +60,18 @@ export async function Services() {
             </Link>
           ))}
         </div>
+
+        {linkToIndex && (
+          <div className="mt-12 text-center">
+            <Link
+              href="/services"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-stratiq-blue hover:text-navy transition-colors"
+            >
+              {tIndex("viewAll")}
+              <Icon name="arrow-right" className="size-3.5 rotate-45 rtl:-scale-x-100" />
+            </Link>
+          </div>
+        )}
       </Container>
     </section>
   );

@@ -3,11 +3,11 @@ const messages = {
   titleTemplate: "%s | STRATIQ Access",
   defaultTitle: "STRATIQ Access | Iraq Market Entry & Ground Operations Partner",
   defaultDescription:
-    "STRATIQ Access helps international companies enter and operate in Iraq — market entry, tender intelligence, local representation, and ground operations support.",
+    "STRATIQ Access helps international companies enter and operate in Iraq through local representation, tender intelligence, and ground operations support.",
   home: {
     title: "Iraq Market Entry & Ground Operations Partner",
     description:
-      "STRATIQ Access helps international companies enter and operate in Iraq — market entry, tender intelligence, local representation, and ground support.",
+      "STRATIQ Access is an Iraq market entry platform: local representation, tender intelligence, logistics coordination, and business support for foreign companies.",
   },
   about: {
     title: "Our Iraq Market Entry Team",

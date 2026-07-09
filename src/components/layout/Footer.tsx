@@ -5,6 +5,17 @@ import { createPublicClient } from "@/lib/supabase/public";
 import type { SiteSettingsRow } from "@/lib/types";
 import type { Locale } from "@/i18n/config";
 import { Container } from "@/components/ui/Container";
+import { Link } from "@/i18n/navigation";
+
+const FOOTER_LINKS = [
+  { key: "services", href: "/services" },
+  { key: "sectors", href: "/sectors" },
+  { key: "caseStudies", href: "/case-studies" },
+  { key: "insights", href: "/insights" },
+  { key: "clients", href: "/clients" },
+  { key: "about", href: "/about" },
+  { key: "contact", href: "/contact" },
+] as const;
 
 export async function Footer() {
   const supabase = createPublicClient();
@@ -18,7 +29,7 @@ export async function Footer() {
     <footer className="bg-navy text-white/70">
       {/* Forced ltr: the logo must stay on the same physical side regardless
           of locale — the text block re-asserts its own direction below. */}
-      <Container dir="ltr" className="py-20 flex flex-col sm:flex-row sm:items-center gap-10 sm:gap-20">
+      <Container dir="ltr" className="py-20 flex flex-col sm:flex-row sm:items-start gap-10 sm:gap-20">
         <Image
           src={siteConfig.logo.light}
           alt={siteConfig.name}
@@ -39,6 +50,23 @@ export async function Footer() {
             </span>
           </a>
         </div>
+
+        <nav
+          dir={locale === "ar" ? "rtl" : "ltr"}
+          aria-label={t("linksHeading")}
+          className="sm:ms-auto"
+        >
+          <h3 className="font-display text-lg text-white">{t("linksHeading")}</h3>
+          <ul className="mt-3 flex flex-wrap gap-x-6 gap-y-2 sm:flex-col sm:gap-y-2">
+            {FOOTER_LINKS.map((link) => (
+              <li key={link.key}>
+                <Link href={link.href} className="text-sm hover:text-white transition-colors">
+                  {t(`links.${link.key}`)}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
       </Container>
 
       <div className="border-t border-white/10">

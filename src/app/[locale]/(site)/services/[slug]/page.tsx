@@ -8,8 +8,9 @@ import type { ServiceRow } from "@/lib/types";
 import { Container } from "@/components/ui/Container";
 import { Icon, type IconName } from "@/components/ui/Icon";
 import { ContactSection } from "@/components/sections/ContactSection";
+import { SERVICE_RELATED } from "@/data/relatedContent";
 import { buildAlternates } from "@/i18n/alternates";
-import { buildOpenGraph, buildBreadcrumbList, buildServiceSchema } from "@/lib/seo";
+import { buildOpenGraph, buildBreadcrumbList, buildServiceSchema, buildFAQSchema } from "@/lib/seo";
 import { JsonLd } from "@/components/seo/JsonLd";
 import type { Locale } from "@/i18n/config";
 import { pickText, pickList } from "@/lib/localizedContent";
@@ -52,6 +53,8 @@ export default async function ServiceDetailPage({ params }: Props) {
   const description = pickText(loc, service.description, service.description_ar);
   const body = pickList(loc, service.body, service.body_ar);
   const highlights = pickList(loc, service.highlights, service.highlights_ar);
+  const faq = pickList(loc, service.faq, service.faq_ar);
+  const relatedLinks = SERVICE_RELATED[slug] ?? [];
 
   return (
     <>
@@ -68,6 +71,7 @@ export default async function ServiceDetailPage({ params }: Props) {
       <JsonLd
         data={buildServiceSchema({ name: title, description, path: `/services/${slug}`, locale: loc })}
       />
+      {faq.length > 0 && <JsonLd data={buildFAQSchema(faq)} />}
       <section className="pt-32 pb-16 lg:pt-40 lg:pb-24 bg-white">
         <Container>
           <Link
@@ -125,6 +129,39 @@ export default async function ServiceDetailPage({ params }: Props) {
               </ul>
             </div>
           </div>
+
+          {faq.length > 0 && (
+            <div className="mt-16 max-w-3xl border-t border-navy/10 pt-14">
+              <h2 className="font-display text-2xl text-navy leading-snug">{t("faqHeading")}</h2>
+              <dl className="mt-8 flex flex-col gap-8">
+                {faq.map((item) => (
+                  <div key={item.question}>
+                    <dt className="font-semibold text-navy text-base sm:text-lg">{item.question}</dt>
+                    <dd className="mt-2 text-base text-ink/75 leading-relaxed">{item.answer}</dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
+          )}
+
+          {relatedLinks.length > 0 && (
+            <div className="mt-16 max-w-3xl border-t border-navy/10 pt-10">
+              <h2 className="font-display text-lg text-navy">{t("relatedHeading")}</h2>
+              <ul className="mt-5 flex flex-wrap gap-x-8 gap-y-3">
+                {relatedLinks.map((link) => (
+                  <li key={link.href}>
+                    <Link
+                      href={link.href}
+                      className="inline-flex items-center gap-2 text-sm font-semibold text-stratiq-blue hover:text-navy transition-colors"
+                    >
+                      {pickText(loc, link.label, link.label_ar)}
+                      <Icon name="arrow-right" className="size-3.5 rotate-45 rtl:-scale-x-100" />
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </Container>
       </section>
 

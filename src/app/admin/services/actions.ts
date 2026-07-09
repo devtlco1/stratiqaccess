@@ -3,7 +3,7 @@
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { createClient } from "@/lib/supabase/server";
-import { uploadImage, parseBody, parseHighlights } from "@/lib/admin/uploadImage";
+import { uploadImage, parseBody, parseHighlights, parseFaq } from "@/lib/admin/uploadImage";
 
 function slugify(input: string) {
   return input
@@ -23,10 +23,12 @@ async function readForm(formData: FormData, supabase: Awaited<ReturnType<typeof 
     description: String(formData.get("description") || ""),
     body: parseBody(String(formData.get("body") || "")),
     highlights: parseHighlights(String(formData.get("highlights") || "")),
+    faq: parseFaq(String(formData.get("faq") || "")),
     titleAr: String(formData.get("titleAr") || "") || null,
     descriptionAr: String(formData.get("descriptionAr") || "") || null,
     bodyAr: parseBody(String(formData.get("bodyAr") || "")),
     highlightsAr: parseHighlights(String(formData.get("highlightsAr") || "")),
+    faqAr: parseFaq(String(formData.get("faqAr") || "")),
     imageUrl,
   };
 }
@@ -43,10 +45,12 @@ export async function createService(formData: FormData) {
     description: fields.description,
     body: fields.body,
     highlights: fields.highlights,
+    faq: fields.faq,
     title_ar: fields.titleAr,
     description_ar: fields.descriptionAr,
     body_ar: fields.bodyAr,
     highlights_ar: fields.highlightsAr,
+    faq_ar: fields.faqAr,
     image_url: fields.imageUrl,
   });
 
@@ -71,10 +75,12 @@ export async function updateService(id: string, formData: FormData) {
     description: fields.description,
     body: fields.body,
     highlights: fields.highlights,
+    faq: fields.faq,
     title_ar: fields.titleAr,
     description_ar: fields.descriptionAr,
     body_ar: fields.bodyAr,
     highlights_ar: fields.highlightsAr,
+    faq_ar: fields.faqAr,
   };
   if (fields.imageUrl) update.image_url = fields.imageUrl;
 

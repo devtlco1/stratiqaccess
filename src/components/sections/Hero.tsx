@@ -13,7 +13,7 @@ export async function Hero() {
       {/* Managed from Admin → Site Images → "Homepage — Hero Background" */}
       <Image
         src={heroImage}
-        alt=""
+        alt="Baghdad skyline along the Tigris River, Iraq"
         fill
         priority
         fetchPriority="high"

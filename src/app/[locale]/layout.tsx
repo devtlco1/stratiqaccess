@@ -9,6 +9,7 @@ import { isRtl, type Locale } from "@/i18n/config";
 import { siteConfig } from "@/data/siteConfig";
 import { buildOrganizationSchema, buildWebSiteSchema } from "@/lib/seo";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { Analytics } from "@/components/analytics/Analytics";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -113,6 +114,7 @@ export default async function LocaleLayout({ children, params }: Props) {
         <JsonLd data={buildOrganizationSchema(loc)} />
         <JsonLd data={buildWebSiteSchema(loc)} />
         <NextIntlClientProvider messages={clientMessages}>{children}</NextIntlClientProvider>
+        <Analytics />
       </body>
     </html>
   );

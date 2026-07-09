@@ -1,4 +1,5 @@
 export type Highlight = { title: string; description: string };
+export type Faq = { question: string; answer: string };
 
 export type ServiceRow = {
   id: string;
@@ -9,11 +10,13 @@ export type ServiceRow = {
   image_url: string | null;
   body: string[];
   highlights: Highlight[];
+  faq: Faq[];
   sort_order: number;
   title_ar: string | null;
   description_ar: string | null;
   body_ar: string[];
   highlights_ar: Highlight[];
+  faq_ar: Faq[];
 };
 
 export type SectorRow = {
@@ -55,10 +58,12 @@ export type InsightRow = {
   published_date: string;
   image_url: string | null;
   body: string[];
+  faq: Faq[];
   sort_order: number;
   title_ar: string | null;
   excerpt_ar: string | null;
   body_ar: string[];
+  faq_ar: Faq[];
 };
 
 export type MessageRow = {

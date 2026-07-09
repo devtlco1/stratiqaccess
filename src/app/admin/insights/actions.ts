@@ -3,7 +3,7 @@
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { createClient } from "@/lib/supabase/server";
-import { uploadImage, parseBody } from "@/lib/admin/uploadImage";
+import { uploadImage, parseBody, parseFaq } from "@/lib/admin/uploadImage";
 
 function slugify(input: string) {
   return input
@@ -22,9 +22,11 @@ async function readForm(formData: FormData, supabase: Awaited<ReturnType<typeof 
     excerpt: String(formData.get("excerpt") || ""),
     publishedDate: String(formData.get("publishedDate") || new Date().toISOString().slice(0, 10)),
     body: parseBody(String(formData.get("body") || "")),
+    faq: parseFaq(String(formData.get("faq") || "")),
     titleAr: String(formData.get("titleAr") || "") || null,
     excerptAr: String(formData.get("excerptAr") || "") || null,
     bodyAr: parseBody(String(formData.get("bodyAr") || "")),
+    faqAr: parseFaq(String(formData.get("faqAr") || "")),
     imageUrl,
   };
 }
@@ -40,9 +42,11 @@ export async function createInsight(formData: FormData) {
     excerpt: fields.excerpt,
     published_date: fields.publishedDate,
     body: fields.body,
+    faq: fields.faq,
     title_ar: fields.titleAr,
     excerpt_ar: fields.excerptAr,
     body_ar: fields.bodyAr,
+    faq_ar: fields.faqAr,
     image_url: fields.imageUrl,
   });
 
@@ -66,9 +70,11 @@ export async function updateInsight(id: string, formData: FormData) {
     excerpt: fields.excerpt,
     published_date: fields.publishedDate,
     body: fields.body,
+    faq: fields.faq,
     title_ar: fields.titleAr,
     excerpt_ar: fields.excerptAr,
     body_ar: fields.bodyAr,
+    faq_ar: fields.faqAr,
   };
   if (fields.imageUrl) update.image_url = fields.imageUrl;
 

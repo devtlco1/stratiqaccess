@@ -28,7 +28,7 @@ export default function Home() {
     <>
       <Hero />
       <MarketOverview />
-      <Services />
+      <Services linkToIndex />
       <OurClients />
       <ContactSection />
     </>
