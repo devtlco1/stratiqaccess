@@ -18,3 +18,15 @@ export async function updateSiteImage(key: string, formData: FormData) {
   revalidatePath("/", "layout");
   revalidatePath("/admin/site-images");
 }
+
+// Clears the override so the page falls back to its hardcoded default photo
+// (see the getSiteImage(key, fallback) calls in each page) — deliberately
+// does not require picking a replacement file first.
+export async function deleteSiteImage(key: string) {
+  const supabase = await createClient();
+  const { error } = await supabase.from("site_images").update({ image_url: null }).eq("key", key);
+  if (error) throw new Error(error.message);
+
+  revalidatePath("/", "layout");
+  revalidatePath("/admin/site-images");
+}

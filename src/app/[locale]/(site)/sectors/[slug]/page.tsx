@@ -8,6 +8,7 @@ import type { SectorRow } from "@/lib/types";
 import { Container } from "@/components/ui/Container";
 import { Icon, type IconName } from "@/components/ui/Icon";
 import { ContactSection } from "@/components/sections/ContactSection";
+import { fallbackImageForIcon } from "@/lib/fallbackImages";
 import { buildAlternates } from "@/i18n/alternates";
 import { buildOpenGraph, buildBreadcrumbList } from "@/lib/seo";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -74,7 +75,7 @@ export default async function SectorDetailPage({ params }: Props) {
             {t("backLink")}
           </Link>
 
-          <div className="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-14 items-start">
+          <div className="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-14">
             <div>
               <span className="inline-flex size-14 items-center justify-center rounded-xl bg-stratiq-blue/10 text-stratiq-blue">
                 <Icon name={sector.icon as IconName} className="size-7" />
@@ -107,10 +108,13 @@ export default async function SectorDetailPage({ params }: Props) {
               </ul>
             </div>
 
-            <div className="relative aspect-4/3 rounded-2xl overflow-hidden">
-              {sector.image_url && (
-                <Image src={sector.image_url} alt={title} fill className="object-cover" />
-              )}
+            <div className="relative min-h-[320px] rounded-2xl overflow-hidden">
+              <Image
+                src={sector.image_url ?? fallbackImageForIcon(sector.icon)}
+                alt={title}
+                fill
+                className="object-cover"
+              />
             </div>
           </div>
         </Container>

@@ -11,7 +11,10 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import type { Locale } from "@/i18n/config";
 import { serviceIndexSectionKeys, serviceIndexFaqKeys } from "@/data/servicesIndex";
 
-type Props = { params: Promise<{ locale: string }> };
+type Props = {
+  params: Promise<{ locale: string }>;
+  searchParams: Promise<{ page?: string }>;
+};
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
@@ -25,8 +28,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default async function ServicesPage({ params }: Props) {
+export default async function ServicesPage({ params, searchParams }: Props) {
   const { locale } = await params;
+  const { page: pageParam } = await searchParams;
+  const page = Math.max(1, parseInt(pageParam ?? "1", 10) || 1);
   const loc = locale as Locale;
   const heroImage = await getSiteImage("services_hero", "/images/photo-covered-market.jpg");
   const t = await getTranslations("seo.services");
@@ -54,7 +59,7 @@ export default async function ServicesPage({ params }: Props) {
         </Container>
       </section>
 
-      <Services />
+      <Services page={page} />
 
       <section className="bg-white py-24 lg:py-32">
         <Container className="max-w-4xl">

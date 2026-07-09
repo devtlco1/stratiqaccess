@@ -1,4 +1,5 @@
 import type { CustomerRow, CustomerStatus } from "@/lib/types";
+import { SubmitButton } from "@/components/admin/SubmitButton";
 
 const STATUSES: CustomerStatus[] = ["New", "Contacted", "Qualified", "In Progress", "Won", "Lost"];
 
@@ -69,12 +70,7 @@ export function CustomerForm({
         />
       </div>
 
-      <button
-        type="submit"
-        className="self-start rounded-md bg-stratiq-blue px-8 py-3 text-sm font-semibold uppercase tracking-wide text-white hover:bg-navy transition-colors"
-      >
-        Save
-      </button>
+      <SubmitButton />
     </form>
   );
 }

@@ -1,5 +1,6 @@
-import Image from "next/image";
 import type { ClientRow } from "@/lib/types";
+import { SubmitButton } from "@/components/admin/SubmitButton";
+import { ClientLogoField } from "./ClientLogoField";
 
 export function ClientForm({
   client,
@@ -23,37 +24,7 @@ export function ClientForm({
         defaultValue={client?.industry ?? undefined}
       />
 
-      <div>
-        <label htmlFor="logo_url" className="block text-sm font-medium text-ink/80 mb-1.5">
-          Logo URL (used if no file is uploaded below)
-        </label>
-        {client?.logo_url && (
-          <div className="relative mb-3 h-16 w-40 overflow-hidden rounded-lg bg-paper">
-            <Image src={client.logo_url} alt="" fill className="object-contain" />
-          </div>
-        )}
-        <input
-          id="logo_url"
-          name="logo_url"
-          type="url"
-          defaultValue={client?.logo_url ?? undefined}
-          placeholder="https://..."
-          className="w-full rounded-lg border border-navy/15 px-4 py-2.5 text-sm focus:border-stratiq-blue focus:outline-none focus:ring-2 focus:ring-stratiq-blue/20"
-        />
-      </div>
-
-      <div>
-        <label htmlFor="logo" className="block text-sm font-medium text-ink/80 mb-1.5">
-          Or upload a logo file
-        </label>
-        <input
-          id="logo"
-          name="logo"
-          type="file"
-          accept="image/*"
-          className="w-full rounded-lg border border-navy/15 bg-white px-4 py-2.5 text-sm file:mr-4 file:rounded-full file:border-0 file:bg-navy/5 file:px-4 file:py-2 file:text-sm file:font-medium file:text-navy"
-        />
-      </div>
+      <ClientLogoField currentUrl={client?.logo_url} />
 
       <Field
         label="Display Order (lower shows first)"
@@ -71,12 +42,7 @@ export function ClientForm({
         />
       </div>
 
-      <button
-        type="submit"
-        className="self-start rounded-md bg-stratiq-blue px-8 py-3 text-sm font-semibold uppercase tracking-wide text-white hover:bg-navy transition-colors"
-      >
-        Save
-      </button>
+      <SubmitButton />
     </form>
   );
 }

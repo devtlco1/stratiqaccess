@@ -3,7 +3,9 @@ import { AdminShell } from "@/components/admin/AdminShell";
 import { Icon } from "@/components/ui/Icon";
 import { createClient } from "@/lib/supabase/server";
 import type { SiteImageRow } from "@/lib/types";
-import { updateSiteImage } from "./actions";
+import { updateSiteImage, deleteSiteImage } from "./actions";
+import { SubmitButton } from "@/components/admin/SubmitButton";
+import { DeleteSiteImageButton } from "./DeleteSiteImageButton";
 
 export default async function AdminSiteImagesPage() {
   const supabase = await createClient();
@@ -41,12 +43,12 @@ export default async function AdminSiteImagesPage() {
                   accept="image/*"
                   className="w-full text-xs text-ink/70 file:mr-3 file:rounded-full file:border-0 file:bg-navy/5 file:px-3 file:py-1.5 file:text-xs file:font-medium file:text-navy"
                 />
-                <button
-                  type="submit"
-                  className="self-start rounded-md bg-stratiq-blue px-4 py-2 text-xs font-semibold uppercase tracking-wide text-white hover:bg-navy transition-colors"
-                >
-                  Replace
-                </button>
+                <div className="flex items-center gap-2">
+                  <SubmitButton size="sm">Replace</SubmitButton>
+                  {image.image_url && (
+                    <DeleteSiteImageButton deleteAction={deleteSiteImage.bind(null, image.key)} />
+                  )}
+                </div>
               </form>
             </div>
           );

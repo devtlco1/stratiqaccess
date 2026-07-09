@@ -31,6 +31,7 @@ async function readForm(formData: FormData, supabase: Awaited<ReturnType<typeof 
     highlightsAr: parseHighlights(String(formData.get("highlightsAr") || "")),
     faqAr: parseFaq(String(formData.get("faqAr") || "")),
     imageUrl,
+    removeImage: formData.get("removeImage") === "true",
   };
 }
 
@@ -86,6 +87,7 @@ export async function updateService(id: string, formData: FormData) {
     faq_ar: fields.faqAr,
   };
   if (fields.imageUrl) update.image_url = fields.imageUrl;
+  else if (fields.removeImage) update.image_url = null;
 
   const { error } = await supabase.from("services").update(update).eq("id", id);
   if (error) throw new Error(error.message);

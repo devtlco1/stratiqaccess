@@ -9,6 +9,7 @@ import { Container } from "@/components/ui/Container";
 import { Icon, type IconName } from "@/components/ui/Icon";
 import { ContactSection } from "@/components/sections/ContactSection";
 import { SERVICE_RELATED } from "@/data/relatedContent";
+import { fallbackImageForIcon } from "@/lib/fallbackImages";
 import { buildAlternates } from "@/i18n/alternates";
 import { buildOpenGraph, buildBreadcrumbList, buildServiceSchema, buildFAQSchema } from "@/lib/seo";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -82,22 +83,16 @@ export default async function ServiceDetailPage({ params }: Props) {
             {t("backLink")}
           </Link>
 
-          <div
-            className={`mt-8 grid grid-cols-1 gap-14 items-start ${
-              service.image_url ? "lg:grid-cols-2" : "max-w-3xl"
-            }`}
-          >
-            {service.image_url && (
-              <div className="relative aspect-4/3 rounded-2xl overflow-hidden lg:order-2">
-                <Image
-                  src={service.image_url}
-                  alt={title}
-                  fill
-                  sizes="(min-width: 1024px) 50vw, 100vw"
-                  className="object-cover"
-                />
-              </div>
-            )}
+          <div className="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-14">
+            <div className="relative min-h-[320px] rounded-2xl overflow-hidden lg:order-2">
+              <Image
+                src={service.image_url ?? fallbackImageForIcon(service.icon)}
+                alt={title}
+                fill
+                sizes="(min-width: 1024px) 50vw, 100vw"
+                className="object-cover"
+              />
+            </div>
 
             <div className="lg:order-1">
               <span className="inline-flex size-14 items-center justify-center rounded-xl bg-stratiq-blue/10 text-stratiq-blue">

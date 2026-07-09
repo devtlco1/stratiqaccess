@@ -6,6 +6,7 @@ import type { CaseStudyRow } from "@/lib/types";
 import type { Locale } from "@/i18n/config";
 import { pickText } from "@/lib/localizedContent";
 import { Container } from "@/components/ui/Container";
+import { fallbackImageForSlug } from "@/lib/fallbackImages";
 
 export async function CaseStudies() {
   const supabase = createPublicClient();
@@ -46,15 +47,13 @@ export async function CaseStudies() {
               href={`/case-studies#${study.slug}`}
               className="group relative aspect-4/3 overflow-hidden rounded-lg block shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
             >
-              {study.image_url && (
-                <Image
-                  src={study.image_url}
-                  alt={study.title}
-                  fill
-                  sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-              )}
+              <Image
+                src={study.image_url ?? fallbackImageForSlug(study.slug)}
+                alt={study.title}
+                fill
+                sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
+              />
               <div className="absolute inset-0 bg-gradient-to-t from-navy/90 via-navy/10 to-transparent" />
               <div className="absolute inset-0 flex items-end p-6">
                 <h3 className="font-display text-lg text-white leading-snug">

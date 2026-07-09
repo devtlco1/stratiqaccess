@@ -1,6 +1,7 @@
-import Image from "next/image";
 import type { SectorRow } from "@/lib/types";
 import { bodyToText, highlightsToText } from "@/lib/admin/uploadImage";
+import { SubmitButton } from "@/components/admin/SubmitButton";
+import { ImageField } from "@/components/admin/ImageField";
 
 const ICONS = [
   "bolt", "building-2", "hard-hat", "heart-pulse", "cpu", "shield", "truck", "package",
@@ -95,30 +96,9 @@ export function SectorForm({
         />
       </div>
 
-      <div>
-        <label htmlFor="image" className="block text-sm font-medium text-ink/80 mb-1.5">
-          Image {sector?.image_url && "(leave empty to keep current image)"}
-        </label>
-        {sector?.image_url && (
-          <div className="relative mb-3 h-32 w-48 overflow-hidden rounded-lg">
-            <Image src={sector.image_url} alt="" fill className="object-cover" />
-          </div>
-        )}
-        <input
-          id="image"
-          name="image"
-          type="file"
-          accept="image/*"
-          className="w-full rounded-lg border border-navy/15 bg-white px-4 py-2.5 text-sm file:mr-4 file:rounded-full file:border-0 file:bg-navy/5 file:px-4 file:py-2 file:text-sm file:font-medium file:text-navy"
-        />
-      </div>
+      <ImageField label="Image" currentUrl={sector?.image_url} />
 
-      <button
-        type="submit"
-        className="self-start rounded-md bg-stratiq-blue px-8 py-3 text-sm font-semibold uppercase tracking-wide text-white hover:bg-navy transition-colors"
-      >
-        Save
-      </button>
+      <SubmitButton />
     </form>
   );
 }

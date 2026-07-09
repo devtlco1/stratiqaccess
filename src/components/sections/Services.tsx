@@ -6,16 +6,23 @@ import type { Locale } from "@/i18n/config";
 import { pickText } from "@/lib/localizedContent";
 import { Container } from "@/components/ui/Container";
 import { Icon, type IconName } from "@/components/ui/Icon";
+import { Pagination, PAGE_SIZE } from "@/components/ui/Pagination";
 
 export async function Services({
   linkToIndex = false,
   featuredOnly = false,
-}: { linkToIndex?: boolean; featuredOnly?: boolean } = {}) {
+  page = 1,
+}: { linkToIndex?: boolean; featuredOnly?: boolean; page?: number } = {}) {
   const supabase = createPublicClient();
-  let query = supabase.from("services").select("*").order("sort_order", { ascending: true });
-  if (featuredOnly) query = query.eq("is_featured", true).limit(6);
-  const { data } = await query;
+  let query = supabase.from("services").select("*", { count: "exact" }).order("sort_order", { ascending: true });
+  if (featuredOnly) {
+    query = query.eq("is_featured", true).limit(6);
+  } else {
+    query = query.range((page - 1) * PAGE_SIZE, page * PAGE_SIZE - 1);
+  }
+  const { data, count } = await query;
   const services = (data ?? []) as ServiceRow[];
+  const totalPages = featuredOnly ? 1 : Math.max(1, Math.ceil((count ?? 0) / PAGE_SIZE));
   const t = await getTranslations("home.servicesSection");
   const tCommon = await getTranslations("common");
   const tIndex = await getTranslations("services.index");
@@ -74,6 +81,8 @@ export async function Services({
             </Link>
           </div>
         )}
+
+        {!featuredOnly && <Pagination currentPage={page} totalPages={totalPages} basePath="/services" />}
       </Container>
     </section>
   );

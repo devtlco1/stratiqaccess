@@ -26,7 +26,7 @@ export async function AdminShell({ children }: { children: ReactNode }) {
 
   return (
     <div className="flex min-h-screen">
-      <aside className="hidden w-64 shrink-0 flex-col border-r border-navy/10 bg-white p-6 lg:flex">
+      <aside className="hidden w-64 shrink-0 flex-col border-r border-navy/10 bg-white p-6 lg:flex lg:sticky lg:top-0 lg:h-screen lg:overflow-y-auto">
         <Link href="/admin" className="flex items-center gap-2">
           <Image src="/brand/stratiq-logo-blue.svg" alt="STRATIQ Access" width={898} height={240} className="h-8 w-auto" />
           <span className="text-xs font-semibold uppercase tracking-wide text-ink/50">Admin</span>

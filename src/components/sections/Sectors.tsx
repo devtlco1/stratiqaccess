@@ -6,14 +6,17 @@ import type { Locale } from "@/i18n/config";
 import { pickText } from "@/lib/localizedContent";
 import { Container } from "@/components/ui/Container";
 import { Icon, type IconName } from "@/components/ui/Icon";
+import { Pagination, PAGE_SIZE } from "@/components/ui/Pagination";
 
-export async function Sectors() {
+export async function Sectors({ page = 1 }: { page?: number } = {}) {
   const supabase = createPublicClient();
-  const { data } = await supabase
+  const { data, count } = await supabase
     .from("sectors")
-    .select("*")
-    .order("sort_order", { ascending: true });
+    .select("*", { count: "exact" })
+    .order("sort_order", { ascending: true })
+    .range((page - 1) * PAGE_SIZE, page * PAGE_SIZE - 1);
   const sectors = (data ?? []) as SectorRow[];
+  const totalPages = Math.max(1, Math.ceil((count ?? 0) / PAGE_SIZE));
   const t = await getTranslations("home.sectorsSection");
   const locale = (await getLocale()) as Locale;
 
@@ -45,6 +48,8 @@ export async function Sectors() {
             </Link>
           ))}
         </div>
+
+        <Pagination currentPage={page} totalPages={totalPages} basePath="/sectors" />
       </Container>
     </section>
   );

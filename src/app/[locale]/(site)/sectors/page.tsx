@@ -9,7 +9,10 @@ import { buildOpenGraph, buildBreadcrumbList } from "@/lib/seo";
 import { JsonLd } from "@/components/seo/JsonLd";
 import type { Locale } from "@/i18n/config";
 
-type Props = { params: Promise<{ locale: string }> };
+type Props = {
+  params: Promise<{ locale: string }>;
+  searchParams: Promise<{ page?: string }>;
+};
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
@@ -23,8 +26,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default async function SectorsPage({ params }: Props) {
+export default async function SectorsPage({ params, searchParams }: Props) {
   const { locale } = await params;
+  const { page: pageParam } = await searchParams;
+  const page = Math.max(1, parseInt(pageParam ?? "1", 10) || 1);
   const loc = locale as Locale;
   const heroImage = await getSiteImage("sectors_hero", "/images/photo-baghdad-tigris.jpg");
   const t = await getTranslations("seo.sectors");
@@ -37,7 +42,7 @@ export default async function SectorsPage({ params }: Props) {
       />
       <PageHero title={t("heroTitle")} image={heroImage} />
 
-      <Sectors />
+      <Sectors page={page} />
       <ContactSection />
     </>
   );

@@ -27,6 +27,7 @@ async function readForm(formData: FormData, supabase: Awaited<ReturnType<typeof 
     summaryAr: String(formData.get("summaryAr") || "") || null,
     bodyAr: parseBody(String(formData.get("bodyAr") || "")),
     imageUrl,
+    removeImage: formData.get("removeImage") === "true",
   };
 }
 
@@ -74,6 +75,7 @@ export async function updateCaseStudy(id: string, formData: FormData) {
     body_ar: fields.bodyAr,
   };
   if (fields.imageUrl) update.image_url = fields.imageUrl;
+  else if (fields.removeImage) update.image_url = null;
 
   const { error } = await supabase.from("case_studies").update(update).eq("id", id);
   if (error) throw new Error(error.message);

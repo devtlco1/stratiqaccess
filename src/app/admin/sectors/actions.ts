@@ -28,6 +28,7 @@ async function readForm(formData: FormData, supabase: Awaited<ReturnType<typeof 
     bodyAr: parseBody(String(formData.get("bodyAr") || "")),
     highlightsAr: parseHighlights(String(formData.get("highlightsAr") || "")),
     imageUrl,
+    removeImage: formData.get("removeImage") === "true",
   };
 }
 
@@ -77,6 +78,7 @@ export async function updateSector(id: string, formData: FormData) {
     highlights_ar: fields.highlightsAr,
   };
   if (fields.imageUrl) update.image_url = fields.imageUrl;
+  else if (fields.removeImage) update.image_url = null;
 
   const { error } = await supabase.from("sectors").update(update).eq("id", id);
   if (error) throw new Error(error.message);

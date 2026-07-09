@@ -8,12 +8,17 @@ import { Container } from "@/components/ui/Container";
 import { createPublicClient } from "@/lib/supabase/public";
 import type { CaseStudyRow } from "@/lib/types";
 import { getSiteImage } from "@/lib/siteImages";
+import { fallbackImageForSlug } from "@/lib/fallbackImages";
+import { Pagination, PAGE_SIZE } from "@/components/ui/Pagination";
 import { buildAlternates } from "@/i18n/alternates";
 import { buildOpenGraph } from "@/lib/seo";
 import type { Locale } from "@/i18n/config";
 import { pickText, pickList } from "@/lib/localizedContent";
 
-type Props = { params: Promise<{ locale: string }> };
+type Props = {
+  params: Promise<{ locale: string }>;
+  searchParams: Promise<{ page?: string }>;
+};
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
@@ -27,15 +32,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default async function CaseStudiesPage({ params }: Props) {
+export default async function CaseStudiesPage({ params, searchParams }: Props) {
   const { locale } = await params;
+  const { page: pageParam } = await searchParams;
+  const page = Math.max(1, parseInt(pageParam ?? "1", 10) || 1);
   const loc = locale as Locale;
   const supabase = createPublicClient();
-  const { data } = await supabase
+  const { data, count } = await supabase
     .from("case_studies")
-    .select("*")
-    .order("sort_order", { ascending: true });
+    .select("*", { count: "exact" })
+    .order("sort_order", { ascending: true })
+    .range((page - 1) * PAGE_SIZE, page * PAGE_SIZE - 1);
   const caseStudies = (data ?? []) as CaseStudyRow[];
+  const totalPages = Math.max(1, Math.ceil((count ?? 0) / PAGE_SIZE));
   const heroImage = await getSiteImage("case_studies_hero", "/images/photo-baghdad-medical-city.jpg");
   const t = await getTranslations("seo.caseStudies");
 
@@ -53,15 +62,13 @@ export default async function CaseStudiesPage({ params }: Props) {
               return (
               <article key={study.id} id={study.slug} className="scroll-mt-28">
                 <div className="relative aspect-[16/8] rounded-lg overflow-hidden">
-                  {study.image_url && (
-                    <Image
-                      src={study.image_url}
-                      alt={title}
-                      fill
-                      sizes="(min-width: 1024px) 60vw, 100vw"
-                      className="object-cover"
-                    />
-                  )}
+                  <Image
+                    src={study.image_url ?? fallbackImageForSlug(study.slug)}
+                    alt={title}
+                    fill
+                    sizes="(min-width: 1024px) 60vw, 100vw"
+                    className="object-cover"
+                  />
                 </div>
                 <span className="mt-6 inline-block text-xs font-semibold tracking-[0.15em] uppercase text-stratiq-blue">
                   {pickText(loc, study.sector, study.sector_ar)}
@@ -80,6 +87,8 @@ export default async function CaseStudiesPage({ params }: Props) {
               );
             })}
           </div>
+
+          <Pagination currentPage={page} totalPages={totalPages} basePath="/case-studies" />
         </Container>
       </section>
 

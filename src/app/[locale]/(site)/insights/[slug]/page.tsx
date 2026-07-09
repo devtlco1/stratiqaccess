@@ -9,6 +9,7 @@ import { Container } from "@/components/ui/Container";
 import { Icon } from "@/components/ui/Icon";
 import { ContactSection } from "@/components/sections/ContactSection";
 import { INSIGHT_RELATED } from "@/data/relatedContent";
+import { fallbackImageForSlug } from "@/lib/fallbackImages";
 import { buildAlternates } from "@/i18n/alternates";
 import { buildOpenGraph, buildBreadcrumbList, buildArticleSchema, buildFAQSchema } from "@/lib/seo";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -94,9 +95,12 @@ export default async function InsightDetailPage({ params }: Props) {
           </Link>
 
           <div className="mt-8 relative aspect-[16/8] rounded-2xl overflow-hidden">
-            {insight.image_url && (
-              <Image src={insight.image_url} alt={title} fill className="object-cover" />
-            )}
+            <Image
+              src={insight.image_url ?? fallbackImageForSlug(slug)}
+              alt={title}
+              fill
+              className="object-cover"
+            />
           </div>
 
           <p className="mt-6 text-xs font-semibold tracking-[0.15em] uppercase text-stratiq-blue">

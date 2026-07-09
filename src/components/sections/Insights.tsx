@@ -7,14 +7,18 @@ import type { Locale } from "@/i18n/config";
 import { pickText } from "@/lib/localizedContent";
 import { Container } from "@/components/ui/Container";
 import { Icon } from "@/components/ui/Icon";
+import { fallbackImageForSlug } from "@/lib/fallbackImages";
+import { Pagination, PAGE_SIZE } from "@/components/ui/Pagination";
 
-export async function Insights() {
+export async function Insights({ page = 1 }: { page?: number } = {}) {
   const supabase = createPublicClient();
-  const { data } = await supabase
+  const { data, count } = await supabase
     .from("insights")
-    .select("*")
-    .order("published_date", { ascending: false });
+    .select("*", { count: "exact" })
+    .order("published_date", { ascending: false })
+    .range((page - 1) * PAGE_SIZE, page * PAGE_SIZE - 1);
   const insights = (data ?? []) as InsightRow[];
+  const totalPages = Math.max(1, Math.ceil((count ?? 0) / PAGE_SIZE));
   const t = await getTranslations("home.insightsSection");
   const tCommon = await getTranslations("common");
   const locale = (await getLocale()) as Locale;
@@ -34,15 +38,13 @@ export async function Insights() {
               className="group flex flex-col transition-transform duration-300 hover:-translate-y-1"
             >
               <div className="relative aspect-[4/3] overflow-hidden rounded-lg shadow-md transition-shadow duration-300 group-hover:shadow-xl">
-                {insight.image_url && (
-                  <Image
-                    src={insight.image_url}
-                    alt={insight.title}
-                    fill
-                    sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                )}
+                <Image
+                  src={insight.image_url ?? fallbackImageForSlug(insight.slug)}
+                  alt={insight.title}
+                  fill
+                  sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                />
               </div>
               <h3 className="mt-5 font-display text-base text-navy leading-snug group-hover:text-stratiq-blue transition-colors">
                 {pickText(locale, insight.title, insight.title_ar)}
@@ -59,6 +61,8 @@ export async function Insights() {
             </Link>
           ))}
         </div>
+
+        <Pagination currentPage={page} totalPages={totalPages} basePath="/insights" />
       </Container>
     </section>
   );

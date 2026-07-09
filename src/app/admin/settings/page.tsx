@@ -2,6 +2,7 @@ import { AdminShell } from "@/components/admin/AdminShell";
 import { createClient } from "@/lib/supabase/server";
 import type { SiteSettingsRow } from "@/lib/types";
 import { updateSiteSettings } from "./actions";
+import { SubmitButton } from "@/components/admin/SubmitButton";
 
 export default async function AdminSettingsPage() {
   const supabase = await createClient();
@@ -22,12 +23,7 @@ export default async function AdminSettingsPage() {
         <Field label="Contact email" name="email" type="email" defaultValue={settings?.email} required />
         <Field label="Location" name="location" defaultValue={settings?.location} required />
 
-        <button
-          type="submit"
-          className="self-start rounded-md bg-stratiq-blue px-8 py-3 text-sm font-semibold uppercase tracking-wide text-white hover:bg-navy transition-colors"
-        >
-          Save
-        </button>
+        <SubmitButton />
       </form>
     </AdminShell>
   );
