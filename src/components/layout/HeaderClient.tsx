@@ -25,6 +25,7 @@ export function HeaderClient({
 }) {
   const t = useTranslations("navigation");
   const tCommon = useTranslations("common");
+  const tServices = useTranslations("services.index");
   const locale = useLocale();
   const navDir = locale === "ar" ? "rtl" : "ltr";
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
@@ -77,6 +78,12 @@ export function HeaderClient({
                         {pickText(locale as Locale, service.title, service.title_ar)}
                       </Link>
                     ))}
+                    <Link
+                      href="/services"
+                      className="block px-5 py-3 text-sm font-semibold text-stratiq-blue hover:bg-paper hover:ps-6 transition-all duration-200"
+                    >
+                      {tServices("viewAll")}
+                    </Link>
                   </div>
                 </div>
               )}
@@ -143,6 +150,7 @@ function MobileNavItem({
   onNavigate: () => void;
 }) {
   const t = useTranslations("navigation");
+  const tServices = useTranslations("services.index");
   const locale = useLocale();
   const [open, setOpen] = useState(false);
 
@@ -176,6 +184,9 @@ function MobileNavItem({
               {pickText(locale as Locale, service.title, service.title_ar)}
             </Link>
           ))}
+          <Link href="/services" onClick={onNavigate} className="py-2 text-sm font-semibold text-stratiq-blue">
+            {tServices("viewAll")}
+          </Link>
         </div>
       )}
     </div>

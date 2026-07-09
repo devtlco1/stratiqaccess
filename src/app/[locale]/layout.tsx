@@ -104,6 +104,7 @@ export default async function LocaleLayout({ children, params }: Props) {
     common: messages.common,
     navigation: messages.navigation,
     contact: messages.contact,
+    services: messages.services,
   };
 
   const loc = locale as Locale;

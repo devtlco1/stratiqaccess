@@ -12,7 +12,9 @@ export async function Header() {
   const { data } = await supabase
     .from("services")
     .select("slug, title, title_ar")
-    .order("sort_order", { ascending: true });
+    .eq("is_featured", true)
+    .order("sort_order", { ascending: true })
+    .limit(6);
 
   return <HeaderClient logoLeft={logoLeft} logoRight={logoRight} services={data ?? []} />;
 }
