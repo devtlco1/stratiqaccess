@@ -5,13 +5,19 @@ import { createClient } from "@/lib/supabase/server";
 export default async function AdminDashboardPage() {
   const supabase = await createClient();
 
-  const [services, clients, sectors, caseStudies, insights, messages] = await Promise.all([
+  const [services, clients, sectors, caseStudies, insights, messages, emailUnread, emailQueued, emailSent] = await Promise.all([
     supabase.from("services").select("id", { count: "exact", head: true }),
     supabase.from("clients").select("id", { count: "exact", head: true }),
     supabase.from("sectors").select("id", { count: "exact", head: true }),
     supabase.from("case_studies").select("id", { count: "exact", head: true }),
     supabase.from("insights").select("id", { count: "exact", head: true }),
     supabase.from("messages").select("id", { count: "exact", head: true }).eq("is_read", false),
+    supabase.from("email_messages").select("id", { count: "exact", head: true }).eq("direction", "inbound").eq("is_read", false),
+    supabase
+      .from("email_campaign_recipients")
+      .select("id", { count: "exact", head: true })
+      .in("status", ["pending", "queued", "sending"]),
+    supabase.from("email_campaign_recipients").select("id", { count: "exact", head: true }).eq("status", "sent"),
   ]);
 
   const cards = [
@@ -21,6 +27,9 @@ export default async function AdminDashboardPage() {
     { label: "Case Studies", count: caseStudies.count ?? 0, href: "/admin/case-studies" },
     { label: "Insights", count: insights.count ?? 0, href: "/admin/insights" },
     { label: "Unread Messages", count: messages.count ?? 0, href: "/admin/messages" },
+    { label: "Email Center: Unread", count: emailUnread.count ?? 0, href: "/admin/email-center/inbox" },
+    { label: "Email Center: Queued", count: emailQueued.count ?? 0, href: "/admin/email-center/campaigns" },
+    { label: "Email Center: Sent", count: emailSent.count ?? 0, href: "/admin/email-center/sent" },
   ];
 
   return (
