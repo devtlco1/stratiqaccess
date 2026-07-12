@@ -61,8 +61,12 @@ function getRequestHostname(request: NextRequest): string {
 }
 
 // /admin stays outside the public language system entirely — it keeps its
-// own auth-only middleware, untouched by locale routing. Everything else
-// goes through next-intl for locale resolution/redirects.
+// own auth-only middleware, untouched by locale routing. /api routes are
+// also not localized pages — next-intl's middleware doesn't recognize them
+// and 404s them if they're allowed to fall through to it, so they pass
+// through untouched (each route handler does its own auth: Bearer secret
+// for the webhook/cron routes, the signed unsubscribe token for that one).
+// Everything else goes through next-intl for locale resolution/redirects.
 export function middleware(request: NextRequest) {
   // Canonicalize on the apex domain — serving both www and non-www live
   // (as Hostinger does by default) reads as duplicate content to search
@@ -80,6 +84,9 @@ export function middleware(request: NextRequest) {
 
   if (request.nextUrl.pathname.startsWith("/admin")) {
     return adminMiddleware(request);
+  }
+  if (request.nextUrl.pathname.startsWith("/api")) {
+    return NextResponse.next();
   }
   return intlMiddleware(request);
 }

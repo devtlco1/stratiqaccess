@@ -14,6 +14,7 @@ const navItems = [
   { label: "Site Images", href: "/admin/site-images" },
   { label: "Messages", href: "/admin/messages" },
   { label: "Customers", href: "/admin/customers" },
+  { label: "Email Center", href: "/admin/email-center" },
   { label: "Site Settings", href: "/admin/settings" },
 ];
 
